@@ -9,25 +9,28 @@ import Crustulum from "../../assets/images/CrustPasteHP1.png"
 function Project({ data }) {
   const { name, description, photo, link, link2 } = data;
   return (
-    <a
-      href={link}
-      target="blank"
-      rel=""
+    <div
       className="flex flex-col justify-center items-center"
     >
-      <img
-        src={photo}
-        alt={name}
-        className="h-48 w-54 p-1"
-      ></img>
+      <a
+        href={link}
+        target="_blank"
+        rel="noreferrer"
+      >
+        <img
+          src={photo}
+          alt={name}
+          className="h-48 w-54 p-1"
+        />
+      </a>
       <h2 className="w-full text-center">
         {name}
       </h2>
       <p className="p-1 m-1">{description}</p>
-      <a href={link2}>
+      <a href={link2} target="_blank" rel="noreferrer">
         <button className="bg-gray-700 text-white font-medium py-2 px-4 rounded-full">Github Repo</button>
       </a>
-    </a>
+    </div>
 
   );
 }

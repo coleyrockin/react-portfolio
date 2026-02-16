@@ -17,7 +17,7 @@ function App() {
 
   const [currentSection, setCurrentSection] = useState(sections[0]);
   return (
-    <div class="flex-row">
+    <div className="flex-row">
       <Nav
         sections={sections}
         currentSection={currentSection}
