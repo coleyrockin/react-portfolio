@@ -5,9 +5,9 @@ function Navigation({ sections, currentSection, setCurrentSection }) {
   return (
 
     <nav>
-      <h3 class="ml9">
+      <h3 className="ml9">
         <span className="m-4 	">
-          <span class="letters">B O Y D</span>
+          <span className="letters">B O Y D</span>
         </span>
       </h3>
 
