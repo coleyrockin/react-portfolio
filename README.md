@@ -1,5 +1,5 @@
-# ReactJs Personal App
-Personal portfolio website I built using React, Tailwind, and various Node packages.
+# Developer Portfolio
+Personal developer portfolio built with React and modern frontend tooling.
 
 ## Available Scripts
 
@@ -19,6 +19,5 @@ You may also see any lint errors in the console.
 
 ### Screenshot
 ![img](./src/assets/images/PortfolioIMG.png)
-
 
 

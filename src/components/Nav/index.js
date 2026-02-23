@@ -1,32 +1,30 @@
 import React from "react";
 
-
 function Navigation({ sections, currentSection, setCurrentSection }) {
   return (
+    <header className="top-nav">
+      <div className="brand-block">
+        <p className="brand-kicker">Software Engineer</p>
+        <h1 className="brand-name">Boyd Roberts</h1>
+      </div>
+      <nav className="section-nav" aria-label="Primary Sections">
+        {sections.map(({ name, comp }) => {
+          const isActive = name === currentSection.name;
 
-    <nav>
-      <h3 className="ml9">
-        <span className="m-4 	">
-          <span className="letters">B O Y D</span>
-        </span>
-      </h3>
-
-      <nav className="text-xl font-bold flex align-center justify-evenly">
-        {
-          sections.map(({ name, comp }) => (
-            <div
-              className={`p-1 ${name === currentSection.name && "text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-400 to-blue-400"}`}
+          return (
+            <button
+              type="button"
+              className={`section-link ${isActive ? "is-active" : ""}`}
               key={name}
               onClick={() => setCurrentSection({ name, comp })}
+              aria-current={isActive ? "page" : undefined}
             >
               {name}
-            </div>
-          ))
-        }
-
-      </nav >
-    </nav>
-
+            </button>
+          );
+        })}
+      </nav>
+    </header>
   );
 }
 

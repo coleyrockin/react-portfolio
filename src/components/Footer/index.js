@@ -1,31 +1,49 @@
-import React from 'react';
-import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import React from "react";
+import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 
 function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <div className="flex justify-center m-12">
-      <footer>
-        <ul className='flex text-2xl space-x-1'>
-          <a className='hover:text-3xl' href="https://github.com/coleyrockin" target="_blank" rel="noreferrer">
-
-            <FaGithub />
-
+    <footer className="footer-shell">
+      <p className="footer-copy">© {currentYear} Boyd Roberts</p>
+      <ul className="footer-links">
+        <li>
+          <a
+            className="footer-icon"
+            href="https://instagram.com/coleyrockin"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+          >
+            <FaInstagram />
           </a>
-          <a className='hover:text-3xl' href="https://www.linkedin.com/in/boydcroberts" target="_blank" rel="noreferrer">
-
+        </li>
+        <li>
+          <a
+            className="footer-icon"
+            href="https://www.linkedin.com/in/boydcroberts"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
             <FaLinkedin />
-
           </a>
-          <a className='hover:text-3xl' href="mailto:boydcroberts@gmail.com" target="_blank" rel="noreferrer">
-
-            <FaEnvelope />
-
+        </li>
+        <li>
+          <a
+            className="footer-icon"
+            href="https://github.com/coleyrockin"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+          >
+            <FaGithub />
           </a>
-
-        </ul>
-      </footer>
-    </div>
+        </li>
+      </ul>
+    </footer>
   );
-};
+}
 
 export default Footer;
