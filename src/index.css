@@ -124,7 +124,8 @@ a {
 
 .about-panel,
 .knowledge-panel,
-.contact-panel {
+.contact-panel,
+.portfolio-panel {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 24px;
