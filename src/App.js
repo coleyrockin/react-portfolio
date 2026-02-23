@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Nav from "./components/Nav";
 import About from "./components/About";
 import Footer from "./components/Footer";
@@ -16,6 +16,13 @@ function App() {
 
   const [currentSection, setCurrentSection] = useState(sections[0]);
 
+  useEffect(() => {
+    document.title = `${currentSection.name} | Boyd Roberts`;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentSection]);
+
+  const CurrentComp = currentSection.comp;
+
   return (
     <div className="app-shell">
       <Nav
@@ -25,7 +32,7 @@ function App() {
       />
       <main className="main-content">
         <section className="content-shell">
-          {React.createElement(currentSection.comp, {})}
+          <CurrentComp />
         </section>
       </main>
       <Footer />
