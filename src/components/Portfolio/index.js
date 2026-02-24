@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { projects } from "../../data/projects";
 
 function ProjectCard({ project }) {
+  const [imageFailed, setImageFailed] = useState(false);
+  const coverTags = project.tags.slice(0, 3);
+
   return (
     <article className="project-card">
       <a
@@ -11,12 +14,30 @@ function ProjectCard({ project }) {
         className="project-image-link"
         aria-label={`${project.name} repository`}
       >
-        <img
-          src={project.image}
-          alt={project.imageAlt || `${project.name} project preview`}
-          className="project-image"
-          loading="lazy"
-        />
+        {imageFailed ? (
+          <div className="project-image-fallback" aria-label={`${project.name} preview fallback`}>
+            <p className="project-image-kicker">Project Snapshot</p>
+            <h4>{project.name}</h4>
+            <div className="project-image-chip-wrap">
+              {coverTags.map((tag) => (
+                <span className="project-image-chip" key={`${project.name}-fallback-${tag}`}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <img
+            src={project.image}
+            alt={project.imageAlt || `${project.name} project preview`}
+            className="project-image"
+            loading="lazy"
+            decoding="async"
+            width="1280"
+            height="720"
+            onError={() => setImageFailed(true)}
+          />
+        )}
       </a>
       <div className="project-content">
         <h3>{project.name}</h3>

@@ -13,8 +13,8 @@ function About() {
           <p className="about-kicker">Building modern web applications</p>
           <h2 className="about-title">Developer</h2>
           <p className="about-text">
-            Full stack developer with a strong foundation in customer service, recovery work, and business-focused
-            problem solving. I enjoy shipping useful products and learning fast across the full development lifecycle.
+            Developer with a strong foundation in customer service, recovery work, and business-focused problem
+            solving. I enjoy shipping useful products and learning fast across the full development lifecycle.
           </p>
         </div>
       </div>

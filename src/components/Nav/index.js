@@ -8,18 +8,18 @@ function Navigation({ sections, currentSection, setCurrentSection }) {
         <h1 className="brand-name">Boyd Roberts</h1>
       </div>
       <nav className="section-nav" aria-label="Primary Sections">
-        {sections.map(({ name, comp }) => {
-          const isActive = name === currentSection.name;
+        {sections.map((section) => {
+          const isActive = section.slug === currentSection.slug;
 
           return (
             <button
               type="button"
               className={`section-link ${isActive ? "is-active" : ""}`}
-              key={name}
-              onClick={() => setCurrentSection({ name, comp })}
+              key={section.slug}
+              onClick={() => setCurrentSection(section)}
               aria-current={isActive ? "page" : undefined}
             >
-              {name}
+              {section.name}
             </button>
           );
         })}

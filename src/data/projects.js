@@ -1,9 +1,9 @@
-import ChessGameImage from "../assets/images/portfolio/chess-game.png";
-import CherryTreeImage from "../assets/images/portfolio/cherrytree.png";
-import CryptoPriceImage from "../assets/images/portfolio/cryptoprice.png";
-import MVCTechBlogImage from "../assets/images/portfolio/mvctechblog.png";
-import SocialNetworkApiImage from "../assets/images/portfolio/social-network-api.png";
-import WestWardRPGImage from "../assets/images/portfolio/westwardrpg.png";
+import ChessGameImage from "../assets/images/portfolio/chess-game.jpg";
+import CherryTreeImage from "../assets/images/portfolio/cherrytree.jpg";
+import CryptoPriceImage from "../assets/images/portfolio/cryptoprice.jpg";
+import MVCTechBlogImage from "../assets/images/portfolio/mvctechblog.jpg";
+import SocialNetworkApiImage from "../assets/images/portfolio/social-network-api.jpg";
+import WestWardRPGImage from "../assets/images/portfolio/westwardrpg.jpg";
 
 export const projects = [
   {
@@ -50,7 +50,7 @@ export const projects = [
     name: "MVCTechBlog",
     description:
       "Implemented a complete MVC web application with authentication, session handling, template rendering, and durable persistence.",
-    scope: "Full-stack MVC app with auth and persistence.",
+    scope: "MVC product app with auth and persistence.",
     repo: "https://github.com/coleyrockin/MVCTechBlog",
     tags: ["JavaScript", "Handlebars", "CSS", "SQL"],
     image: MVCTechBlogImage,
