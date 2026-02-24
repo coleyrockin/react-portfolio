@@ -51,6 +51,13 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    if (typeof document === "undefined") {
+      return;
+    }
+    document.title = `Boyd Roberts | ${currentSection.name}`;
+  }, [currentSection.name]);
+
   const handleSectionChange = (section) => {
     if (section.slug === currentSection.slug) {
       return;
@@ -70,12 +77,15 @@ function App() {
 
   return (
     <div className="app-shell">
+      <a className="skip-link" href="#main-content">
+        Skip to content
+      </a>
       <Nav
         sections={sections}
         currentSection={currentSection}
         setCurrentSection={handleSectionChange}
       />
-      <main className="main-content">
+      <main className="main-content" id="main-content" tabIndex="-1">
         <section className="content-shell">
           {React.createElement(currentSection.comp, {})}
         </section>

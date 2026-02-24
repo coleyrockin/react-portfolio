@@ -30,6 +30,7 @@ Modern personal portfolio built with React and styled for a polished product-eng
 - Added CherryTree and refreshed core featured projects
 - Improved link safety with `rel="noopener noreferrer"` on external links
 - Added hash-based section routing for deep-linking and browser back/forward behavior
+- Added accessibility polish (skip link, reduced-motion support, stronger keyboard focus behavior)
 - Removed unused third-party script and improved metadata for SEO/social previews
 - Added Baylor Java + Python certificate file to `public/certificates/`
 

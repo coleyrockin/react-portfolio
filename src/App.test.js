@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import App from "./App";
 import { languageGroups } from "./data/languages";
@@ -17,13 +17,16 @@ describe("Portfolio site", () => {
     expect(window.location.hash).toBe("#about");
   });
 
-  test("supports hash-based section navigation", () => {
+  test("supports hash-based section navigation", async () => {
     render(<App />);
 
     userEvent.click(screen.getByRole("button", { name: "Portfolio" }));
 
     expect(screen.getByRole("heading", { name: "Selected Work" })).toBeInTheDocument();
     expect(window.location.hash).toBe("#portfolio");
+    await waitFor(() => {
+      expect(document.title).toBe("Boyd Roberts | Portfolio");
+    });
   });
 
   test("loads the section from URL hash on first render", () => {
@@ -88,5 +91,11 @@ describe("Portfolio site", () => {
     });
 
     expect(screen.getByRole("heading", { name: "AI Experience" })).toBeInTheDocument();
+  });
+
+  test("renders skip link to main content", () => {
+    render(<App />);
+
+    expect(screen.getByRole("link", { name: "Skip to content" })).toHaveAttribute("href", "#main-content");
   });
 });
