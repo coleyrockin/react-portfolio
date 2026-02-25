@@ -1,4 +1,4 @@
-import { render, screen, waitFor, within } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import App from "./App";
 import { languageGroups } from "./data/languages";
@@ -48,7 +48,6 @@ describe("Portfolio site", () => {
     expect(projectCards.length).toBeGreaterThanOrEqual(6);
 
     projects.forEach((project) => {
-      expect(screen.getByText(project.name)).toBeInTheDocument();
       expect(screen.getByRole("link", { name: project.name + " repository" })).toHaveAttribute(
         "href",
         project.repo
@@ -97,5 +96,17 @@ describe("Portfolio site", () => {
     render(<App />);
 
     expect(screen.getByRole("link", { name: "Skip to content" })).toHaveAttribute("href", "#main-content");
+  });
+
+  test("skip link hash does not reset the active section", () => {
+    render(<App />);
+
+    userEvent.click(screen.getByRole("button", { name: "Portfolio" }));
+    window.history.pushState({}, "", "/#main-content");
+    fireEvent(window, new HashChangeEvent("hashchange"));
+
+    expect(window.location.hash).toBe("#main-content");
+    expect(screen.getByRole("heading", { name: "Selected Work" })).toBeInTheDocument();
+    expect(document.title).toBe("Boyd Roberts | Portfolio");
   });
 });

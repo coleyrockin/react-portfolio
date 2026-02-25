@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { projects } from "../../data/projects";
 
 function ProjectCard({ project }) {
-  const [imageFailed, setImageFailed] = useState(false);
+  const [imageFailed, setImageFailed] = useState(!project.image);
   const coverTags = project.tags.slice(0, 3);
 
   return (

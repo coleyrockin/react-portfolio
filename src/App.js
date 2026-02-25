@@ -32,13 +32,24 @@ function App() {
     }
 
     const syncFromHash = () => {
-      const nextSection = getSectionFromHash(window.location.hash) || sections[0];
-      setCurrentSection((previousSection) =>
-        previousSection.slug === nextSection.slug ? previousSection : nextSection
-      );
+      const matchedSection = getSectionFromHash(window.location.hash);
+
+      if (matchedSection) {
+        setCurrentSection((previousSection) =>
+          previousSection.slug === matchedSection.slug ? previousSection : matchedSection
+        );
+        return;
+      }
+
+      if (!window.location.hash || window.location.hash === "#") {
+        setCurrentSection((previousSection) =>
+          previousSection.slug === sections[0].slug ? previousSection : sections[0]
+        );
+        window.history.replaceState(null, "", `#${sections[0].slug}`);
+      }
     };
 
-    if (!getSectionFromHash(window.location.hash)) {
+    if (!window.location.hash || window.location.hash === "#") {
       window.history.replaceState(null, "", `#${sections[0].slug}`);
     }
 

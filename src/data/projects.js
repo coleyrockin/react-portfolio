@@ -1,8 +1,7 @@
 import ChessGameImage from "../assets/images/portfolio/chess-game.jpg";
+import CJIIIPickleballImage from "../assets/images/portfolio/cjiiipickleball.jpg";
 import CherryTreeImage from "../assets/images/portfolio/cherrytree.jpg";
 import CryptoPriceImage from "../assets/images/portfolio/cryptoprice.jpg";
-import MVCTechBlogImage from "../assets/images/portfolio/mvctechblog.jpg";
-import SocialNetworkApiImage from "../assets/images/portfolio/social-network-api.jpg";
 import WestWardRPGImage from "../assets/images/portfolio/westwardrpg.jpg";
 
 export const projects = [
@@ -29,41 +28,41 @@ export const projects = [
   {
     name: "cryptoprice",
     description:
-      "Delivered a market-tracking interface with data-driven views, responsive layout decisions, and production-oriented front-end structure.",
-    scope: "Data UI, API-driven updates, and responsive interface architecture.",
+      "Shipped a production crypto/asset dashboard with resilient provider fallbacks, typed API contracts, and polished data-heavy UX.",
+    scope: "Type-safe full-stack market dashboard with reliability-first API behavior.",
     repo: "https://github.com/coleyrockin/cryptoprice",
-    tags: ["TypeScript", "JavaScript", "CSS", "HTML"],
+    tags: ["TypeScript", "React", "Node.js", "Vercel"],
     image: CryptoPriceImage,
     imageAlt: "CryptoPrice dashboard project preview",
   },
   {
-    name: "Social-Network-API",
-    description:
-      "Designed and implemented API-first backend architecture for social features with clear route/controller/model separation.",
-    scope: "Backend architecture, relationship modeling, and API design.",
-    repo: "https://github.com/coleyrockin/Social-Network-API",
-    tags: ["JavaScript", "Node.js", "Express", "MongoDB"],
-    image: SocialNetworkApiImage,
-    imageAlt: "Social-Network-API portfolio preview",
-  },
-  {
-    name: "MVCTechBlog",
-    description:
-      "Implemented a complete MVC web application with authentication, session handling, template rendering, and durable persistence.",
-    scope: "MVC product app with auth and persistence.",
-    repo: "https://github.com/coleyrockin/MVCTechBlog",
-    tags: ["JavaScript", "Handlebars", "CSS", "SQL"],
-    image: MVCTechBlogImage,
-    imageAlt: "MVC Tech Blog project preview",
-  },
-  {
     name: "CherryTree",
     description:
-      "Built a polished product experience focused on practical UX, modern architecture, and production-ready execution.",
-    scope: "Product build with frontend and backend integration.",
+      "Built a cinematic, scroll-driven web experience combining 3D graphics, choreography, and progressive media loading.",
+    scope: "Vite + Three.js + GSAP experience engineering for high-impact interaction.",
     repo: "https://github.com/coleyrockin/CherryTree",
-    tags: ["TypeScript", "React", "Node.js", "CSS"],
+    tags: ["JavaScript", "Three.js", "GSAP", "Vite"],
     image: CherryTreeImage,
     imageAlt: "CherryTree project preview",
+  },
+  {
+    name: "PythonAINews",
+    description:
+      "Engineered a safe daily automation pipeline for AI/tech news ranking, LLM-assisted draft generation, and approval-gated publishing.",
+    scope: "Python automation system with validation, scheduling, and test-backed publishing workflow.",
+    repo: "https://github.com/coleyrockin/PythonAINews",
+    tags: ["Python", "Automation", "LLM Workflows", "Testing"],
+    image: "",
+    imageAlt: "PythonAINews automation engine overview",
+  },
+  {
+    name: "CJIIIPICKLEBALL",
+    description:
+      "Delivered a real-world community site with custom branding, conversion-focused layout, and deployment hardening.",
+    scope: "Client-facing web product with UX polish, CSP/security tightening, and social integration.",
+    repo: "https://github.com/coleyrockin/CJIIIPICKLEBALL",
+    tags: ["HTML", "CSS", "JavaScript", "Web Security"],
+    image: CJIIIPickleballImage,
+    imageAlt: "CJIIIPICKLEBALL website preview",
   },
 ];
