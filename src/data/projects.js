@@ -1,5 +1,5 @@
 import ChessGameImage from "../assets/images/portfolio/chess-game.png";
-import CJIIIPickleballImage from "../assets/images/portfolio/cjiiipickleball.jpg";
+import CJIIIPickleballImage from "../assets/images/portfolio/cjiiipickleball.png";
 import CherryTreeImage from "../assets/images/portfolio/cherrytree.jpg";
 import CryptoPriceImage from "../assets/images/portfolio/cryptoprice.jpg";
 import WestWardRPGImage from "../assets/images/portfolio/westwardrpg.jpg";
