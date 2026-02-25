@@ -1,23 +1,20 @@
 {
   "files": {
-    "main.css": "/react-portfolio/static/css/main.5716e252.css",
-    "main.js": "/react-portfolio/static/js/main.8c8cd492.js",
-    "static/js/787.a2cb61a6.chunk.js": "/react-portfolio/static/js/787.a2cb61a6.chunk.js",
-    "static/media/OhSnap.png": "/react-portfolio/static/media/OhSnap.e50169d128a4b5f42a34.png",
-    "static/media/NURTI.png": "/react-portfolio/static/media/NURTI.586fb60c498c47590768.png",
-    "static/media/ContactC.png": "/react-portfolio/static/media/ContactC.31157608b784d5511c2c.png",
-    "static/media/MVC.png": "/react-portfolio/static/media/MVC.2307bc567e2d600aed45.png",
-    "static/media/CrustPasteHP1.png": "/react-portfolio/static/media/CrustPasteHP1.c2264f5388ef3459e75a.png",
+    "main.css": "/react-portfolio/static/css/main.f8fa998d.css",
+    "main.js": "/react-portfolio/static/js/main.f3e2584f.js",
+    "static/media/cjiiipickleball.png": "/react-portfolio/static/media/cjiiipickleball.87465707993f278347b4.png",
     "static/media/MeBGrm.png": "/react-portfolio/static/media/MeBGrm.0afe5425be6b405bafd8.png",
-    "static/media/JATE.png": "/react-portfolio/static/media/JATE.30fcfafebfbfa5ee036d.png",
+    "static/media/chess-game.png": "/react-portfolio/static/media/chess-game.3f68cb6c9ce7113c4629.png",
+    "static/media/westwardrpg.jpg": "/react-portfolio/static/media/westwardrpg.d9cdb83ece27227251b0.jpg",
+    "static/media/cryptoprice.jpg": "/react-portfolio/static/media/cryptoprice.7fa1c0af37129868c8e7.jpg",
+    "static/media/cherrytree.jpg": "/react-portfolio/static/media/cherrytree.88a7d7e5bbe0aeb80094.jpg",
     "static/media/fullstack.png": "/react-portfolio/static/media/fullstack.e43eef3995ae63c912c4.png",
     "index.html": "/react-portfolio/index.html",
-    "main.5716e252.css.map": "/react-portfolio/static/css/main.5716e252.css.map",
-    "main.8c8cd492.js.map": "/react-portfolio/static/js/main.8c8cd492.js.map",
-    "787.a2cb61a6.chunk.js.map": "/react-portfolio/static/js/787.a2cb61a6.chunk.js.map"
+    "main.f8fa998d.css.map": "/react-portfolio/static/css/main.f8fa998d.css.map",
+    "main.f3e2584f.js.map": "/react-portfolio/static/js/main.f3e2584f.js.map"
   },
   "entrypoints": [
-    "static/css/main.5716e252.css",
-    "static/js/main.8c8cd492.js"
+    "static/css/main.f8fa998d.css",
+    "static/js/main.f3e2584f.js"
   ]
 }
