@@ -6,10 +6,6 @@ Modern personal portfolio built with React and styled for a polished product-eng
 
 - [GitHub Pages](https://coleyrockin.github.io/react-portfolio/)
 
-## Current Screenshot
-
-![Current portfolio preview](./src/assets/images/portfolio/westwardrpg.jpg)
-
 ## What This Portfolio Highlights
 
 - Professional project presentation with centered responsive cards
