@@ -1,12 +1,6 @@
 import React from "react";
-import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
+import ICON_BY_KEY from "../../data/iconMap";
 import { socialLinks } from "../../data/socialLinks";
-
-const ICON_BY_KEY = {
-  instagram: FaInstagram,
-  linkedin: FaLinkedin,
-  github: FaGithub,
-};
 
 function Contact() {
   return (
@@ -16,7 +10,7 @@ function Contact() {
         The fastest way to reach me is through my social profiles.
       </p>
 
-      <div className="social-grid" aria-label="Social Profiles">
+      <section className="social-grid" aria-label="Social Profiles">
         {socialLinks.map((profile) => {
           const Icon = ICON_BY_KEY[profile.key];
           return (
@@ -36,7 +30,7 @@ function Contact() {
             </a>
           );
         })}
-      </div>
+      </section>
     </article>
   );
 }

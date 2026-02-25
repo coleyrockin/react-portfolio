@@ -1,4 +1,4 @@
-import ChessGameImage from "../assets/images/portfolio/chess-game.jpg";
+import ChessGameImage from "../assets/images/portfolio/chess-game.png";
 import CJIIIPickleballImage from "../assets/images/portfolio/cjiiipickleball.jpg";
 import CherryTreeImage from "../assets/images/portfolio/cherrytree.jpg";
 import CryptoPriceImage from "../assets/images/portfolio/cryptoprice.jpg";
@@ -26,7 +26,7 @@ export const projects = [
     imageAlt: "Chess-Game portfolio preview",
   },
   {
-    name: "cryptoprice",
+    name: "CryptoPrice",
     description:
       "Shipped a production crypto/asset dashboard with resilient provider fallbacks, typed API contracts, and polished data-heavy UX.",
     scope: "Type-safe full-stack market dashboard with reliability-first API behavior.",

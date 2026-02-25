@@ -10,6 +10,7 @@
   --line: rgba(15, 23, 42, 0.1);
   --teal: #0f766e;
   --teal-dark: #115e59;
+  --teal-subtle: rgba(15, 118, 110, 0.08);
   --orange: #c26b2f;
   --shadow: 0 20px 45px rgba(15, 23, 42, 0.12);
 }
@@ -41,7 +42,7 @@ a {
   left: 12px;
   top: -40px;
   z-index: 100;
-  background: #0f5f63;
+  background: var(--teal-dark);
   color: #ffffff;
   text-decoration: none;
   border-radius: 999px;
@@ -137,9 +138,23 @@ a {
 
 .content-shell {
   width: 100%;
+  animation: fadeIn 200ms ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .about-panel,
+.portfolio-panel,
 .knowledge-panel,
 .contact-panel {
   background: var(--surface);
@@ -181,10 +196,10 @@ a {
 
 .about-text {
   margin: 0;
-  color: #1e293b;
+  color: var(--ink);
 }
 
-.about-panel > .about-text {
+.about-panel>.about-text {
   margin-top: 1.1rem;
 }
 
@@ -225,8 +240,8 @@ a {
   align-items: center;
   border: 1px solid rgba(15, 118, 110, 0.25);
   border-radius: 999px;
-  background: rgba(15, 118, 110, 0.08);
-  color: #0f5f63;
+  background: var(--teal-subtle);
+  color: var(--teal-dark);
   padding: 0.48rem 0.86rem;
   font-weight: 700;
   text-decoration: none;
@@ -308,8 +323,8 @@ a {
 
 .language-chip {
   border: 1px solid rgba(15, 118, 110, 0.26);
-  background: rgba(15, 118, 110, 0.08);
-  color: #0f5f63;
+  background: var(--teal-subtle);
+  color: var(--teal-dark);
   border-radius: 999px;
   padding: 0.22rem 0.56rem;
   font-size: 0.8rem;
@@ -387,7 +402,7 @@ a {
 }
 
 .cert-item small {
-  color: #334155;
+  color: var(--muted);
   font-size: 0.78rem;
 }
 
@@ -395,8 +410,8 @@ a {
   justify-self: start;
   text-decoration: none;
   border: 1px solid rgba(15, 118, 110, 0.28);
-  background: rgba(15, 118, 110, 0.08);
-  color: #0f5f63;
+  background: var(--teal-subtle);
+  color: var(--teal-dark);
   border-radius: 999px;
   padding: 0.28rem 0.7rem;
   font-size: 0.8rem;
@@ -533,7 +548,7 @@ a {
 .project-meta {
   font-size: 0.82rem;
   font-weight: 700;
-  color: #0f5f63;
+  color: var(--teal-dark);
 }
 
 .project-tags {
@@ -544,8 +559,8 @@ a {
 
 .project-tag {
   border: 1px solid rgba(15, 118, 110, 0.28);
-  background: rgba(15, 118, 110, 0.09);
-  color: #0f5f63;
+  background: var(--teal-subtle);
+  color: var(--teal-dark);
   border-radius: 999px;
   padding: 0.2rem 0.55rem;
   font-size: 0.76rem;
@@ -566,8 +581,8 @@ a {
   padding: 0.38rem 0.8rem;
   font-weight: 700;
   font-size: 0.8rem;
-  color: #0f5f63;
-  background: rgba(15, 118, 110, 0.08);
+  color: var(--teal-dark);
+  background: var(--teal-subtle);
 }
 
 .project-actions a:hover {
@@ -622,7 +637,7 @@ a {
   border-radius: 50%;
   border: 1px solid rgba(15, 118, 110, 0.28);
   background: rgba(15, 118, 110, 0.12);
-  color: #0f5f63;
+  color: var(--teal-dark);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -678,8 +693,8 @@ a {
   border-radius: 50%;
   text-decoration: none;
   border: 1px solid var(--line);
-  color: #0f5f63;
-  background: rgba(15, 118, 110, 0.08);
+  color: var(--teal-dark);
+  background: var(--teal-subtle);
   transition: 180ms ease;
 }
 
@@ -718,6 +733,7 @@ code {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {

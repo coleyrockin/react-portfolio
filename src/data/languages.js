@@ -54,6 +54,6 @@ export const languageSourceNote =
   "Language source of truth: derived from public GitHub repositories and active project history.";
 
 export const aiExperienceCopy = [
-  "I have been on the frontier of AI research and practical application for over 2 years, using AI tools daily to accelerate development, ideation, and problem solving.",
+  "Since 2023, I have been on the frontier of AI research and practical application, using AI tools daily to accelerate development, ideation, and problem solving.",
   "I actively study and experiment with AI agents, prompt design, and tool-driven workflows to build more capable software systems.",
 ];

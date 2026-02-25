@@ -11,9 +11,9 @@ function About() {
         <img className="profile-photo" height={180} width={180} src={ImgMe} alt="Boyd Roberts" />
         <div>
           <p className="about-kicker">Building modern web applications</p>
-          <h2 className="about-title">Developer</h2>
+          <h2 className="about-title">Software Engineer</h2>
           <p className="about-text">
-            Developer with a strong foundation in customer service, recovery work, and business-focused problem
+            Software engineer with a strong foundation in customer service, recovery work, and business-focused problem
             solving. I enjoy shipping useful products and learning fast across the full development lifecycle.
           </p>
         </div>

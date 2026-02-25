@@ -61,8 +61,8 @@ function Resume() {
 
       <section className="ai-experience-panel">
         <h3>AI Experience</h3>
-        {aiExperienceCopy.map((paragraph) => (
-          <p key={paragraph}>{paragraph}</p>
+        {aiExperienceCopy.map((paragraph, index) => (
+          <p key={index}>{paragraph}</p>
         ))}
       </section>
     </article>

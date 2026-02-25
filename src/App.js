@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Nav from "./components/Nav";
 import About from "./components/About";
 import Footer from "./components/Footer";
@@ -19,6 +19,8 @@ function getSectionFromHash(hash) {
 }
 
 function App() {
+  const mainRef = useRef(null);
+
   const [currentSection, setCurrentSection] = useState(() => {
     if (typeof window === "undefined") {
       return sections[0];
@@ -76,6 +78,10 @@ function App() {
 
     setCurrentSection(section);
 
+    if (mainRef.current) {
+      mainRef.current.focus({ preventScroll: true });
+    }
+
     if (typeof window === "undefined") {
       return;
     }
@@ -96,9 +102,9 @@ function App() {
         currentSection={currentSection}
         setCurrentSection={handleSectionChange}
       />
-      <main className="main-content" id="main-content" tabIndex="-1">
-        <section className="content-shell">
-          {React.createElement(currentSection.comp, {})}
+      <main className="main-content" id="main-content" tabIndex="-1" ref={mainRef}>
+        <section className="content-shell" key={currentSection.slug}>
+          {(() => { const Section = currentSection.comp; return <Section />; })()}
         </section>
       </main>
       <Footer />

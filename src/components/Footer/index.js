@@ -1,12 +1,6 @@
 import React from "react";
-import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
+import ICON_BY_KEY from "../../data/iconMap";
 import { socialLinks } from "../../data/socialLinks";
-
-const ICON_BY_KEY = {
-  instagram: FaInstagram,
-  linkedin: FaLinkedin,
-  github: FaGithub,
-};
 
 function Footer() {
   const currentYear = new Date().getFullYear();
@@ -14,7 +8,7 @@ function Footer() {
   return (
     <footer className="footer-shell">
       <p className="footer-copy">© {currentYear} Boyd Roberts</p>
-      <ul className="footer-links">
+      <ul className="footer-links" aria-label="Social links">
         {socialLinks.map((profile) => {
           const Icon = ICON_BY_KEY[profile.key];
           return (
