@@ -1,15 +1,20 @@
 # Boyd Roberts — Software Engineer Portfolio
 
+![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white)
+![Deployed on GitHub Pages](https://img.shields.io/badge/Deployed%20on-GitHub%20Pages-222?logo=github)
+![License](https://img.shields.io/badge/License-All%20Rights%20Reserved-lightgrey)
+
 A modern, single-page portfolio built with **React 18** showcasing selected engineering work, technical depth, certifications, and AI workflow experience.
 
-**[View Live Site →](https://coleyrockin.github.io/react-portfolio/)**
+**[🌐 View Live Site →](https://coleyrockin.github.io/react-portfolio/)**
 
 ---
 
-## Screenshot
+## What This Is
 
-<!-- Replace docs/screenshot.png with your own screenshot (see instructions below) -->
-![Boyd Roberts Portfolio](docs/screenshot.png)
+This portfolio is a production-deployed React application that serves as a professional home for Boyd Roberts — a software engineer with a MERN-focused core stack and a background spanning frontend, backend, game systems, and AI-accelerated delivery.
+
+It is designed to give recruiters, employers, and collaborators a fast, clear read on engineering capability: what has been built, what languages and tools are in active use, and how to connect.
 
 ---
 
@@ -20,6 +25,7 @@ A modern, single-page portfolio built with **React 18** showcasing selected engi
 - **Accessibility** — skip link, `aria-current` navigation, `prefers-reduced-motion` support, keyboard focus management
 - **Data-driven rendering** — projects, languages, certifications, and social links all sourced from centralized data modules
 - **PWA-ready** — web app manifest, themed favicons, OG/Twitter meta tags for social sharing
+- **Graceful image fallbacks** — project cards degrade gracefully when preview images are unavailable
 - **Subtle animations** — fade-in section transitions (disabled for reduced-motion preference)
 
 ## Sections
@@ -40,6 +46,17 @@ A modern, single-page portfolio built with **React 18** showcasing selected engi
 | **Icons** | React Icons (Font Awesome) |
 | **Fonts** | Bricolage Grotesque, Space Grotesk (Google Fonts) |
 | **Deployment** | GitHub Pages via `gh-pages` |
+
+## Featured Projects
+
+| Project | Description | Stack |
+|---------|-------------|-------|
+| [WestWardRPG](https://github.com/coleyrockin/WestWardRPG) | Large-scale RPG codebase with a polyglot toolchain | JS, TS, Python, Go, Rust, PHP |
+| [Chess-Game](https://github.com/coleyrockin/Chess-Game) | Chess platform with engine logic and graphics experimentation | C++, Python, TS, GLSL, C# |
+| [CryptoPrice](https://github.com/coleyrockin/cryptoprice) | Production crypto dashboard with resilient provider fallbacks | TypeScript, React, Node.js |
+| [CherryTree](https://github.com/coleyrockin/CherryTree) | Scroll-driven 3D web experience with GSAP choreography | JS, Three.js, GSAP, Vite |
+| [PythonAINews](https://github.com/coleyrockin/PythonAINews) | LLM-assisted news automation pipeline with approval-gated publishing | Python, Automation |
+| [CJIIIPICKLEBALL](https://github.com/coleyrockin/CJIIIPICKLEBALL) | Real-world community site with custom branding and CSP hardening | HTML, CSS, JS |
 
 ## Project Structure
 
@@ -90,16 +107,26 @@ npm run build
 npm run deploy
 ```
 
-## Capturing a Screenshot
+The `predeploy` script runs `npm run build` automatically before deploying.
 
-To add the README screenshot:
+## Future Improvements
 
-1. Run `npm start` to launch the dev server
-2. Open [http://localhost:3000](http://localhost:3000) in Chrome
-3. Open DevTools → Device Toolbar → set viewport to **1280 × 800**
-4. Navigate to the **About** section for the hero view
-5. Take a screenshot (⌘⇧P → "Capture screenshot" in DevTools)
-6. Save as `docs/screenshot.png`
+- Add a dark/light mode toggle
+- Add a contact form with email delivery (e.g., EmailJS or Formspree)
+- Expand the Portfolio section with more project detail pages or modal overlays
+- Add GitHub stats or language usage badges pulled from the API
+- Improve performance with image optimization (WebP conversion, responsive `srcset`)
+- Add automated testing coverage for component rendering
+
+See [ROADMAP.md](ROADMAP.md) for the full planned feature list.
+
+## Why This Project Exists
+
+Most portfolio templates are either generic or over-engineered. This one is built from scratch with a clear engineering philosophy: clean component boundaries, centralized data, no framework bloat, and a design system that scales. It demonstrates the same principles that apply to any product-facing codebase — intentional architecture, maintainability, and attention to user experience.
+
+## Contributing / Screenshot Instructions
+
+See [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) for instructions on how to add screenshots or contribute improvements.
 
 ## License
 
