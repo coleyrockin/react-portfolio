@@ -3,15 +3,35 @@ const publicPath = process.env.PUBLIC_URL || "";
 export const languageGroups = [
   {
     title: "Core",
-    languages: ["JavaScript", "TypeScript", "Python", "Java", "C#"],
+    languages: [
+      { name: "JavaScript", tier: "primary" },
+      { name: "TypeScript", tier: "primary" },
+      { name: "Python", tier: "primary" },
+      { name: "Java", tier: "primary" },
+      { name: "C#", tier: "proficient" },
+    ],
   },
   {
     title: "Systems and Backend",
-    languages: ["C++", "C", "Go", "Rust", "PHP", "Ruby", "Perl", "Shell"],
+    languages: [
+      { name: "C++", tier: "proficient" },
+      { name: "C", tier: "familiar" },
+      { name: "Go", tier: "proficient" },
+      { name: "Rust", tier: "familiar" },
+      { name: "PHP", tier: "familiar" },
+      { name: "Ruby", tier: "familiar" },
+      { name: "Perl", tier: "familiar" },
+      { name: "Shell", tier: "proficient" },
+    ],
   },
   {
     title: "Web and Specialized",
-    languages: ["HTML", "CSS", "Handlebars", "GLSL"],
+    languages: [
+      { name: "HTML", tier: "primary" },
+      { name: "CSS", tier: "primary" },
+      { name: "Handlebars", tier: "familiar" },
+      { name: "GLSL", tier: "familiar" },
+    ],
   },
 ];
 
@@ -54,6 +74,8 @@ export const languageSourceNote =
   "Language source of truth: derived from public GitHub repositories and active project history.";
 
 export const aiExperienceCopy = [
-  "Since 2023, I have been on the frontier of AI research and practical application, using AI tools daily to accelerate development, ideation, and problem solving.",
-  "I actively study and experiment with AI agents, prompt design, and tool-driven workflows to build more capable software systems.",
+  "Built PythonAINews — a daily automation pipeline using LLM-assisted draft generation with human-in-the-loop approval gates and test-backed publishing.",
+  "Use Claude and GPT daily for code review, architecture exploration, debugging, and test generation across all active projects.",
+  "Design prompt workflows for rapid prototyping, turning natural-language specs into working code with iterative refinement.",
+  "Study AI agent patterns, tool-use architectures, and retrieval-augmented generation to build more capable software systems.",
 ];

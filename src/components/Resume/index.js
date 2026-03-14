@@ -18,14 +18,19 @@ function Resume() {
       <section className="language-map-panel">
         <h3>Language Map</h3>
         <p className="language-source-note">{languageSourceNote}</p>
+        <div className="language-tier-legend">
+          <span className="language-chip language-chip--primary">Primary</span>
+          <span className="language-chip language-chip--proficient">Proficient</span>
+          <span className="language-chip language-chip--familiar">Familiar</span>
+        </div>
         <div className="language-group-grid">
           {languageGroups.map((group) => (
             <article className="language-group-card" key={group.title}>
               <h4>{group.title}</h4>
               <div className="language-chip-wrap">
                 {group.languages.map((language) => (
-                  <span className="language-chip" key={`${group.title}-${language}`}>
-                    {language}
+                  <span className={`language-chip language-chip--${language.tier}`} key={`${group.title}-${language.name}`}>
+                    {language.name}
                   </span>
                 ))}
               </div>
@@ -61,9 +66,11 @@ function Resume() {
 
       <section className="ai-experience-panel">
         <h3>AI Experience</h3>
-        {aiExperienceCopy.map((paragraph, index) => (
-          <p key={index}>{paragraph}</p>
-        ))}
+        <ul className="ai-experience-list">
+          {aiExperienceCopy.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
       </section>
     </article>
   );

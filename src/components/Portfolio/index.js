@@ -54,6 +54,11 @@ function ProjectCard({ project }) {
           <a href={project.repo} target="_blank" rel="noopener noreferrer">
             View Repository
           </a>
+          {project.demo && (
+            <a href={project.demo} target="_blank" rel="noopener noreferrer" className="demo-link">
+              Live Demo
+            </a>
+          )}
         </div>
       </div>
     </article>
