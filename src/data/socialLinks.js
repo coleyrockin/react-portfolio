@@ -1,9 +1,9 @@
 export const socialLinks = [
   {
-    key: "instagram",
-    name: "Instagram",
-    handle: "@coleyrockin",
-    href: "https://instagram.com/coleyrockin",
+    key: "email",
+    name: "Email",
+    handle: "boydcroberts@gmail.com",
+    href: "mailto:boydcroberts@gmail.com",
   },
   {
     key: "linkedin",
@@ -16,5 +16,11 @@ export const socialLinks = [
     name: "GitHub",
     handle: "coleyrockin",
     href: "https://github.com/coleyrockin",
+  },
+  {
+    key: "instagram",
+    name: "Instagram",
+    handle: "@coleyrockin",
+    href: "https://instagram.com/coleyrockin",
   },
 ];

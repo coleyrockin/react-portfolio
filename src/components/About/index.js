@@ -10,19 +10,20 @@ function About() {
       <div className="about-header">
         <img className="profile-photo" height={180} width={180} src={ImgMe} alt="Boyd Roberts" />
         <div>
-          <p className="about-kicker">Building modern web applications</p>
+          <p className="about-kicker">Full-stack engineer with 6 shipped projects</p>
           <h2 className="about-title">Software Engineer</h2>
           <p className="about-text">
-            Software engineer with a strong foundation in customer service, recovery work, and business-focused problem
-            solving. I enjoy shipping useful products and learning fast across the full development lifecycle.
+            Full-stack software engineer specializing in the MERN stack with certifications in Java and Python. I build
+            production-grade applications across the full development lifecycle — from API design and data modeling to
+            polished, responsive UIs.
           </p>
         </div>
       </div>
 
       <p className="about-text">
-        My core stack is MERN, and I continue to expand into Java, Python, and cloud services. I completed developer
-        training at Southern Methodist University and a 255-hour Java Programmer + Python Developer program through
-        Baylor Professional Education.
+        Trained at Southern Methodist University and through Baylor Professional Education's 255-hour Java + Python
+        program. My background in customer-facing roles gives me strong instincts for user empathy, clear communication,
+        and shipping features that solve real problems.
       </p>
 
       <div className="about-highlight-grid">

@@ -7,7 +7,7 @@ function Contact() {
     <article className="contact-panel">
       <h2 className="panel-title">Connect With Me</h2>
       <p className="contact-intro">
-        The fastest way to reach me is through my social profiles.
+        Reach me directly by email or through my social profiles.
       </p>
 
       <section className="social-grid" aria-label="Social Profiles">

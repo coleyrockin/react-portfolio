@@ -1,5 +1,5 @@
 import ChessGameImage from "../assets/images/portfolio/chess-game.png";
-import CJIIIPickleballImage from "../assets/images/portfolio/cjiiipickleball.png";
+import CJIIIPickleballImage from "../assets/images/portfolio/cjiiipickleball.jpg";
 import CherryTreeImage from "../assets/images/portfolio/cherrytree.jpg";
 import CryptoPriceImage from "../assets/images/portfolio/cryptoprice.jpg";
 import WestWardRPGImage from "../assets/images/portfolio/westwardrpg.jpg";
@@ -8,8 +8,8 @@ export const projects = [
   {
     name: "WestWardRPG",
     description:
-      "Architected and iterated on a large-scale RPG codebase with a polyglot toolchain and gameplay-driven feature delivery.",
-    scope: "Polyglot game systems and production delivery workflow.",
+      "Framework-free 3D raycast RPG with combo-chain combat, quest progression, dynamic weather, and 8-language internationalization — built across 9 languages with Playwright-driven QA automation.",
+    scope: "Polyglot game engine: canvas rendering, AI pathfinding, economic simulation, and cross-language tooling.",
     repo: "https://github.com/coleyrockin/WestWardRPG",
     tags: ["JavaScript", "TypeScript", "Python", "Go", "Rust", "PHP"],
     image: WestWardRPGImage,
@@ -18,8 +18,8 @@ export const projects = [
   {
     name: "Chess-Game",
     description:
-      "Built a chess platform that blends engine logic, interactive UI layers, and graphics experimentation into one cohesive build.",
-    scope: "Engine logic, frontend state, and rendering experimentation.",
+      "Dual-platform chess engine with Python/ModernGL desktop rendering and TypeScript/Babylon.js browser client — featuring engine-agnostic game logic designed for cross-platform portability.",
+    scope: "WebGPU + WebGL rendering, shader-driven post-processing, and turn-based camera choreography.",
     repo: "https://github.com/coleyrockin/Chess-Game",
     tags: ["C++", "Python", "TypeScript", "JavaScript", "GLSL", "C#"],
     image: ChessGameImage,
@@ -28,9 +28,10 @@ export const projects = [
   {
     name: "CryptoPrice",
     description:
-      "Shipped a production crypto/asset dashboard with resilient provider fallbacks, typed API contracts, and polished data-heavy UX.",
-    scope: "Type-safe full-stack market dashboard with reliability-first API behavior.",
+      "9,000+ LOC type-safe dashboard aggregating crypto and stock data with multi-tier caching (in-memory, durable KV, validated JSON fallback) and stale-if-error resilience across 98 source files.",
+    scope: "React 19 + Vercel serverless with watchlist pinning, compare mode, logo proxy with security allowlisting, and full test suite.",
     repo: "https://github.com/coleyrockin/cryptoprice",
+    demo: "https://coleyrockin.github.io/cryptoprice/",
     tags: ["TypeScript", "React", "Node.js", "Vercel"],
     image: CryptoPriceImage,
     imageAlt: "CryptoPrice dashboard project preview",
@@ -38,8 +39,8 @@ export const projects = [
   {
     name: "CherryTree",
     description:
-      "Built a cinematic, scroll-driven web experience combining 3D graphics, choreography, and progressive media loading.",
-    scope: "Vite + Three.js + GSAP experience engineering for high-impact interaction.",
+      "Cinematic scroll-driven experience with 240+ WebGL-animated petals, 3 GSAP motion presets (parallax, crossfade, drift), and progressive media loading via IntersectionObserver.",
+    scope: "Vite + Three.js + GSAP + Lenis: accessible motion choreography with reduced-motion support.",
     repo: "https://github.com/coleyrockin/CherryTree",
     tags: ["JavaScript", "Three.js", "GSAP", "Vite"],
     image: CherryTreeImage,
@@ -48,8 +49,8 @@ export const projects = [
   {
     name: "PythonAINews",
     description:
-      "Engineered a safe daily automation pipeline for AI/tech news ranking, LLM-assisted draft generation, and approval-gated publishing.",
-    scope: "Python automation system with validation, scheduling, and test-backed publishing workflow.",
+      "4-stage automation pipeline pulling from 10 curated RSS feeds, ranking by AI relevance, generating drafts via OpenAI API, and publishing to Facebook through dual transport (Graph API + Playwright fallback).",
+    scope: "Research, ranking, LLM drafting, image generation, scheduling, and approval-gated publishing with 28 test modules.",
     repo: "https://github.com/coleyrockin/PythonAINews",
     tags: ["Python", "Automation", "LLM Workflows", "Testing"],
     image: "",
@@ -58,9 +59,10 @@ export const projects = [
   {
     name: "CJIIIPICKLEBALL",
     description:
-      "Delivered a real-world community site with custom branding, conversion-focused layout, and deployment hardening.",
-    scope: "Client-facing web product with UX polish, CSP/security tightening, and social integration.",
+      "Production community site delivered for a real client — featuring 10+ affiliate partner integrations, copy-to-clipboard coupon system, and strict Content-Security-Policy with script-src 'self' enforcement.",
+    scope: "Client-facing web product with conversion-focused UX, Facebook Open Graph integration, and security hardening.",
     repo: "https://github.com/coleyrockin/CJIIIPICKLEBALL",
+    demo: "https://coleyrockin.github.io/CJIIIPICKLEBALL/",
     tags: ["HTML", "CSS", "JavaScript", "Web Security"],
     image: CJIIIPickleballImage,
     imageAlt: "CJIIIPICKLEBALL website preview",
