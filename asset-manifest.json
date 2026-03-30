@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/react-portfolio/static/css/main.14d31965.css",
-    "main.js": "/react-portfolio/static/js/main.6ba2d802.js",
+    "main.css": "/react-portfolio/static/css/main.c62e8af3.css",
+    "main.js": "/react-portfolio/static/js/main.5374de78.js",
     "static/media/MeBGrm.png": "/react-portfolio/static/media/MeBGrm.0afe5425be6b405bafd8.png",
     "static/media/westwardrpg.jpg": "/react-portfolio/static/media/westwardrpg.d9cdb83ece27227251b0.jpg",
     "static/media/cryptoprice.jpg": "/react-portfolio/static/media/cryptoprice.7fa1c0af37129868c8e7.jpg",
-    "static/media/baylor-badge.png": "/react-portfolio/static/media/baylor-badge.7b8c766c97bf71c3fce9.png",
     "static/media/cherrytree.jpg": "/react-portfolio/static/media/cherrytree.88a7d7e5bbe0aeb80094.jpg",
     "static/media/cjiiipickleball.webp": "/react-portfolio/static/media/cjiiipickleball.c26b89e22bb53b39ed01.webp",
     "static/media/chess-game.webp": "/react-portfolio/static/media/chess-game.fb2ea95a38e0a38244df.webp",
     "static/media/fullstack.png": "/react-portfolio/static/media/fullstack.e43eef3995ae63c912c4.png",
+    "static/media/baylor-badge.png": "/react-portfolio/static/media/baylor-badge.f98c355dc22aa6b7a22e.png",
     "index.html": "/react-portfolio/index.html",
-    "main.14d31965.css.map": "/react-portfolio/static/css/main.14d31965.css.map",
-    "main.6ba2d802.js.map": "/react-portfolio/static/js/main.6ba2d802.js.map"
+    "main.c62e8af3.css.map": "/react-portfolio/static/css/main.c62e8af3.css.map",
+    "main.5374de78.js.map": "/react-portfolio/static/js/main.5374de78.js.map"
   },
   "entrypoints": [
-    "static/css/main.14d31965.css",
-    "static/js/main.6ba2d802.js"
+    "static/css/main.c62e8af3.css",
+    "static/js/main.5374de78.js"
   ]
 }
