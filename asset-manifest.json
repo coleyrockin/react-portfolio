@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/react-portfolio/static/css/main.38238e3f.css",
+    "main.css": "/react-portfolio/static/css/main.fd9de0c7.css",
     "main.js": "/react-portfolio/static/js/main.5083f87f.js",
     "static/media/MeBGrm.png": "/react-portfolio/static/media/MeBGrm.0afe5425be6b405bafd8.png",
     "static/media/westwardrpg.jpg": "/react-portfolio/static/media/westwardrpg.d9cdb83ece27227251b0.jpg",
@@ -11,11 +11,11 @@
     "static/media/fullstack.png": "/react-portfolio/static/media/fullstack.e43eef3995ae63c912c4.png",
     "index.html": "/react-portfolio/index.html",
     "static/media/baylor-badge.svg": "/react-portfolio/static/media/baylor-badge.a34ad24d386452f76c10486629a2decd.svg",
-    "main.38238e3f.css.map": "/react-portfolio/static/css/main.38238e3f.css.map",
+    "main.fd9de0c7.css.map": "/react-portfolio/static/css/main.fd9de0c7.css.map",
     "main.5083f87f.js.map": "/react-portfolio/static/js/main.5083f87f.js.map"
   },
   "entrypoints": [
-    "static/css/main.38238e3f.css",
+    "static/css/main.fd9de0c7.css",
     "static/js/main.5083f87f.js"
   ]
 }
