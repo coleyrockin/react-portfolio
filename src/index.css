@@ -68,6 +68,11 @@
   background: #1e293b;
 }
 
+html {
+  background: var(--bg-b);
+  overflow-x: hidden;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -379,7 +384,7 @@ a {
 }
 
 .badge-wrap .baylor-badge {
-  max-width: 120px;
+  max-width: 160px;
   border-radius: 50%;
 }
 
