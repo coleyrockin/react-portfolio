@@ -890,14 +890,85 @@ code {
 @media (max-width: 700px) {
   .top-nav {
     border-radius: 14px;
+    padding: 12px 14px;
+  }
+
+  .nav-row {
+    margin-top: 10px;
+    gap: 8px;
+  }
+
+  .section-nav {
+    gap: 6px;
+  }
+
+  .section-link {
+    padding: 0.38rem 0.72rem;
+    font-size: 0.88rem;
   }
 
   .about-header {
     grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
   }
 
   .profile-photo {
-    width: 140px;
+    width: 160px;
+    border-radius: 50%;
+  }
+
+  .about-kicker {
+    margin-top: 0.4rem;
+  }
+
+  .about-panel > .about-text {
+    text-align: center;
+  }
+
+  .about-highlight-grid {
+    gap: 8px;
+  }
+
+  .cert-link-row {
+    flex-direction: column;
+  }
+
+  .cta-link {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .badge-wrap {
+    justify-content: center;
+  }
+
+  .badge-wrap img {
+    max-width: 110px;
+  }
+
+  .badge-wrap .baylor-badge {
+    max-width: 110px;
+  }
+
+  .panel-title {
+    text-align: center;
+  }
+
+  .project-note {
+    text-align: center;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-intro {
+    text-align: center;
+  }
+
+  .knowledge-intro {
+    text-align: center;
   }
 
   .footer-shell {
