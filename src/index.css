@@ -380,7 +380,7 @@ a {
 
 .badge-wrap .baylor-badge {
   max-width: 120px;
-  border-radius: 8px;
+  border-radius: 50%;
 }
 
 .panel-title {

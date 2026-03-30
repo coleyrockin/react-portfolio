@@ -1,7 +1,7 @@
 import React from "react";
 import ImgMe from "../../assets/images/MeBGrm.png";
 import Fullstack from "../../assets/images/fullstack.png";
-import BaylorBadge from "../../assets/images/baylor-badge.png";
+import BaylorBadge from "../../assets/images/baylor-badge.svg";
 
 function About() {
   const baylorCertificate = `${process.env.PUBLIC_URL}/certificates/baylor-java-python-certificate.pdf`;
