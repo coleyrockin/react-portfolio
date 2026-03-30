@@ -378,13 +378,13 @@ a {
 }
 
 .badge-wrap img {
-  max-width: 160px;
+  max-width: 130px;
   width: 100%;
   border-radius: 14px;
 }
 
 .badge-wrap .baylor-badge {
-  max-width: 160px;
+  max-width: 130px;
   border-radius: 50%;
 }
 
