@@ -1,6 +1,7 @@
 import React from "react";
 import ImgMe from "../../assets/images/MeBGrm.png";
 import Fullstack from "../../assets/images/fullstack.png";
+import BaylorBadge from "../../assets/images/baylor-badge.svg";
 
 function About() {
   const baylorCertificate = `${process.env.PUBLIC_URL}/certificates/baylor-java-python-certificate.pdf`;
@@ -62,7 +63,10 @@ function About() {
 
       <div className="badge-wrap">
         <a href="https://www.credly.com/badges/8329e5c9-3399-4e92-906a-78eb4548a282/public_url" target="_blank" rel="noopener noreferrer">
-          <img src={Fullstack} alt="Southern Methodist University developer credential badge" />
+          <img src={Fullstack} alt="Southern Methodist University Full Stack Web Development credential badge" />
+        </a>
+        <a href={baylorCertificate} target="_blank" rel="noopener noreferrer">
+          <img src={BaylorBadge} alt="Baylor University Professional Education certificate" className="baylor-badge" />
         </a>
       </div>
     </article>

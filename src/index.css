@@ -366,13 +366,21 @@ a {
 
 .badge-wrap {
   margin-top: 1.15rem;
-  display: inline-block;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
 }
 
 .badge-wrap img {
-  max-width: 260px;
+  max-width: 160px;
   width: 100%;
   border-radius: 14px;
+}
+
+.badge-wrap .baylor-badge {
+  max-width: 120px;
+  border-radius: 50%;
 }
 
 .panel-title {
