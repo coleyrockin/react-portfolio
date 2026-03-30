@@ -17,10 +17,4 @@ export const socialLinks = [
     handle: "coleyrockin",
     href: "https://github.com/coleyrockin",
   },
-  {
-    key: "instagram",
-    name: "Instagram",
-    handle: "@coleyrockin",
-    href: "https://instagram.com/coleyrockin",
-  },
 ];
