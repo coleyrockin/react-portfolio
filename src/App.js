@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Nav from "./components/Nav";
 import About from "./components/About";
 import Footer from "./components/Footer";
@@ -120,7 +120,7 @@ function App() {
       />
       <main className="main-content" id="main-content" tabIndex="-1" ref={mainRef}>
         <section className="content-shell" key={currentSection.slug}>
-          {(() => { const Section = currentSection.comp; return <Section />; })()}
+          <currentSection.comp />
         </section>
       </main>
       <Footer />

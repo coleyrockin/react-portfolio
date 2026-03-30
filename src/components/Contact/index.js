@@ -24,8 +24,8 @@ function Contact() {
             >
               <div className="social-icon-wrap">{Icon ? <Icon /> : null}</div>
               <div className="social-text">
-                <h3>{profile.name}</h3>
-                <p>{profile.handle}</p>
+                <span className="social-name">{profile.name}</span>
+                <span className="social-handle">{profile.handle}</span>
               </div>
             </a>
           );

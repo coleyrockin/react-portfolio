@@ -13,7 +13,7 @@ describe("Portfolio site", () => {
   test("loads About section by default and normalizes hash", () => {
     render(<App />);
 
-    expect(screen.getByRole("heading", { name: "Developer" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Software Engineer" })).toBeInTheDocument();
     expect(window.location.hash).toBe("#about");
   });
 
@@ -85,7 +85,7 @@ describe("Portfolio site", () => {
     languageGroups.forEach((group) => {
       expect(screen.getByRole("heading", { name: group.title })).toBeInTheDocument();
       group.languages.forEach((language) => {
-        expect(screen.getByText(language)).toBeInTheDocument();
+        expect(screen.getByText(language.name)).toBeInTheDocument();
       });
     });
 

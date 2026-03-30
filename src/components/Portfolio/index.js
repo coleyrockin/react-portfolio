@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { memo, useMemo, useState } from "react";
 import { projects } from "../../data/projects";
 
-function ProjectCard({ project }) {
+const ProjectCard = memo(function ProjectCard({ project }) {
   const [imageFailed, setImageFailed] = useState(!project.image);
-  const coverTags = project.tags.slice(0, 3);
+  const coverTags = useMemo(() => project.tags.slice(0, 3), [project.tags]);
 
   return (
     <article className="project-card">
@@ -63,7 +63,7 @@ function ProjectCard({ project }) {
       </div>
     </article>
   );
-}
+});
 
 function Portfolio() {
   return (

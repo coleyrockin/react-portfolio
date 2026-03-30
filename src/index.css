@@ -803,12 +803,15 @@ a {
   flex-shrink: 0;
 }
 
-.social-text h3 {
+.social-name {
+  display: block;
   margin: 0;
   font-size: 1rem;
+  font-weight: 600;
 }
 
-.social-text p {
+.social-handle {
+  display: block;
   margin: 0.15rem 0 0;
   font-size: 0.9rem;
   color: var(--muted);
