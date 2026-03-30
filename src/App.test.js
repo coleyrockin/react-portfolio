@@ -59,10 +59,7 @@ describe("Portfolio site", () => {
     render(<App />);
     userEvent.click(screen.getByRole("button", { name: "Contact" }));
 
-    const contactPanel = screen.getByRole("heading", { name: "Connect With Me" }).closest("article");
-    expect(contactPanel).toBeTruthy();
-
-    const scoped = within(contactPanel);
+    const scoped = within(screen.getByRole("region", { name: "Social Profiles" }));
     socialLinks.forEach((profile) => {
       expect(scoped.getByRole("link", { name: profile.name })).toHaveAttribute("href", profile.href);
     });

@@ -30,8 +30,7 @@ export const projects = [
     description:
       "9,000+ LOC type-safe dashboard aggregating crypto and stock data with multi-tier caching (in-memory, durable KV, validated JSON fallback) and stale-if-error resilience across 98 source files.",
     scope: "React 19 + Vercel serverless with watchlist pinning, compare mode, logo proxy with security allowlisting, and full test suite.",
-    repo: "https://github.com/coleyrockin/cryptoprice",
-    demo: "https://coleyrockin.github.io/cryptoprice/",
+    repo: "https://github.com/coleyrockin/world-asset-prices",
     tags: ["TypeScript", "React", "Node.js", "Vercel"],
     image: CryptoPriceImage,
     imageAlt: "CryptoPrice dashboard project preview",
@@ -62,7 +61,6 @@ export const projects = [
       "Production community site delivered for a real client — featuring 10+ affiliate partner integrations, copy-to-clipboard coupon system, and strict Content-Security-Policy with script-src 'self' enforcement.",
     scope: "Client-facing web product with conversion-focused UX, Facebook Open Graph integration, and security hardening.",
     repo: "https://github.com/coleyrockin/CJIIIPICKLEBALL",
-    demo: "https://coleyrockin.github.io/CJIIIPICKLEBALL/",
     tags: ["HTML", "CSS", "JavaScript", "Web Security"],
     image: CJIIIPickleballImage,
     imageAlt: "CJIIIPICKLEBALL website preview",
