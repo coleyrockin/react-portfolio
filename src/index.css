@@ -303,6 +303,29 @@ a {
   border: 2px solid rgba(15, 118, 110, 0.24);
 }
 
+.profile-photo-wrap {
+  position: relative;
+  width: min(100%, 180px);
+}
+
+.profile-photo-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 24px;
+  background: conic-gradient(from 0deg, var(--teal), var(--orange), var(--teal));
+  filter: blur(12px);
+  opacity: 0.5;
+  animation: glowSpin 8s linear infinite;
+  z-index: -1;
+}
+
+@keyframes glowSpin {
+  to {
+    rotate: 360deg;
+  }
+}
+
 .about-kicker {
   margin: 0;
   font-size: 0.85rem;
@@ -936,6 +959,14 @@ code {
 
   .profile-photo {
     width: 160px;
+    border-radius: 50%;
+  }
+
+  .profile-photo-wrap {
+    width: 160px;
+  }
+
+  .profile-photo-wrap::before {
     border-radius: 50%;
   }
 
