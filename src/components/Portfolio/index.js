@@ -1,5 +1,6 @@
 import React, { memo, useMemo, useState } from "react";
 import { projects } from "../../data/projects";
+import RevealItem from "../RevealItem";
 
 const ProjectCard = memo(function ProjectCard({ project }) {
   const [imageFailed, setImageFailed] = useState(!project.image);
@@ -74,8 +75,10 @@ function Portfolio() {
         delivery.
       </p>
       <div className="project-grid">
-        {projects.map((project) => (
-          <ProjectCard project={project} key={project.name} />
+        {projects.map((project, i) => (
+          <RevealItem delay={Math.min(i, 5)} key={project.name}>
+            <ProjectCard project={project} />
+          </RevealItem>
         ))}
       </div>
     </section>

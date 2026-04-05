@@ -1,4 +1,5 @@
 import React from "react";
+import RevealItem from "../RevealItem";
 import {
   aiExperienceCopy,
   capabilityPillars,
@@ -24,27 +25,31 @@ function Resume() {
           <span className="language-chip language-chip--familiar">Familiar</span>
         </div>
         <div className="language-group-grid">
-          {languageGroups.map((group) => (
-            <article className="language-group-card" key={group.title}>
-              <h4>{group.title}</h4>
-              <div className="language-chip-wrap">
-                {group.languages.map((language) => (
-                  <span className={`language-chip language-chip--${language.tier}`} key={`${group.title}-${language.name}`}>
-                    {language.name}
-                  </span>
-                ))}
-              </div>
-            </article>
+          {languageGroups.map((group, i) => (
+            <RevealItem delay={Math.min(i, 5)} key={group.title}>
+              <article className="language-group-card">
+                <h4>{group.title}</h4>
+                <div className="language-chip-wrap">
+                  {group.languages.map((language) => (
+                    <span className={`language-chip language-chip--${language.tier}`} key={`${group.title}-${language.name}`}>
+                      {language.name}
+                    </span>
+                  ))}
+                </div>
+              </article>
+            </RevealItem>
           ))}
         </div>
       </section>
 
       <section className="capability-grid" aria-label="Engineering Capabilities">
-        {capabilityPillars.map((pillar) => (
-          <article className="capability-card" key={pillar.title}>
-            <h3>{pillar.title}</h3>
-            <p>{pillar.description}</p>
-          </article>
+        {capabilityPillars.map((pillar, i) => (
+          <RevealItem delay={Math.min(i, 5)} key={pillar.title}>
+            <article className="capability-card">
+              <h3>{pillar.title}</h3>
+              <p>{pillar.description}</p>
+            </article>
+          </RevealItem>
         ))}
       </section>
 

@@ -1080,4 +1080,10 @@ code {
   .section-link:not(.is-active)::after {
     display: none;
   }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }

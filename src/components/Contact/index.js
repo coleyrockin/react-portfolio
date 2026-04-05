@@ -1,6 +1,7 @@
 import React from "react";
 import ICON_BY_KEY from "../../data/iconMap";
 import { socialLinks } from "../../data/socialLinks";
+import RevealItem from "../RevealItem";
 
 function Contact() {
   return (
@@ -11,23 +12,24 @@ function Contact() {
       </p>
 
       <section className="social-grid" aria-label="Social Profiles">
-        {socialLinks.map((profile) => {
+        {socialLinks.map((profile, i) => {
           const Icon = ICON_BY_KEY[profile.key];
           return (
-            <a
-              className="social-card"
-              key={profile.key}
-              href={profile.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={profile.name}
-            >
-              <div className="social-icon-wrap">{Icon ? <Icon /> : null}</div>
-              <div className="social-text">
-                <span className="social-name">{profile.name}</span>
-                <span className="social-handle">{profile.handle}</span>
-              </div>
-            </a>
+            <RevealItem delay={Math.min(i, 5)} key={profile.key}>
+              <a
+                className="social-card"
+                href={profile.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={profile.name}
+              >
+                <div className="social-icon-wrap">{Icon ? <Icon /> : null}</div>
+                <div className="social-text">
+                  <span className="social-name">{profile.name}</span>
+                  <span className="social-handle">{profile.handle}</span>
+                </div>
+              </a>
+            </RevealItem>
           );
         })}
       </section>
