@@ -231,13 +231,13 @@ a {
 
 .content-shell {
   width: 100%;
-  animation: fadeIn 200ms ease;
+  animation: sectionEnter 300ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@keyframes fadeIn {
+@keyframes sectionEnter {
   from {
     opacity: 0;
-    transform: translateY(4px);
+    transform: translateY(12px);
   }
 
   to {
@@ -277,21 +277,6 @@ a {
 .reveal-delay-4 { transition-delay: 320ms; }
 .reveal-delay-5 { transition-delay: 400ms; }
 
-.content-shell .project-card,
-.content-shell .highlight-item,
-.content-shell .capability-card,
-.content-shell .social-card,
-.content-shell .language-group-card,
-.content-shell .cert-item {
-  animation: staggerIn 300ms ease both;
-}
-
-.content-shell > * :nth-child(1) { animation-delay: 0ms; }
-.content-shell > * :nth-child(2) { animation-delay: 60ms; }
-.content-shell > * :nth-child(3) { animation-delay: 120ms; }
-.content-shell > * :nth-child(4) { animation-delay: 180ms; }
-.content-shell > * :nth-child(5) { animation-delay: 240ms; }
-.content-shell > * :nth-child(6) { animation-delay: 300ms; }
 
 .about-panel,
 .portfolio-panel,
