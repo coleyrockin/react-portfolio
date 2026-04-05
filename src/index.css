@@ -223,6 +223,27 @@ a {
   border-color: transparent;
 }
 
+.section-link:not(.is-active) {
+  position: relative;
+}
+
+.section-link:not(.is-active)::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: var(--teal);
+  border-radius: 1px;
+  transition: width 200ms ease-out;
+}
+
+.section-link:not(.is-active):hover::after {
+  width: 60%;
+}
+
 .main-content {
   width: min(1100px, 95%);
   margin: 24px auto;
@@ -398,7 +419,8 @@ a {
 
 .cta-link:hover {
   background: rgba(15, 118, 110, 0.14);
-  transform: translateY(-1px);
+  transform: scale(1.02) translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.1);
 }
 
 .badge-wrap {
@@ -658,8 +680,8 @@ a {
 }
 
 .project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.18);
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(15, 118, 110, 0.12);
   border-color: rgba(15, 118, 110, 0.35);
 }
 
@@ -788,10 +810,13 @@ a {
   font-size: 0.8rem;
   color: var(--teal-dark);
   background: var(--teal-subtle);
+  transition: transform 180ms ease-out, box-shadow 180ms ease-out, background 180ms ease;
 }
 
 .project-actions a:hover {
   background: rgba(15, 118, 110, 0.15);
+  transform: scale(1.02);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
 }
 
 .project-actions .demo-link {
@@ -841,9 +866,9 @@ a {
 }
 
 .social-card:hover {
-  transform: translateY(-1px);
+  transform: translateY(-3px);
   border-color: rgba(15, 118, 110, 0.45);
-  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.1);
 }
 
 .social-icon-wrap {
@@ -917,8 +942,10 @@ a {
 }
 
 .footer-icon:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
   background: rgba(15, 118, 110, 0.15);
+  color: var(--teal);
+  box-shadow: 0 4px 8px rgba(15, 23, 42, 0.08);
 }
 
 code {
@@ -1047,5 +1074,10 @@ code {
   .social-card:hover,
   .footer-icon:hover {
     transform: none;
+    box-shadow: none;
+  }
+
+  .section-link:not(.is-active)::after {
+    display: none;
   }
 }
