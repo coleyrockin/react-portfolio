@@ -327,6 +327,7 @@ a {
 .profile-photo-wrap {
   position: relative;
   width: min(100%, 180px);
+  isolation: isolate;
 }
 
 .profile-photo-wrap::before {

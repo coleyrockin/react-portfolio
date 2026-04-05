@@ -4,6 +4,14 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
 
+class IntersectionObserver {
+  constructor(cb) { this._cb = cb; }
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
+window.IntersectionObserver = IntersectionObserver;
+
 window.matchMedia = (query) => ({
   matches: false,
   media: query,
