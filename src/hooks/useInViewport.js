@@ -14,6 +14,7 @@ export default function useInViewport(options = {}) {
       return;
     }
 
+    const isMobile = window.innerWidth < 700;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -21,7 +22,7 @@ export default function useInViewport(options = {}) {
           observer.unobserve(el);
         }
       },
-      { threshold: options.threshold ?? 0.15 }
+      { threshold: options.threshold ?? (isMobile ? 0.02 : 0.15), rootMargin: isMobile ? "0px 0px 60px 0px" : "0px" }
     );
 
     observer.observe(el);

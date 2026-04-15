@@ -3,17 +3,20 @@ import ImgMe from "../../assets/images/MeBGrm.png";
 import Fullstack from "../../assets/images/fullstack.png";
 import BaylorBadge from "../../assets/images/baylor-badge.svg";
 import RevealItem from "../RevealItem";
+import NeuralCanvas from "../NeuralCanvas";
 
-function About() {
+function About({ theme = "dark" }) {
   const baylorCertificate = `${process.env.PUBLIC_URL}/certificates/baylor-java-python-certificate.pdf`;
 
   return (
     <article className="about-panel">
-      <div className="about-header">
-        <div className="profile-photo-wrap">
-          <img className="profile-photo" height={180} width={180} src={ImgMe} alt="Boyd Roberts" />
-        </div>
-        <div>
+      <div className="about-header-wrap">
+        <NeuralCanvas className="neural-bg" theme={theme} />
+        <div className="about-header">
+          <div className="profile-photo-wrap">
+            <img className="profile-photo" height={180} width={180} src={ImgMe} alt="Boyd Roberts" />
+          </div>
+          <div>
           <p className="about-kicker">Full-stack engineer with 6 shipped projects</p>
           <h2 className="about-title">Software Engineer</h2>
           <p className="about-text">
@@ -21,6 +24,7 @@ function About() {
             production-grade applications across the full development lifecycle — from API design and data modeling to
             polished, responsive UIs.
           </p>
+          </div>
         </div>
       </div>
 

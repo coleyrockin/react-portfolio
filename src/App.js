@@ -22,10 +22,10 @@ function App() {
   const mainRef = useRef(null);
 
   const [theme, setTheme] = useState(() => {
-    if (typeof window === "undefined") return "light";
+    if (typeof window === "undefined") return "dark";
     const stored = localStorage.getItem("theme");
     if (stored) return stored;
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    return "dark";
   });
 
   useEffect(() => {
@@ -120,7 +120,7 @@ function App() {
       />
       <main className="main-content" id="main-content" tabIndex="-1" ref={mainRef}>
         <section className="content-shell" key={currentSection.slug}>
-          <currentSection.comp />
+          <currentSection.comp theme={theme} />
         </section>
       </main>
       <Footer />
