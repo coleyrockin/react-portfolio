@@ -1,4 +1,3 @@
-import React from "react";
 import RevealItem from "../RevealItem";
 import {
   aiExperienceCopy,

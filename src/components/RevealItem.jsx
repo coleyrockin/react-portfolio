@@ -1,4 +1,3 @@
-import React from "react";
 import useInViewport from "../hooks/useInViewport";
 
 export default function RevealItem({ delay = 0, className = "", children }) {

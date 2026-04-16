@@ -1,4 +1,4 @@
-import React, { memo, useMemo, useState } from "react";
+import { memo, useMemo, useState } from "react";
 import { projects } from "../../data/projects";
 import RevealItem from "../RevealItem";
 

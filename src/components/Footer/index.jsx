@@ -1,4 +1,3 @@
-import React from "react";
 import ICON_BY_KEY from "../../data/iconMap";
 import { socialLinks } from "../../data/socialLinks";
 

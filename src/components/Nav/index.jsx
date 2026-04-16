@@ -1,5 +1,3 @@
-import React from "react";
-
 function Navigation({ sections, currentSection, setCurrentSection }) {
   return (
     <header className="top-nav">
