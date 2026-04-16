@@ -1,18 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 export default function useInViewport(options = {}) {
   const ref = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(() => prefersReducedMotion());
 
   useEffect(() => {
+    if (isVisible) return;
     const el = ref.current;
     if (!el) return;
-
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced) {
-      setIsVisible(true);
-      return;
-    }
 
     const isMobile = window.innerWidth < 700;
     const observer = new IntersectionObserver(
@@ -22,12 +21,15 @@ export default function useInViewport(options = {}) {
           observer.unobserve(el);
         }
       },
-      { threshold: options.threshold ?? (isMobile ? 0.02 : 0.15), rootMargin: isMobile ? "0px 0px 60px 0px" : "0px" }
+      {
+        threshold: options.threshold ?? (isMobile ? 0.02 : 0.15),
+        rootMargin: isMobile ? "0px 0px 60px 0px" : "0px",
+      }
     );
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, [options.threshold]);
+  }, [options.threshold, isVisible]);
 
   return [ref, isVisible];
 }

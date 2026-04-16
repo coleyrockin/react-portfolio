@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "react-portfolio-dev",
-      "runtimeExecutable": "/usr/local/bin/node",
-      "runtimeArgs": ["node_modules/.bin/react-scripts", "start"],
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
       "port": 3000
     }
   ]

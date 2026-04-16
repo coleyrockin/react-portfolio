@@ -1,4 +1,4 @@
-const publicPath = process.env.PUBLIC_URL || "";
+const publicPath = (import.meta.env.BASE_URL || "/").replace(/\/$/, "");
 
 export const languageGroups = [
   {

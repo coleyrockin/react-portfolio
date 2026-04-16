@@ -18,9 +18,10 @@ describe("Portfolio site", () => {
   });
 
   test("supports hash-based section navigation", async () => {
+    const user = userEvent.setup();
     render(<App />);
 
-    userEvent.click(screen.getByRole("button", { name: "Portfolio" }));
+    await user.click(screen.getByRole("button", { name: "Portfolio" }));
 
     expect(screen.getByRole("heading", { name: "Selected Work" })).toBeInTheDocument();
     expect(window.location.hash).toBe("#portfolio");
@@ -37,9 +38,10 @@ describe("Portfolio site", () => {
     expect(window.location.hash).toBe("#knowledge");
   });
 
-  test("renders six portfolio projects with repository actions", () => {
+  test("renders six portfolio projects with repository actions", async () => {
+    const user = userEvent.setup();
     render(<App />);
-    userEvent.click(screen.getByRole("button", { name: "Portfolio" }));
+    await user.click(screen.getByRole("button", { name: "Portfolio" }));
 
     const projectCards = screen.getAllByRole("article");
     const projectRepoLinks = screen.getAllByRole("link", { name: "View Repository" });
@@ -55,9 +57,10 @@ describe("Portfolio site", () => {
     });
   });
 
-  test("renders social-first contact links", () => {
+  test("renders social-first contact links", async () => {
+    const user = userEvent.setup();
     render(<App />);
-    userEvent.click(screen.getByRole("button", { name: "Contact" }));
+    await user.click(screen.getByRole("button", { name: "Contact" }));
 
     const scoped = within(screen.getByRole("region", { name: "Social Profiles" }));
     socialLinks.forEach((profile) => {
@@ -75,9 +78,10 @@ describe("Portfolio site", () => {
     });
   });
 
-  test("renders the complete language map and AI section", () => {
+  test("renders the complete language map and AI section", async () => {
+    const user = userEvent.setup();
     render(<App />);
-    userEvent.click(screen.getByRole("button", { name: "Knowledge" }));
+    await user.click(screen.getByRole("button", { name: "Knowledge" }));
 
     languageGroups.forEach((group) => {
       expect(screen.getByRole("heading", { name: group.title })).toBeInTheDocument();
@@ -95,10 +99,11 @@ describe("Portfolio site", () => {
     expect(screen.getByRole("link", { name: "Skip to content" })).toHaveAttribute("href", "#main-content");
   });
 
-  test("skip link hash does not reset the active section", () => {
+  test("skip link hash does not reset the active section", async () => {
+    const user = userEvent.setup();
     render(<App />);
 
-    userEvent.click(screen.getByRole("button", { name: "Portfolio" }));
+    await user.click(screen.getByRole("button", { name: "Portfolio" }));
     window.history.pushState({}, "", "/#main-content");
     fireEvent(window, new HashChangeEvent("hashchange"));
 

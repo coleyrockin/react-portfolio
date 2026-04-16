@@ -6,7 +6,8 @@ import RevealItem from "../RevealItem";
 import NeuralCanvas from "../NeuralCanvas";
 
 function About({ theme = "dark" }) {
-  const baylorCertificate = `${process.env.PUBLIC_URL}/certificates/baylor-java-python-certificate.pdf`;
+  const baseUrl = (import.meta.env.BASE_URL || "/").replace(/\/$/, "");
+  const baylorCertificate = `${baseUrl}/certificates/baylor-java-python-certificate.pdf`;
 
   return (
     <article className="about-panel">
@@ -14,7 +15,7 @@ function About({ theme = "dark" }) {
         <NeuralCanvas className="neural-bg" theme={theme} />
         <div className="about-header">
           <div className="profile-photo-wrap">
-            <img className="profile-photo" height={180} width={180} src={ImgMe} alt="Boyd Roberts" />
+            <img className="profile-photo" height={180} width={180} src={ImgMe} alt="Boyd Roberts" fetchPriority="high" decoding="async" />
           </div>
           <div>
           <p className="about-kicker">Full-stack engineer with 6 shipped projects</p>
@@ -29,7 +30,7 @@ function About({ theme = "dark" }) {
       </div>
 
       <p className="about-text">
-        Trained at Southern Methodist University and through Baylor Professional Education's 255-hour Java + Python
+        Trained at Southern Methodist University and through Baylor Professional Education&rsquo;s 255-hour Java + Python
         program. My background in customer-facing roles gives me strong instincts for user empathy, clear communication,
         and shipping features that solve real problems.
       </p>
@@ -77,10 +78,10 @@ function About({ theme = "dark" }) {
       <RevealItem delay={0}>
         <div className="badge-wrap">
           <a href="https://www.credly.com/badges/8329e5c9-3399-4e92-906a-78eb4548a282/public_url" target="_blank" rel="noopener noreferrer">
-            <img src={Fullstack} alt="Southern Methodist University Full Stack Web Development credential badge" />
+            <img src={Fullstack} alt="Southern Methodist University Full Stack Web Development credential badge" loading="lazy" decoding="async" width={240} height={240} />
           </a>
           <a href={baylorCertificate} target="_blank" rel="noopener noreferrer">
-            <img src={BaylorBadge} alt="Baylor University Professional Education certificate" className="baylor-badge" />
+            <img src={BaylorBadge} alt="Baylor University Professional Education certificate" className="baylor-badge" loading="lazy" decoding="async" width={240} height={240} />
           </a>
         </div>
       </RevealItem>
