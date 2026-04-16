@@ -1,7 +1,6 @@
 import React from "react";
-import { FaSun, FaMoon } from "react-icons/fa";
 
-function Navigation({ sections, currentSection, setCurrentSection, theme, toggleTheme }) {
+function Navigation({ sections, currentSection, setCurrentSection }) {
   return (
     <header className="top-nav">
       <div className="brand-block">
@@ -26,14 +25,6 @@ function Navigation({ sections, currentSection, setCurrentSection, theme, toggle
             );
           })}
         </nav>
-        <button
-          type="button"
-          className="theme-toggle"
-          onClick={toggleTheme}
-          aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-        >
-          {theme === "dark" ? <FaSun /> : <FaMoon />}
-        </button>
       </div>
     </header>
   );

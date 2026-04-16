@@ -5,14 +5,14 @@ import BaylorBadge from "../../assets/images/baylor-badge.svg";
 import RevealItem from "../RevealItem";
 import NeuralCanvas from "../NeuralCanvas";
 
-function About({ theme = "dark" }) {
+function About() {
   const baseUrl = (import.meta.env.BASE_URL || "/").replace(/\/$/, "");
   const baylorCertificate = `${baseUrl}/certificates/baylor-java-python-certificate.pdf`;
 
   return (
     <article className="about-panel">
       <div className="about-header-wrap">
-        <NeuralCanvas className="neural-bg" theme={theme} />
+        <NeuralCanvas className="neural-bg" />
         <div className="about-header">
           <div className="profile-photo-wrap">
             <img className="profile-photo" height={180} width={180} src={ImgMe} alt="Boyd Roberts" fetchPriority="high" decoding="async" />

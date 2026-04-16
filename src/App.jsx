@@ -21,20 +21,6 @@ function getSectionFromHash(hash) {
 function App() {
   const mainRef = useRef(null);
 
-  const [theme, setTheme] = useState(() => {
-    if (typeof window === "undefined") return "dark";
-    const stored = localStorage.getItem("theme");
-    if (stored) return stored;
-    return "dark";
-  });
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-  }, [theme]);
-
-  const toggleTheme = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
-
   const [currentSection, setCurrentSection] = useState(() => {
     if (typeof window === "undefined") {
       return sections[0];
@@ -115,12 +101,10 @@ function App() {
         sections={sections}
         currentSection={currentSection}
         setCurrentSection={handleSectionChange}
-        theme={theme}
-        toggleTheme={toggleTheme}
       />
       <main className="main-content" id="main-content" tabIndex="-1" ref={mainRef}>
         <section className="content-shell" key={currentSection.slug}>
-          <currentSection.comp theme={theme} />
+          <currentSection.comp />
         </section>
       </main>
       <Footer />
