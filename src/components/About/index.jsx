@@ -11,20 +11,31 @@ function About() {
 
   return (
     <article className="about-panel">
-      <div className="about-header-wrap">
+      <div className="about-header-wrap hero-wrap">
         <NeuralCanvas className="neural-bg" />
+        <div className="hero-aurora" aria-hidden="true" />
         <div className="about-header">
           <div className="profile-photo-wrap">
             <img className="profile-photo" height={180} width={180} src={ImgMe} alt="Boyd Roberts" fetchPriority="high" decoding="async" />
           </div>
           <div>
-          <p className="about-kicker">Full-stack engineer with 6 shipped projects</p>
-          <h2 className="about-title">Software Engineer</h2>
-          <p className="about-text">
-            Full-stack software engineer specializing in the MERN stack with certifications in Java and Python. I build
-            production-grade applications across the full development lifecycle — from API design and data modeling to
-            polished, responsive UIs.
-          </p>
+            <p className="about-kicker">Full-stack engineer with 6 shipped projects</p>
+            <h2 className="about-title hero-title">
+              <span className="hero-title-gradient">Software Engineer</span>
+            </h2>
+            <p className="about-text">
+              Full-stack software engineer specializing in the MERN stack with certifications in Java and Python. I build
+              production-grade applications across the full development lifecycle — from API design and data modeling to
+              polished, responsive UIs.
+            </p>
+            <div className="hero-cta-row">
+              <a className="hero-cta hero-cta--primary" href="#portfolio">
+                View Projects
+              </a>
+              <a className="hero-cta hero-cta--secondary" href="#contact">
+                Get in Touch
+              </a>
+            </div>
           </div>
         </div>
       </div>
