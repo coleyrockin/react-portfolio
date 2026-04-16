@@ -12,6 +12,24 @@ class IntersectionObserver {
 }
 window.IntersectionObserver = IntersectionObserver;
 
+class ResizeObserver {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
+window.ResizeObserver = ResizeObserver;
+
+HTMLCanvasElement.prototype.getContext = function () {
+  return {
+    setTransform: () => {},
+    clearRect: () => {},
+    fillRect: () => {},
+    fillStyle: "",
+    globalCompositeOperation: "",
+    createRadialGradient: () => ({ addColorStop: () => {} }),
+  };
+};
+
 window.matchMedia = (query) => ({
   matches: false,
   media: query,
