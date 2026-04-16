@@ -5,6 +5,7 @@
 ![CSS3](https://img.shields.io/badge/CSS3-Modules-1572B6?style=flat&logo=css3&logoColor=white)
 ![React Icons](https://img.shields.io/badge/React_Icons-4.6-E91E63?style=flat&logo=react&logoColor=white)
 ![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-Deployed-222?style=flat&logo=githubpages&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-yellow?style=flat)
 
 **Live Site:** [coleyrockin.github.io/react-portfolio](https://coleyrockin.github.io/react-portfolio/)
 
@@ -77,10 +78,12 @@ react-portfolio/
 │   ├── components/    # Reusable UI components
 │   ├── data/          # Centralized content modules
 │   └── styles/        # CSS modules and global styles
-├── CNAME              # Custom domain configuration
 └── package.json       # Dependencies and scripts
 ```
 
 ---
 
-*Built with React and deployed on GitHub Pages.*
+## License
+
+MIT © Boyd Roberts
+
