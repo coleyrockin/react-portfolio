@@ -17,14 +17,14 @@
 
 ## About
 
-A single-page developer portfolio built with React 19 and Vite. Highlights selected engineering work, language breadth, certifications, and AI workflow experience — with hash-based deep linking, a theme-aware animated canvas hero, mobile-first responsive layout, and an accessibility-conscious component tree.
+A single-page developer portfolio built with React 19 and Vite. Highlights selected engineering work, language breadth, certifications, and AI workflow experience — with hash-based deep linking, an animated canvas hero, mobile-first responsive layout, and an accessibility-conscious component tree.
 
 ## Features
 
 - **Hash-based routing** — deep-linkable sections with full browser back/forward support
-- **Animated neural-canvas hero** — theme-reactive blob field rendered on HTMLCanvas with DPR scaling and `prefers-reduced-motion` fallback
-- **Light / dark theme** — auto-detects `prefers-color-scheme`, persists preference, and swaps canvas palette in place
-- **Responsive from 320px up** — mobile-first layout with glassmorphism nav and gradient backgrounds
+- **Animated neural-canvas hero** — drifting blob field rendered on HTMLCanvas with DPR scaling and `prefers-reduced-motion` fallback
+- **Dark-only design system** — single cyan + orange palette, glassmorphism nav, gradient aurora backdrop
+- **Responsive from 320px up** — mobile-first layout with fluid clamp-based type scale
 - **Accessibility-first** — skip link, `aria-current` nav, reduced-motion support, keyboard focus management, semantic landmarks, descriptive alt text
 - **Data-driven content** — projects, languages, certifications, and social links centralized in `src/data/*`
 - **PWA-ready** — web app manifest, themed favicons, OG/Twitter meta, JSON-LD `Person` schema
@@ -85,7 +85,7 @@ react-portfolio/
 │   ├── App.jsx           # Hash-routed shell
 │   ├── App.test.jsx      # Integration tests
 │   ├── index.jsx         # Entry point (React 19 createRoot)
-│   └── index.css         # Global styles + theme variables
+│   └── index.css         # Global styles + dark design tokens
 ├── index.html            # Vite entry HTML
 ├── vite.config.js        # Build config (base: /react-portfolio/)
 ├── vitest.config.js      # Test env (jsdom + setupTests)
@@ -96,7 +96,7 @@ react-portfolio/
 
 - Migrating a mature Create React App project to Vite + React 19 + Vitest without dropping test coverage
 - Accessibility-conscious React (skip link, reduced-motion, semantic landmarks, keyboard-friendly nav)
-- Canvas animation with DPR scaling, ResizeObserver-driven redraws, and theme-reactive color palettes
+- Canvas animation with DPR scaling, ResizeObserver-driven redraws, and `prefers-reduced-motion` respect
 - CI-enforced quality gates (lint + test + build) before any deploy
 - GitHub Actions Pages deploy pipeline (no push-to-gh-pages branch required)
 
