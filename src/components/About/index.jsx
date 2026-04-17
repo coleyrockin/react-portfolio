@@ -1,4 +1,4 @@
-import ImgMe from "../../assets/images/MeBGrm.png";
+import ImgMe from "../../assets/images/MeBGrm.webp";
 import Fullstack from "../../assets/images/fullstack.png";
 import BaylorBadge from "../../assets/images/baylor-badge.svg";
 import RevealItem from "../RevealItem";
