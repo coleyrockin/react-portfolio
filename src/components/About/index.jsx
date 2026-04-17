@@ -88,10 +88,10 @@ function About() {
       <RevealItem delay={0}>
         <div className="badge-wrap">
           <a href="https://www.credly.com/badges/8329e5c9-3399-4e92-906a-78eb4548a282/public_url" target="_blank" rel="noopener noreferrer">
-            <img src={Fullstack} alt="Southern Methodist University Full Stack Web Development credential badge" loading="lazy" decoding="async" width={240} height={240} />
+            <img src={Fullstack} alt="Southern Methodist University Full Stack Web Development credential badge" loading="lazy" decoding="async" />
           </a>
           <a href={baylorCertificate} target="_blank" rel="noopener noreferrer">
-            <img src={BaylorBadge} alt="Baylor University Professional Education certificate" className="baylor-badge" loading="lazy" decoding="async" width={240} height={240} />
+            <img src={BaylorBadge} alt="Baylor University Professional Education certificate" className="baylor-badge" loading="lazy" decoding="async" />
           </a>
         </div>
       </RevealItem>
