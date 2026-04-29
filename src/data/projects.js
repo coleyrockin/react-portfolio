@@ -46,16 +46,6 @@ export const projects = [
     imageAlt: "CherryTree project preview",
   },
   {
-    name: "PythonAINews",
-    description:
-      "4-stage automation pipeline pulling from 10 curated RSS feeds, ranking by AI relevance, generating drafts via OpenAI API, and publishing to Facebook through dual transport (Graph API + Playwright fallback).",
-    scope: "Research, ranking, LLM drafting, image generation, scheduling, and approval-gated publishing with 28 test modules.",
-    repo: "https://github.com/coleyrockin/PythonAINews",
-    tags: ["Python", "Automation", "LLM Workflows", "Testing"],
-    image: "",
-    imageAlt: "PythonAINews automation engine overview",
-  },
-  {
     name: "CJIIIPICKLEBALL",
     description:
       "Production community site delivered for a real client — featuring 10+ affiliate partner integrations, copy-to-clipboard coupon system, and strict Content-Security-Policy with script-src 'self' enforcement.",

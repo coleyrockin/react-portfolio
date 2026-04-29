@@ -74,7 +74,6 @@ export const languageSourceNote =
   "Language source of truth: derived from public GitHub repositories and active project history.";
 
 export const aiExperienceCopy = [
-  "Built PythonAINews — a daily automation pipeline using LLM-assisted draft generation with human-in-the-loop approval gates and test-backed publishing.",
   "Use Claude and GPT daily for code review, architecture exploration, debugging, and test generation across all active projects.",
   "Design prompt workflows for rapid prototyping, turning natural-language specs into working code with iterative refinement.",
   "Study AI agent patterns, tool-use architectures, and retrieval-augmented generation to build more capable software systems.",

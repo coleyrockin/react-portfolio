@@ -26,7 +26,7 @@ function About() {
               Full-stack engineer building <em>production-grade software</em> in MERN, Java, and Python.
             </p>
             <p className="hero-meta">
-              6 shipped projects &middot; SMU + Baylor trained &middot; Dallas, TX
+              5 shipped projects &middot; SMU + Baylor trained &middot; Dallas, TX
             </p>
             <div className="hero-cta-row">
               <a className="hero-cta hero-cta--primary" href="#portfolio">

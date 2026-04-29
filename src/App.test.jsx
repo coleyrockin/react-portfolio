@@ -38,7 +38,7 @@ describe("Portfolio site", () => {
     expect(window.location.hash).toBe("#knowledge");
   });
 
-  test("renders six portfolio projects with repository actions", async () => {
+  test("renders five portfolio projects with repository actions", async () => {
     const user = userEvent.setup();
     render(<App />);
     await user.click(screen.getByRole("button", { name: "Portfolio" }));
@@ -46,8 +46,8 @@ describe("Portfolio site", () => {
     const projectCards = screen.getAllByRole("article");
     const projectRepoLinks = screen.getAllByRole("link", { name: "View Repository" });
 
-    expect(projectRepoLinks).toHaveLength(6);
-    expect(projectCards.length).toBeGreaterThanOrEqual(6);
+    expect(projectRepoLinks).toHaveLength(5);
+    expect(projectCards.length).toBeGreaterThanOrEqual(5);
 
     projects.forEach((project) => {
       expect(screen.getByRole("link", { name: project.name + " repository" })).toHaveAttribute(
