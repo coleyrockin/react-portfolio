@@ -13,7 +13,7 @@ describe("Portfolio site", () => {
   test("loads About section by default and normalizes hash", () => {
     render(<App />);
 
-    expect(screen.getByRole("heading", { name: "Software Engineer" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /boyd\s*roberts\./i })).toBeInTheDocument();
     expect(window.location.hash).toBe("#about");
   });
 
@@ -96,7 +96,7 @@ describe("Portfolio site", () => {
   test("hero 'View Projects' CTA navigates to portfolio and focuses main", async () => {
     render(<App />);
 
-    const cta = screen.getByRole("link", { name: "View Projects" });
+    const cta = screen.getByRole("link", { name: /view work/i });
     expect(cta).toHaveAttribute("href", "#portfolio");
 
     // Simulate the browser updating the hash + firing hashchange (the link's
@@ -112,7 +112,7 @@ describe("Portfolio site", () => {
   test("hero 'Get in Touch' CTA navigates to contact and focuses main", () => {
     render(<App />);
 
-    const cta = screen.getByRole("link", { name: "Get in Touch" });
+    const cta = screen.getByRole("link", { name: /get in touch/i });
     expect(cta).toHaveAttribute("href", "#contact");
 
     window.history.pushState({}, "", "/#contact");

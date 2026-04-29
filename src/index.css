@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Space+Grotesk:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;700&display=swap");
 
 :root {
   --bg-a: #0f172a;
@@ -36,6 +36,25 @@ body {
     linear-gradient(140deg, var(--bg-a), var(--bg-b));
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+/* Subtle film-grain overlay for atmosphere. Inline SVG keeps it CSP-clean
+   (no img-src exception needed) and avoids a network request. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+.app-shell {
+  position: relative;
+  z-index: 2;
 }
 
 a {
@@ -251,9 +270,9 @@ a {
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 20% 20%, rgba(34, 211, 238, 0.22) 0%, transparent 42%),
-    radial-gradient(circle at 85% 80%, rgba(251, 146, 60, 0.18) 0%, transparent 45%),
-    radial-gradient(circle at 75% 15%, rgba(168, 85, 247, 0.14) 0%, transparent 40%);
+    radial-gradient(ellipse at 18% 30%, rgba(34, 211, 238, 0.28) 0%, transparent 48%),
+    radial-gradient(ellipse at 92% 80%, rgba(34, 211, 238, 0.12) 0%, transparent 45%),
+    radial-gradient(ellipse at 78% 15%, rgba(251, 146, 60, 0.06) 0%, transparent 40%);
   mix-blend-mode: screen;
   animation: heroAurora 16s ease-in-out infinite alternate;
 }
@@ -284,6 +303,98 @@ a {
   color: transparent;
 }
 
+/* ── Editorial hero v2 ── */
+.hero-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) max-content;
+  gap: clamp(20px, 4vw, 64px);
+  align-items: center;
+  width: 100%;
+}
+
+.hero-copy {
+  min-width: 0;
+  width: 100%;
+}
+
+.hero-copy {
+  min-width: 0;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1.25rem;
+  padding: 0.32rem 0.85rem 0.32rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(34, 211, 238, 0.08);
+  border: 1px solid rgba(34, 211, 238, 0.28);
+  color: #cffafe;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22d3ee;
+  box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.55);
+  animation: statusPulse 2.4s ease-out infinite;
+}
+
+@keyframes statusPulse {
+  0% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.55); }
+  70% { box-shadow: 0 0 0 8px rgba(34, 211, 238, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0); }
+}
+
+.hero-name {
+  font-family: "Fraunces", "Bricolage Grotesque", serif;
+  font-weight: 600;
+  font-size: clamp(3.4rem, 9vw, 7.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+  margin: 0 0 1.4rem;
+  color: #f8fafc;
+  font-variation-settings: "opsz" 144;
+}
+
+.hero-name-period {
+  color: var(--teal);
+}
+
+.hero-tagline {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(1.05rem, 1.6vw, 1.4rem);
+  line-height: 1.45;
+  color: #cbd5e1;
+  margin: 0 0 1rem;
+  max-width: 48ch;
+}
+
+.hero-tagline em {
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 500;
+  color: #f1f5f9;
+}
+
+.hero-meta {
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 1.6rem;
+  font-family: "Space Grotesk", sans-serif;
+}
+
 .hero-cta-row {
   margin-top: 1.4rem;
   display: flex;
@@ -295,36 +406,41 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.45rem;
   border-radius: 999px;
-  padding: 0.6rem 1.15rem;
-  font-weight: 700;
-  font-size: 0.92rem;
+  padding: 0.72rem 1.35rem;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.005em;
   text-decoration: none;
-  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, border-color 180ms ease;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, border-color 180ms ease, color 180ms ease;
 }
 
 .hero-cta--primary {
-  background: linear-gradient(120deg, var(--teal) 0%, #38bdf8 100%);
-  color: #0f172a;
-  border: 1px solid rgba(34, 211, 238, 0.5);
-  box-shadow: 0 8px 24px rgba(34, 211, 238, 0.25);
+  background: var(--teal);
+  color: #0a0e1a;
+  border: 1px solid var(--teal);
+  box-shadow: 0 10px 30px -10px rgba(34, 211, 238, 0.6);
 }
 
 .hero-cta--primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(34, 211, 238, 0.35);
+  background: #67e8f9;
+  border-color: #67e8f9;
+  box-shadow: 0 14px 34px -10px rgba(103, 232, 249, 0.7);
 }
 
 .hero-cta--secondary {
   background: transparent;
-  color: var(--orange);
-  border: 1px solid rgba(251, 146, 60, 0.5);
+  color: #e2e8f0;
+  border: 1px solid rgba(226, 232, 240, 0.22);
 }
 
 .hero-cta--secondary:hover {
-  background: rgba(251, 146, 60, 0.1);
+  background: rgba(226, 232, 240, 0.05);
+  border-color: rgba(226, 232, 240, 0.45);
   transform: translateY(-2px);
-  border-color: rgba(251, 146, 60, 0.8);
 }
 
 .about-header-wrap .about-header {
@@ -348,21 +464,32 @@ a {
 
 .profile-photo {
   border-radius: 22px;
-  width: min(100%, 180px);
+  width: min(100%, 220px);
   height: auto;
   border: none;
 }
 
 .profile-photo-wrap {
   position: relative;
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  width: max-content;
   border-radius: 20px;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .profile-photo {
   position: relative;
   z-index: 1;
+  border-radius: 20px;
+  outline: 1px solid rgba(34, 211, 238, 0.2);
+  outline-offset: 6px;
+  transition: outline-color 240ms ease, outline-offset 240ms ease;
+}
+
+.hero-grid:hover .profile-photo {
+  outline-color: rgba(34, 211, 238, 0.45);
+  outline-offset: 10px;
 }
 
 .neural-bg {
@@ -1089,13 +1216,41 @@ code {
   }
 
   .profile-photo {
-    width: 140px;
+    width: 160px;
     border-radius: 18px;
   }
 
   .profile-photo-wrap {
-    width: 140px;
+    width: 160px;
+    margin-inline: auto;
     border-radius: 18px;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: clamp(20px, 5vw, 32px);
+    text-align: center;
+  }
+
+  .hero-grid > .profile-photo-wrap {
+    order: -1;
+  }
+
+  .hero-name {
+    font-size: clamp(2.6rem, 14vw, 4rem);
+    line-height: 0.94;
+  }
+
+  .hero-tagline {
+    margin-inline: auto;
+  }
+
+  .hero-cta-row {
+    justify-content: center;
+  }
+
+  .status-pill {
+    margin-inline: auto;
   }
 
   .about-kicker {

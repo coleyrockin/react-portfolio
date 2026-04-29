@@ -13,28 +13,32 @@ function About() {
       <div className="about-header-wrap hero-wrap">
         <NeuralCanvas className="neural-bg" />
         <div className="hero-aurora" aria-hidden="true" />
-        <div className="about-header">
-          <div className="profile-photo-wrap">
-            <img className="profile-photo" height={180} width={180} src={ImgMe} alt="Boyd Roberts" fetchPriority="high" decoding="async" />
-          </div>
-          <div>
-            <p className="about-kicker">Full-stack engineer with 6 shipped projects</p>
-            <h2 className="about-title hero-title">
-              <span className="hero-title-gradient">Software Engineer</span>
+        <div className="hero-grid">
+          <div className="hero-copy">
+            <p className="status-pill" aria-label="Availability">
+              <span className="status-dot" aria-hidden="true" />
+              Available for engineering roles
+            </p>
+            <h2 className="hero-name">
+              Boyd<br />Roberts<span className="hero-name-period">.</span>
             </h2>
-            <p className="about-text">
-              Full-stack software engineer specializing in the MERN stack with certifications in Java and Python. I build
-              production-grade applications across the full development lifecycle — from API design and data modeling to
-              polished, responsive UIs.
+            <p className="hero-tagline">
+              Full-stack engineer building <em>production-grade software</em> in MERN, Java, and Python.
+            </p>
+            <p className="hero-meta">
+              6 shipped projects &middot; SMU + Baylor trained &middot; Dallas, TX
             </p>
             <div className="hero-cta-row">
               <a className="hero-cta hero-cta--primary" href="#portfolio">
-                View Projects
+                View work <span aria-hidden="true">→</span>
               </a>
               <a className="hero-cta hero-cta--secondary" href="#contact">
-                Get in Touch
+                Get in touch
               </a>
             </div>
+          </div>
+          <div className="profile-photo-wrap">
+            <img className="profile-photo" height={180} width={180} src={ImgMe} alt="Boyd Roberts" fetchPriority="high" decoding="async" />
           </div>
         </div>
       </div>
