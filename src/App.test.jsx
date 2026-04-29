@@ -93,6 +93,36 @@ describe("Portfolio site", () => {
     expect(screen.getByRole("heading", { name: "AI Experience" })).toBeInTheDocument();
   });
 
+  test("hero 'View Projects' CTA navigates to portfolio and focuses main", async () => {
+    render(<App />);
+
+    const cta = screen.getByRole("link", { name: "View Projects" });
+    expect(cta).toHaveAttribute("href", "#portfolio");
+
+    // Simulate the browser updating the hash + firing hashchange (the link's
+    // default behavior); jsdom doesn't navigate on click.
+    window.history.pushState({}, "", "/#portfolio");
+    fireEvent(window, new HashChangeEvent("hashchange"));
+
+    expect(screen.getByRole("heading", { name: "Selected Work" })).toBeInTheDocument();
+    expect(window.location.hash).toBe("#portfolio");
+    expect(document.activeElement).toBe(document.getElementById("main-content"));
+  });
+
+  test("hero 'Get in Touch' CTA navigates to contact and focuses main", () => {
+    render(<App />);
+
+    const cta = screen.getByRole("link", { name: "Get in Touch" });
+    expect(cta).toHaveAttribute("href", "#contact");
+
+    window.history.pushState({}, "", "/#contact");
+    fireEvent(window, new HashChangeEvent("hashchange"));
+
+    expect(screen.getByRole("region", { name: "Social Profiles" })).toBeInTheDocument();
+    expect(window.location.hash).toBe("#contact");
+    expect(document.activeElement).toBe(document.getElementById("main-content"));
+  });
+
   test("renders skip link to main content", () => {
     render(<App />);
 

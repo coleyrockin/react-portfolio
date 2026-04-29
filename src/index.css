@@ -1298,6 +1298,14 @@ code {
     scroll-behavior: auto !important;
   }
 
+  /* Belt-and-suspenders: per the prefers-reduced-motion gotcha some Chrome
+     versions ignore the wildcard !important above for keyframe-driven
+     animations. Disable explicitly. */
+  .content-shell,
+  .reveal {
+    animation: none !important;
+  }
+
   .section-link:hover,
   .cta-link:hover,
   .project-card:hover,

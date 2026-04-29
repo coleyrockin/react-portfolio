@@ -13,22 +13,37 @@ export default function useInViewport(options = {}) {
     const el = ref.current;
     if (!el) return;
 
-    const isMobile = window.innerWidth < 700;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(el);
-        }
-      },
-      {
-        threshold: options.threshold ?? (isMobile ? 0.02 : 0.15),
-        rootMargin: isMobile ? "0px 0px 60px 0px" : "0px",
-      }
-    );
+    // Re-evaluate breakpoint on each observer creation. Recreate the observer
+    // when the viewport crosses the mobile threshold so DevTools-driven
+    // resizes don't leave stale rootMargin/threshold values in effect.
+    const mql = window.matchMedia("(max-width: 699px)");
+    let observer;
 
-    observer.observe(el);
-    return () => observer.disconnect();
+    const setup = () => {
+      observer?.disconnect();
+      const isMobile = mql.matches;
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.disconnect();
+          }
+        },
+        {
+          threshold: options.threshold ?? (isMobile ? 0.02 : 0.15),
+          rootMargin: isMobile ? "0px 0px 60px 0px" : "0px",
+        }
+      );
+      observer.observe(el);
+    };
+
+    setup();
+    mql.addEventListener("change", setup);
+
+    return () => {
+      observer?.disconnect();
+      mql.removeEventListener("change", setup);
+    };
   }, [options.threshold, isVisible]);
 
   return [ref, isVisible];

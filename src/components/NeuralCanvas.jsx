@@ -65,17 +65,23 @@ export default function NeuralCanvas({ className = "" }) {
       }
 
       ctx.globalCompositeOperation = "source-over";
-      animRef.current = requestAnimationFrame(draw);
+      if (!prefersReduced) {
+        animRef.current = requestAnimationFrame(draw);
+      }
     }
 
     resize();
-    animRef.current = requestAnimationFrame(draw);
+    draw();
 
-    const ro = new ResizeObserver(resize);
+    const ro = new ResizeObserver(() => {
+      resize();
+      // For reduced-motion users the rAF loop is off, so redraw once on resize.
+      if (prefersReduced) draw();
+    });
     ro.observe(canvas.parentElement);
 
     return () => {
-      cancelAnimationFrame(animRef.current);
+      if (animRef.current) cancelAnimationFrame(animRef.current);
       ro.disconnect();
     };
   }, []);

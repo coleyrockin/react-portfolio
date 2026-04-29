@@ -37,9 +37,15 @@ function App() {
       const matchedSection = getSectionFromHash(window.location.hash);
 
       if (matchedSection) {
-        setCurrentSection((previousSection) =>
-          previousSection.slug === matchedSection.slug ? previousSection : matchedSection
-        );
+        setCurrentSection((previousSection) => {
+          if (previousSection.slug === matchedSection.slug) return previousSection;
+          // Section changed via hash (e.g. in-page CTA, browser back/forward).
+          // Move focus to <main> so keyboard/AT users land in the new content.
+          if (mainRef.current) {
+            mainRef.current.focus({ preventScroll: true });
+          }
+          return matchedSection;
+        });
         return;
       }
 
