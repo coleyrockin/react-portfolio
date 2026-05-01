@@ -1,4 +1,4 @@
-import ImgMe from "../../assets/images/boyd-roberts-headshot.png";
+import ImgMe from "../../assets/images/headshot.webp";
 import Fullstack from "../../assets/images/fullstack.png";
 import BaylorBadge from "../../assets/images/baylor-badge.svg";
 import { projects } from "../../data/projects";
@@ -13,8 +13,8 @@ function About() {
       <div className="about-header-wrap">
         <p className="hero-kicker">Software Engineer</p>
         <div className="hero-grid">
-          <div className="profile-photo-wrap" aria-hidden="true">
-            <img className="profile-photo" src={ImgMe} alt="" loading="lazy" decoding="async" width={120} height={120} />
+          <div className="profile-photo-wrap">
+            <img className="profile-photo" src={ImgMe} alt="Boyd Roberts" fetchPriority="high" decoding="async" width={720} height={1045} />
           </div>
           <div className="hero-copy">
             <h2 className="hero-name">Boyd Roberts.</h2>

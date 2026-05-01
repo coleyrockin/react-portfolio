@@ -273,15 +273,24 @@ a {
 
 .profile-photo-wrap {
   order: -1;
-  width: clamp(120px, 14vw, 170px);
-  height: clamp(150px, 18vw, 220px);
+  width: clamp(150px, 17vw, 210px);
+  height: clamp(195px, 22vw, 270px);
   border: 0;
   background: transparent;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
-          mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  /* Compound mask: vertical fade dissolves the chest/shoulders into the page,
+     horizontal fade kills any visible photo edge so the head emerges from the
+     void. Composited so both fades multiply rather than overwrite. */
+  -webkit-mask-image:
+    linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%),
+    radial-gradient(ellipse 75% 90% at 50% 35%, #000 55%, transparent 100%);
+  -webkit-mask-composite: source-in;
+          mask-image:
+    linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%),
+    radial-gradient(ellipse 75% 90% at 50% 35%, #000 55%, transparent 100%);
+          mask-composite: intersect;
 }
 
 .profile-photo {
@@ -289,9 +298,12 @@ a {
   height: 100%;
   display: block;
   object-fit: cover;
-  object-position: 50% 12%;
-  filter: grayscale(1) contrast(1.04) brightness(0.78);
-  opacity: 0.78;
+  object-position: 50% 14%;
+  /* Subtle desaturation + brightness lift keeps the headshot legible against
+     the page black without screaming for attention. Not full grayscale — the
+     navy suit + skin tones add a quiet warmth that reads luxury. */
+  filter: grayscale(0.55) contrast(1.05) brightness(0.92);
+  opacity: 0.92;
   border: 0;
   border-radius: 0;
   box-shadow: none;
