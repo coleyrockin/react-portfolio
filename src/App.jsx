@@ -9,8 +9,8 @@ import Contact from "./components/Contact";
 const sections = [
   { name: "About", slug: "about", comp: About },
   { name: "Portfolio", slug: "portfolio", comp: Portfolio },
-  { name: "Contact", slug: "contact", comp: Contact },
   { name: "Knowledge", slug: "knowledge", comp: Resume },
+  { name: "Contact", slug: "contact", comp: Contact },
 ];
 
 function getSectionFromHash(hash) {

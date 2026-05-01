@@ -5,9 +5,9 @@ import RevealItem from "../RevealItem";
 function Contact() {
   return (
     <article className="contact-panel">
-      <h2 className="panel-title">Connect With Me</h2>
+      <h2 className="panel-title">Contact</h2>
       <p className="contact-intro">
-        Reach me directly by email or through my social profiles.
+        For engineering opportunities, reach me directly by email, LinkedIn, or GitHub.
       </p>
 
       <section className="social-grid" aria-label="Social Profiles">

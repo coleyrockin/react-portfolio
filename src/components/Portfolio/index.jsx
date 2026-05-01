@@ -5,6 +5,7 @@ import RevealItem from "../RevealItem";
 const ProjectCard = memo(function ProjectCard({ project }) {
   const [imageFailed, setImageFailed] = useState(!project.image);
   const coverTags = useMemo(() => project.tags.slice(0, 3), [project.tags]);
+  const stack = useMemo(() => project.tags.slice(0, 4).join(" • "), [project.tags]);
 
   return (
     <article className="project-card">
@@ -41,16 +42,13 @@ const ProjectCard = memo(function ProjectCard({ project }) {
         )}
       </a>
       <div className="project-content">
+        {project.category && <p className="project-category">{project.category}</p>}
         <h3>{project.name}</h3>
         <p>{project.description}</p>
         <p className="project-meta">{project.scope}</p>
-        <div className="project-tags">
-          {project.tags.map((tag) => (
-            <span className="project-tag" key={`${project.name}-${tag}`}>
-              {tag}
-            </span>
-          ))}
-        </div>
+        <p className="project-stack" aria-label={`${project.name} technology stack`}>
+          <span>Stack</span> {stack}
+        </p>
         <div className="project-actions">
           <a href={project.repo} target="_blank" rel="noopener noreferrer">
             View Repository
@@ -67,15 +65,20 @@ const ProjectCard = memo(function ProjectCard({ project }) {
 });
 
 function Portfolio() {
+  const projectsByPriority = useMemo(() => {
+    const featured = projects.filter((project) => project.featured);
+    const standard = projects.filter((project) => !project.featured);
+    return [...featured, ...standard];
+  }, []);
+
   return (
-    <section className="portfolio-panel">
+    <section className="portfolio-panel portfolio-panel--minimal">
       <h2 className="panel-title">Selected Work</h2>
       <p className="project-note">
-        Six advanced builds that best represent architecture depth, cross-language execution, and production-focused
-        delivery.
+        Minimal case studies from real builds, focused on outcomes, architecture choices, and production quality.
       </p>
-      <div className="project-grid">
-        {projects.map((project, i) => (
+      <div className="project-grid project-grid--symmetrical">
+        {projectsByPriority.map((project, i) => (
           <RevealItem delay={Math.min(i, 5)} key={project.name}>
             <ProjectCard project={project} />
           </RevealItem>

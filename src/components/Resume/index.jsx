@@ -12,8 +12,11 @@ function Resume() {
     <article className="knowledge-panel">
       <h2 className="panel-title">Engineering Knowledge</h2>
       <p className="knowledge-intro">
-        Product-focused engineering across frontend, backend, and AI-accelerated delivery workflows.
+        Technologies and capabilities reflected in shipped work, with public references on GitHub.
       </p>
+      <a className="tech-proof-link" href="https://github.com/coleyrockin" target="_blank" rel="noopener noreferrer">
+        Review build history on GitHub
+      </a>
 
       <section className="language-map-panel">
         <h3>Language Map</h3>
