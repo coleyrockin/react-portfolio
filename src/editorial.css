@@ -26,9 +26,11 @@
   --radius-tile: 14px;
   --radius-control: 8px;
   --radius-chip: 6px;
-  --motion-section: 380ms;
-  --motion-reveal: 480ms;
+  --motion-section: 460ms;
+  --motion-reveal: 620ms;
+  --motion-hover: 280ms;
   --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.32, 0.72, 0.24, 1);
   --text-kicker: 0.7rem;
   --track-kicker: 0.14em;
   --weight-label: 800;
@@ -186,7 +188,7 @@ a {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 0.34rem 0.7rem;
-  transition: color 160ms var(--ease-editorial), background 160ms var(--ease-editorial), border-color 160ms var(--ease-editorial), transform 160ms var(--ease-editorial);
+  transition: color var(--motion-hover) var(--ease-soft), background var(--motion-hover) var(--ease-soft), border-color var(--motion-hover) var(--ease-soft), transform var(--motion-hover) var(--ease-soft);
 }
 
 .section-link:hover {
@@ -273,24 +275,18 @@ a {
 
 .profile-photo-wrap {
   order: -1;
-  width: clamp(150px, 17vw, 210px);
-  height: clamp(195px, 22vw, 270px);
+  width: clamp(170px, 18vw, 230px);
+  height: clamp(225px, 24vw, 300px);
   border: 0;
   background: transparent;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  /* Compound mask: vertical fade dissolves the chest/shoulders into the page,
-     horizontal fade kills any visible photo edge so the head emerges from the
-     void. Composited so both fades multiply rather than overwrite. */
-  -webkit-mask-image:
-    linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%),
-    radial-gradient(ellipse 75% 90% at 50% 35%, #000 55%, transparent 100%);
-  -webkit-mask-composite: source-in;
-          mask-image:
-    linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%),
-    radial-gradient(ellipse 75% 90% at 50% 35%, #000 55%, transparent 100%);
-          mask-composite: intersect;
+  /* The photo already has a true-black background that matches the page,
+     so the sides need no masking. Single vertical fade dissolves the suit
+     and shoulders into the page so the head emerges cleanly. */
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 62%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 0%, #000 62%, transparent 100%);
 }
 
 .profile-photo {
@@ -298,12 +294,12 @@ a {
   height: 100%;
   display: block;
   object-fit: cover;
-  object-position: 50% 14%;
-  /* Subtle desaturation + brightness lift keeps the headshot legible against
-     the page black without screaming for attention. Not full grayscale — the
-     navy suit + skin tones add a quiet warmth that reads luxury. */
-  filter: grayscale(0.55) contrast(1.05) brightness(0.92);
-  opacity: 0.92;
+  object-position: 50% 18%;
+  /* Light desaturation + tiny contrast bump for editorial polish. Full
+     opacity + brightness because the photo's black bg already merges with
+     the page — no need to dim the face. */
+  filter: grayscale(0.25) contrast(1.04);
+  opacity: 1;
   border: 0;
   border-radius: 0;
   box-shadow: none;
@@ -365,7 +361,7 @@ a {
   letter-spacing: 0.09em;
   text-transform: uppercase;
   text-decoration: none;
-  transition: transform 170ms var(--ease-editorial), box-shadow 170ms var(--ease-editorial), border-color 170ms var(--ease-editorial), background 170ms var(--ease-editorial);
+  transition: transform var(--motion-hover) var(--ease-soft), box-shadow var(--motion-hover) var(--ease-soft), border-color var(--motion-hover) var(--ease-soft), background var(--motion-hover) var(--ease-soft);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -486,7 +482,7 @@ a {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-decoration: none;
-  transition: transform 160ms var(--ease-editorial), border-color 160ms var(--ease-editorial), box-shadow 160ms var(--ease-editorial), background 160ms var(--ease-editorial);
+  transition: transform var(--motion-hover) var(--ease-soft), border-color var(--motion-hover) var(--ease-soft), box-shadow var(--motion-hover) var(--ease-soft), background var(--motion-hover) var(--ease-soft);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -568,7 +564,7 @@ a {
   box-shadow: var(--shadow);
   display: grid;
   grid-template-rows: minmax(225px, 0.9fr) auto;
-  transition: transform 180ms var(--ease-editorial), box-shadow 180ms var(--ease-editorial), border-color 180ms var(--ease-editorial);
+  transition: transform 360ms var(--ease-soft), box-shadow 360ms var(--ease-soft), border-color 360ms var(--ease-soft);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -820,7 +816,7 @@ a {
   gap: 12px;
   color: var(--ink);
   text-decoration: none;
-  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+  transition: transform var(--motion-hover) var(--ease-soft), border-color var(--motion-hover) var(--ease-soft), box-shadow var(--motion-hover) var(--ease-soft), background var(--motion-hover) var(--ease-soft);
 }
 
 .social-card:hover {
@@ -891,7 +887,7 @@ a {
   color: var(--gold);
   text-decoration: none;
   background: rgba(255, 255, 255, 0.035);
-  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+  transition: transform var(--motion-hover) var(--ease-soft), border-color var(--motion-hover) var(--ease-soft), background var(--motion-hover) var(--ease-soft);
 }
 
 .footer-icon:hover {
@@ -951,8 +947,8 @@ a {
   }
 
   .profile-photo-wrap {
-    width: clamp(110px, 32vw, 150px);
-    height: clamp(140px, 42vw, 200px);
+    width: clamp(170px, 50vw, 220px);
+    height: clamp(220px, 64vw, 280px);
   }
 
   .hero-name {
