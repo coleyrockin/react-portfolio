@@ -2,7 +2,6 @@ function Navigation({ sections, currentSection, setCurrentSection }) {
   return (
     <header className="top-nav">
       <div className="brand-block">
-        <p className="brand-kicker">Editorial Minimal Portfolio</p>
         <h1 className="brand-name">Boyd Roberts</h1>
       </div>
       <div className="nav-row">
