@@ -678,11 +678,19 @@ a {
 
 .project-content {
   padding: 24px;
-  display: grid;
-  justify-items: center;
-  align-content: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 10px;
   text-align: center;
+}
+
+/* Pin the actions row to the bottom so CTAs align across cards regardless
+   of description length — eliminates the visual asymmetry where shorter
+   descriptions floated their button up. */
+.project-content .project-actions {
+  margin-top: auto;
+  padding-top: 0.6rem;
 }
 
 .project-content h3 {
