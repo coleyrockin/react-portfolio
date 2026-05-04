@@ -58,28 +58,13 @@ function About() {
         </RevealItem>
       </div>
 
-      <div className="cert-link-row">
-        <a
-          className="cta-link"
-          href="https://www.credly.com/badges/8329e5c9-3399-4e92-906a-78eb4548a282/public_url"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          View SMU Developer Credential
-        </a>
-        <a
-          className="cta-link"
-          href={baylorCertificate}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          View Baylor Java + Python Certificate
-        </a>
-      </div>
-
       <RevealItem delay={0}>
         <div className="badge-wrap">
-          <a href="https://www.credly.com/badges/8329e5c9-3399-4e92-906a-78eb4548a282/public_url" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://www.credly.com/badges/8329e5c9-3399-4e92-906a-78eb4548a282/public_url"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img src={Fullstack} alt="Southern Methodist University Full Stack Web Development credential badge" loading="lazy" decoding="async" />
           </a>
           <a href={baylorCertificate} target="_blank" rel="noopener noreferrer">

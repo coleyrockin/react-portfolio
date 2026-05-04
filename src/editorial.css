@@ -457,15 +457,6 @@ a {
   font-size: 0.9rem;
 }
 
-.cert-link-row {
-  margin-top: 1.2rem;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.cta-link,
 .tech-proof-link,
 .cert-item a,
 .project-actions a {
@@ -486,7 +477,6 @@ a {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .cta-link:hover,
   .tech-proof-link:hover,
   .cert-item a:hover,
   .project-actions a:hover {
@@ -506,17 +496,40 @@ a {
   gap: 14px;
 }
 
+.badge-wrap a {
+  display: inline-flex;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-chip);
+  background: rgba(8, 11, 19, 0.78);
+  padding: 0.45rem;
+  transition: border-color var(--motion-hover) var(--ease-soft), transform var(--motion-hover) var(--ease-soft), box-shadow var(--motion-hover) var(--ease-soft);
+}
+
 .badge-wrap img {
   max-width: 108px;
   width: 100%;
   height: auto;
   border-radius: var(--radius-chip);
-  filter: saturate(0.85) contrast(1.03);
-  opacity: 0.9;
+  filter: grayscale(0.6) brightness(0.85);
+  opacity: 0.92;
+  transition: filter var(--motion-hover) var(--ease-soft), opacity var(--motion-hover) var(--ease-soft);
 }
 
 .badge-wrap .baylor-badge {
   border-radius: var(--radius-chip);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .badge-wrap a:hover {
+    border-color: var(--gold);
+    transform: translateY(-1px);
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.5);
+  }
+
+  .badge-wrap a:hover img {
+    filter: none;
+    opacity: 1;
+  }
 }
 
 .panel-title {

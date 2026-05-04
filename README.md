@@ -25,13 +25,13 @@
 
 A single-page developer portfolio built with React 19 and Vite.
 
-Highlights selected engineering work, language breadth, certifications, and AI workflow experience — with hash-based deep linking, an animated canvas hero, mobile-first responsive layout, and an accessibility-conscious component tree.
+Highlights selected engineering work, language breadth, certifications, and AI workflow experience — with hash-based deep linking, an editorial portrait hero, mobile-first responsive layout, and an accessibility-conscious component tree.
 
 ## Features
 
 - **Hash-based routing** — deep-linkable sections with full browser back/forward support
-- **Animated neural-canvas hero** — drifting multi-hue blob field on HTMLCanvas with DPR scaling, `ResizeObserver`-driven redraws, and `prefers-reduced-motion` fallback
-- **Dark design system** — dual-accent (cyan + orange) with a multi-hue aurora, glassmorphism nav, gradient hero title
+- **Editorial portrait hero** — optimized headshot treatment with credential badges and direct work/contact CTAs
+- **Dark editorial design system** — ink, gold, and muted neutral tokens with serif display type and restrained motion
 - **Responsive from 320px up** — mobile-first layout with a fluid `clamp()` type scale
 - **Accessibility-first** — skip link, `aria-current` nav, reduced-motion support, keyboard focus management, semantic landmarks, descriptive alt text
 - **Data-driven content** — projects, languages, certifications, and social links centralized in `src/data/*`
@@ -49,24 +49,25 @@ Measured with Lighthouse 12 against the production build (`npm run preview`):
 | Best Practices | **100** |
 | SEO | **100** |
 
-Key Web Vitals: **LCP 2.9 s · CLS 0 · TBT 0 ms**. Hero photo ships as a 25 KB WebP (down from 353 KB PNG). All images carry `loading="lazy"` and explicit dimensions; the hero photo uses `fetchPriority="high"` to front-load the LCP element.
+Key Web Vitals: **LCP 2.9 s · CLS 0 · TBT 0 ms**. Hero photo ships as a 25 KB WebP (down from 353 KB PNG). Non-hero images carry `loading="lazy"`; the hero photo uses `fetchPriority="high"` and explicit dimensions to front-load the LCP element.
 
 Deliberate accessibility choices, verified in `App.test.jsx`:
 
 - Skip link to `#main-content` as the first focusable element
 - `aria-current="page"` on the active section button; focus moves to `<main>` on navigation
 - Semantic landmarks (`<header>`, `<nav>`, `<main>`, `<footer>`) with labelled regions
-- `prefers-reduced-motion` short-circuits the canvas animation loop and reveal transitions
+- `prefers-reduced-motion` short-circuits reveal transitions
 - No divs-as-buttons; every interactive control is a real `<button>` or `<a>`
 
 ## Testing
 
-9 integration tests cover:
+12 integration tests cover:
 
 - Default section (About) renders and URL hash normalizes to `#about`
 - Hash-based section navigation (Portfolio, Contact, Knowledge)
 - Deep-linking from a URL hash on first render
-- Portfolio: six project cards + repository action links match the data module
+- Portfolio: five project cards + repository action links match the data module
+- About: credential badges remain the only credential link surface
 - Contact / Footer: social links render from the same single source of truth
 - Skip link exists and points at `#main-content`
 - Skip-link hash change does not reset the active section
@@ -75,7 +76,7 @@ Run with `npm test` (Vitest + jsdom + Testing Library).
 
 ## Security
 
-- Strict `Content-Security-Policy` meta tag: `default-src 'self'`, scripts same-origin only, fonts pinned to Google, no inline scripts, no form exfil, no object embeds
+- Strict production `Content-Security-Policy` meta tag: `default-src 'self'`, scripts same-origin only, fonts pinned to Google, no inline executable scripts, no inline style allowance, no form exfil, no object embeds
 - `Referrer-Policy: strict-origin-when-cross-origin`
 - Least-privilege GitHub Actions (`contents: read` on CI; `pages: write` / `id-token: write` scoped only to the deploy job)
 - All outbound links include `rel="noopener noreferrer"`
@@ -131,13 +132,13 @@ react-portfolio/
 ├── .github/workflows/    # CI + GitHub Pages deploy
 ├── public/               # Static assets, manifest, favicons, certificates
 ├── src/
-│   ├── components/       # About, Portfolio, Contact, Resume, Nav, Footer, NeuralCanvas, RevealItem
+│   ├── components/       # About, Portfolio, Contact, Resume, Nav, Footer, RevealItem
 │   ├── data/             # projects, languages, socialLinks, iconMap
 │   ├── hooks/            # useInViewport (IntersectionObserver w/ reduced-motion guard)
 │   ├── App.jsx           # Hash-routed shell
 │   ├── App.test.jsx      # Integration tests
 │   ├── index.jsx         # Entry point (React 19 createRoot)
-│   └── index.css         # Global styles + dark design tokens
+│   └── editorial.css     # Global styles + editorial design tokens
 ├── index.html            # Vite entry HTML
 ├── vite.config.js        # Build config (base: /react-portfolio/)
 ├── vitest.config.js      # Test env (jsdom + setupTests)
@@ -150,8 +151,8 @@ react-portfolio/
 
 - Migrating a mature Create React App project to Vite + React 19 + Vitest without dropping a single test
 - Accessibility-conscious React (skip link, reduced-motion, semantic landmarks, keyboard-friendly nav)
-- Canvas animation with DPR scaling, `ResizeObserver`-driven redraws, and `prefers-reduced-motion` respect
-- CI-enforced quality gates (lint + test + build) before any deploy, plus a strict content-security policy
+- Data-driven portfolio content with reusable section components and centralized link sources
+- CI-enforced quality gates (lint + test + build) before any deploy, plus a strict production content-security policy
 - Measurable results: Lighthouse **91 / 100 / 100 / 100** with LCP under 3 seconds
 
 ## What I'd do next

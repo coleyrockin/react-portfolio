@@ -68,6 +68,20 @@ describe("Portfolio site", () => {
     });
   });
 
+  test("renders credential badge links without duplicate credential CTAs", () => {
+    render(<App />);
+
+    const smuCredentialUrl =
+      "https://www.credly.com/badges/8329e5c9-3399-4e92-906a-78eb4548a282/public_url";
+    const baylorCertificatePath = "/certificates/baylor-java-python-certificate.pdf";
+    const links = screen.getAllByRole("link");
+
+    expect(links.filter((link) => link.getAttribute("href") === smuCredentialUrl)).toHaveLength(1);
+    expect(links.filter((link) => link.getAttribute("href")?.endsWith(baylorCertificatePath))).toHaveLength(1);
+    expect(screen.queryByRole("link", { name: "View SMU Developer Credential" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "View Baylor Java + Python Certificate" })).not.toBeInTheDocument();
+  });
+
   test("renders footer social icons from the same link source", () => {
     render(<App />);
 
