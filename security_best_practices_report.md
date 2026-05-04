@@ -124,21 +124,18 @@ uses: github/codeql-action/analyze@v3
 
 - Rule ID: deploy-path minimization
 - Severity: Low
-- Location: `package.json:17-31`, `package.json:48`
+- Status: Fixed
+- Location: `package.json:17-30`
 - Evidence:
 
 ```json
-"deploy": "gh-pages -d build"
+"check": "npm run lint && npm run test && npm run build"
 ```
 
-```json
-"gh-pages": "^6.3.0"
-```
-
-- Impact: The repository already deploys through GitHub Actions with scoped Pages permissions. Keeping a separate local publish path increases the chance of accidental manual deployment from an unreviewed local build.
-- Fix: Remove the `deploy` script and `gh-pages` dependency if GitHub Actions is the intended deployment path, or document exactly when local deploy is allowed.
+- Impact: The repository already deploys through GitHub Actions with scoped Pages permissions. Keeping a separate local publish path increased the chance of accidental manual deployment from an unreviewed local build.
+- Fix: The `deploy` script and `gh-pages` development dependency have been removed; deployment now flows through `.github/workflows/deploy.yml`.
 - Mitigation: Continue using the workflow in `.github/workflows/deploy.yml` as the normal release path.
-- False positive notes: If local deployment is intentionally supported, this is an operational decision rather than a security defect.
+- False positive notes: If local deployment is reintroduced later, document the intended operator path and required review checks.
 
 ## Informational / Positive Controls
 
@@ -162,10 +159,9 @@ uses: github/codeql-action/analyze@v3
 
 ## Recommended Fix Order
 
-1. BP-5: Remove or document the local `gh-pages` deploy path.
-2. BP-3: Move inline styles to CSS and tighten `style-src`.
-3. BP-4: Pin GitHub Actions to immutable SHAs.
-4. BP-2: Add edge/header-level security headers if the hosting platform supports them.
+1. BP-3: Move inline styles to CSS and tighten `style-src`.
+2. BP-4: Pin GitHub Actions to immutable SHAs.
+3. BP-2: Add edge/header-level security headers if the hosting platform supports them.
 
 ## Suggested Verification
 

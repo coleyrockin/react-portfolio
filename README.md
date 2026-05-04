@@ -122,7 +122,6 @@ npm run dev
 | `npm run lint:fix` | Lint and auto-fix |
 | `npm run format` | Format `src/` with Prettier |
 | `npm run check` | Lint + test + build (full CI pipeline) |
-| `npm run deploy` | Manual deploy via `gh-pages` (CI usually handles this) |
 
 <details>
 <summary><strong>Project Structure</strong></summary>
