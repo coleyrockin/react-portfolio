@@ -5,6 +5,7 @@ import RevealItem from "../RevealItem";
 function Contact() {
   return (
     <article className="contact-panel">
+      <p className="section-eyebrow"><span className="section-eyebrow-num">04</span> Reach Out</p>
       <h2 className="panel-title">Contact</h2>
       <p className="contact-intro">
         For engineering opportunities, reach me directly by email, LinkedIn, or GitHub.

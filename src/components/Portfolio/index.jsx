@@ -8,7 +8,10 @@ const ProjectCard = memo(function ProjectCard({ project }) {
   const stack = useMemo(() => project.tags.slice(0, 4).join(" • "), [project.tags]);
 
   return (
-    <article className="project-card">
+    <article className={`project-card${project.featured ? " project-card--featured" : ""}`}>
+      {project.featured && (
+        <p className="project-featured-tag" aria-hidden="true">Featured Case Study</p>
+      )}
       <a
         href={project.repo}
         target="_blank"
@@ -73,6 +76,7 @@ function Portfolio() {
 
   return (
     <section className="portfolio-panel portfolio-panel--minimal">
+      <p className="section-eyebrow"><span className="section-eyebrow-num">02</span> Selected Work · {projects.length} Projects</p>
       <h2 className="panel-title">Selected Work</h2>
       <p className="project-note">
         Minimal case studies from real builds, focused on outcomes, architecture choices, and production quality.

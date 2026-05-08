@@ -10,22 +10,22 @@ import {
 function Resume() {
   return (
     <article className="knowledge-panel">
+      <p className="section-eyebrow"><span className="section-eyebrow-num">03</span> Engineering Depth</p>
       <h2 className="panel-title">Engineering Knowledge</h2>
       <p className="knowledge-intro">
         Technologies and capabilities reflected in shipped work, with public references on GitHub.
       </p>
-      <a className="tech-proof-link" href="https://github.com/coleyrockin" target="_blank" rel="noopener noreferrer">
-        Review build history on GitHub
-      </a>
 
       <section className="language-map-panel">
         <h3>Language Map</h3>
         <p className="language-source-note">{languageSourceNote}</p>
-        <div className="language-tier-legend">
-          <span className="language-chip language-chip--primary">Primary</span>
-          <span className="language-chip language-chip--proficient">Proficient</span>
-          <span className="language-chip language-chip--familiar">Familiar</span>
-        </div>
+        <p className="language-tier-key" aria-label="Tier legend">
+          <span className="tier-mark tier-mark--primary" aria-hidden="true">●</span> Primary
+          <span className="tier-sep" aria-hidden="true">·</span>
+          <span className="tier-mark tier-mark--proficient" aria-hidden="true">◐</span> Proficient
+          <span className="tier-sep" aria-hidden="true">·</span>
+          <span className="tier-mark tier-mark--familiar" aria-hidden="true">○</span> Familiar
+        </p>
         <div className="language-group-grid">
           {languageGroups.map((group, i) => (
             <RevealItem delay={Math.min(i, 5)} key={group.title}>
@@ -42,6 +42,9 @@ function Resume() {
             </RevealItem>
           ))}
         </div>
+        <a className="tech-proof-link tech-proof-link--anchored" href="https://github.com/coleyrockin" target="_blank" rel="noopener noreferrer">
+          Review build history on GitHub
+        </a>
       </section>
 
       <section className="capability-grid" aria-label="Engineering Capabilities">

@@ -6,7 +6,6 @@ function Footer() {
 
   return (
     <footer className="footer-shell">
-      <p className="footer-copy">© {currentYear} Boyd Roberts</p>
       <ul className="footer-links" aria-label="Social links">
         {socialLinks.map((profile) => {
           const Icon = ICON_BY_KEY[profile.key];
@@ -25,6 +24,7 @@ function Footer() {
           );
         })}
       </ul>
+      <p className="footer-copy">© {currentYear} Boyd Roberts · Built in React + Vite · Dallas, TX</p>
     </footer>
   );
 }
