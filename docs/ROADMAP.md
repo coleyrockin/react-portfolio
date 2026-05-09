@@ -1,147 +1,143 @@
-# Portfolio Visual Roadmap
+# Portfolio Roadmap — Post-Audit
 
-A prioritized fix list from the May 2026 visual audit. Items are grouped by phase, each scoped to ship in a single focused commit.
-
-**Goal:** push the editorial-luxury aesthetic from "very good" to "would impress a senior design hire at a top product company." No rewrites — every fix is surgical.
+Rebuilt after full code audit on 2026-05-09. Previous roadmap superseded.
 
 ---
 
-## Phase 1 — High-impact polish *(ship together, ~30 min total)*
+## Phase 1 — CSS Cleanup *(~20 min, zero visual risk)*
 
-These are the three changes that lift the perceived quality of the whole site.
+Dead rules, duplicate declarations, and browser-compat gaps. Ship as one commit.
 
-### 1.1 — Resolve the duplicated credential CTAs in About
-**Problem:** "View SMU Developer Credential" / "View Baylor Java + Python Certificate" text buttons sit directly above the same two badge images, both linking to the same URLs. The bright SMU/Baylor logos also break the dark luxury palette — they read as clip art.
-
-**Fix:** Drop the text-button row entirely. Keep the two badges as the link surface, but tone them down:
-- Wrap each in a circular dark-tinted frame with a thin gold hairline
-- Apply `filter: grayscale(0.6) brightness(0.85)`
-- Restore color on hover (`filter: none; transition: filter 240ms ease`)
-
-**Files:** `src/components/About/index.jsx`, `src/editorial.css`
-**Acceptance:** No duplicate CTA text. Badges read as muted artifacts at rest, snap to color on hover. No broken links.
-
-### 1.2 — Tighten the hero photo → name vertical rhythm
-**Problem:** A perceptible gap between the bottom-fade of the headshot and the top of "Boyd Roberts." On mobile the name floats untethered from the portrait.
-
-**Fix:** Reduce the `gap` on `.hero-grid` from `22px` → `clamp(8px, 1.5vw, 14px)`. The mask already does the soft handoff; closing the literal gap completes the illusion that the name is rising out of the same darkness as the photo.
-
+### 1.1 — Merge duplicate `.footer-shell` and `.footer-copy` declarations
+**Problem:** Both classes are declared twice — once in the base layer, once in the "editorial polish" layer. The second block partially overrides the first, making both fragile to edit.
+**Fix:** Merge into single canonical declarations.
 **Files:** `src/editorial.css`
-**Acceptance:** No visible empty band between photo fade-out and name. Spacing scales smoothly mobile → desktop.
 
-### 1.3 — Give the footer room to breathe
-**Problem:** "© 2026 Boyd Roberts" + 3 social icons all jammed onto one line, hugging the right edge. Looks cramped at 1440px.
+### 1.2 — Remove dead CSS classes
+**Problem:** Four rules in the file reference classes that no component uses:
+- `.language-tier-legend` (replaced by `.language-tier-key`)
+- `.cta-link:focus-visible` (no `.cta-link` element exists)
+- `.brand-kicker` (not rendered in `Nav`)
+- `.project-grid--symmetrical .reveal:last-child { grid-column: auto; display: block }` (browser defaults, no effect)
+**Fix:** Delete all four.
+**Files:** `src/editorial.css`
 
-**Fix:** Stack the footer vertically — copy on top row centered, icons in their own row below. Keep the single-line layout only at >1100px viewports if desired.
+### 1.3 — Remove duplicate `.project-content .project-category + h3` rule
+**Problem:** Selector written twice — `margin-top: 0.25rem` then `margin-top: 0.2rem`. Second silently wins.
+**Fix:** Delete the first instance.
+**Files:** `src/editorial.css`
 
-**Files:** `src/components/Footer/index.jsx`, `src/editorial.css`
-**Acceptance:** Footer reads as a deliberate composition, not a leftover row.
+### 1.4 — Merge the two `@media (hover: hover)` blocks for `.hero-cta`
+**Problem:** Arrow animation (`::after`) and hover transform/shadow live in two separate identical media query blocks.
+**Fix:** Combine into one block.
+**Files:** `src/editorial.css`
+
+### 1.5 — Wrap `.social-card:hover` in hover media query
+**Problem:** `.social-card:hover` is the only hover rule not wrapped in `@media (hover: hover) and (pointer: fine)`. On touch devices the card gets stuck in hover state after a tap.
+**Fix:** Wrap it.
+**Files:** `src/editorial.css`
+
+### 1.6 — Add `-webkit-mask-image` to `body::before`
+**Problem:** The grid overlay uses `mask-image` without `-webkit-mask-image`. Safari requires the prefix — the subtle background grid is invisible in Safari.
+**Fix:** Add the prefixed property alongside the unprefixed one.
+**Files:** `src/editorial.css`
 
 ---
 
-## Phase 2 — Editorial weight *(ship as one polish pass, ~45 min)*
+## Phase 2 — Hero Layout Elevation *(~45 min, highest visual impact)*
 
-These add the small ornaments that make a portfolio feel like a magazine spread instead of a template.
+### 2.1 — Two-column hero at ≥900px
+**Problem:** Photo and name are stacked on all screen sizes. At 1400px, the portrait stays small and the horizontal space goes unused.
+**Fix:** At `min-width: 900px`, switch `.hero-grid` to a 2-column layout — photo right, name/copy left. Keep the existing stacked layout at <900px.
+**Files:** `src/editorial.css`
 
-### 2.1 — Add visual anchors to section headers
-**Problem:** "Selected Work" / "Engineering Knowledge" / "Contact" titles float without context. A serif heading + plain subtitle is functional but undifferentiated.
+### 2.2 — Increase featured card image height
+**Problem:** Featured card `min-height: 420px` but image area is `minmax(225px, 0.9fr)`. Tall content compresses the image to near its minimum — short for the headline full-width card.
+**Fix:** Change featured card image area to `minmax(320px, 0.9fr)`.
+**Files:** `src/editorial.css`
 
-**Fix:** Add an editorial kicker above each section title — small caps gold text:
-- About: `THE PERSON` (or `01 — INTRODUCTION`)
-- Portfolio: `02 — SELECTED WORK · 5 PROJECTS`
-- Knowledge: `03 — ENGINEERING DEPTH`
-- Contact: `04 — REACH OUT`
-
-**Files:** `src/components/About/index.jsx`, `Portfolio/index.jsx`, `Resume/index.jsx`, `Contact/index.jsx`, `src/editorial.css`
-**Acceptance:** Each section opens with a consistent kicker → title → subtitle pattern. Numbers tie the four sections into a coherent narrative.
-
-### 2.2 — Mark the featured project visually
-**Problem:** The World Asset Prices card spans full width but is otherwise styled identically to the others. Hierarchy is ambiguous.
-
-**Fix:** Add a `FEATURED CASE STUDY` kicker above the project category for the featured card. Optionally swap its CTA buttons for slightly larger versions (gold-filled "VIEW LIVE DEMO" as primary, ghost "REPOSITORY" as secondary).
-
-**Files:** `src/components/Portfolio/index.jsx`, `src/editorial.css`
-**Acceptance:** Featured card is unmistakable as the headline project, not just a wider rectangle.
-
-### 2.3 — Upgrade the highlight cards (Core Stack / Focus / GitHub)
-**Problem:** Just label + sentence inside a flat rectangle. Reads like a contact form.
-
-**Fix:** Each card gets a small numbered kicker (`01` / `02` / `03`) in gold at the top-left, plus a thin gold hairline above the heading. Bump internal padding and tighten typography so the cards feel like content, not containers.
-
-**Files:** `src/components/About/index.jsx`, `src/editorial.css`
-**Acceptance:** Each highlight reads as a deliberate editorial card, not a div with text.
-
-### 2.4 — Replace the tier-legend pills with a sentence-key
-**Problem:** Three gold pills (Primary / Proficient / Familiar) floating in a row look like form chips, not a legend.
-
-**Fix:** Convert to a single small-caps line: `● PRIMARY    ◐ PROFICIENT    ○ FAMILIAR` with the dots in gold and the labels in muted ink. More elegant, more editorial.
-
-**Files:** `src/components/Resume/index.jsx`, `src/editorial.css`
-**Acceptance:** Legend reads as a typographic key, not a UI control.
+### 2.3 — Add `text-decoration: none` to `.project-image-link`
+**Problem:** No explicit `text-decoration: none`. If an image fails and the fallback text renders, some browsers show an underline on the link wrapper.
+**Fix:** One line.
+**Files:** `src/editorial.css`
 
 ---
 
-## Phase 3 — Quiet refinements *(optional, ship one at a time)*
+## Phase 3 — Interaction & Motion *(~30 min)*
 
-### 3.1 — Unify project card image treatments
-**Problem:** Five projects, five wildly different image styles (dark phone mock, pale editorial poster, low-res game still, packshot with overlay, dashboard screenshot). Grid feels like a stock-photo collage.
+### 3.1 — Section exit animation
+**Problem:** Switching sections cuts instantly — `sectionIn` animates the entry but there's no exit. The abrupt swap breaks the editorial pacing.
+**Fix:** In `App.jsx`, apply a brief exit class (`sectionOut`: `opacity: 0, translateY(-8px)` over ~180ms) to the leaving section before swapping state. Trigger entry after a short timeout or `animationend` listener.
+**Files:** `src/App.jsx`, `src/editorial.css`
 
-**Fix:** Add a consistent top-edge gradient overlay (`linear-gradient(180deg, rgba(0,0,0,0.35), transparent 30%)`) across all `.project-image` elements. Subtle but unifies the grid as a series.
+### 3.2 — Flip CTA order on featured cards
+**Problem:** "View Repository" and "Live Demo" have the same visual weight. On featured cards the demo is the more compelling action but sits second.
+**Fix:** On featured cards, render Demo CTA first (gold-filled primary), Repo second (ghost). Standard cards unchanged.
+**Files:** `src/components/Portfolio/index.jsx`
 
+### 3.3 — Focus ring for active vs focused nav links
+**Problem:** No visual distinction between a nav link that is active vs one that is merely focused by keyboard. A keyboard user tabbing through the nav can't tell which state they're in.
+**Fix:** Add a distinct `box-shadow` inset to `.section-link.is-active:focus-visible` so it differs from the plain `.section-link:focus-visible` ring.
 **Files:** `src/editorial.css`
-**Acceptance:** All five card images share a common atmospheric treatment without losing the screenshot's recognizability.
 
-### 3.2 — Strengthen section divider hairlines
-**Problem:** The `linear-gradient(transparent, line-strong, transparent)` rule above each panel is barely perceptible.
+---
 
-**Fix:** Bump opacity from current to ~30% and lengthen from 72px to 96px. Add a tiny center ornament (small gold circle or slash) to mark transitions.
+## Phase 4 — Performance & Compatibility *(~15 min)*
 
-**Files:** `src/editorial.css`
-**Acceptance:** Divider is felt, not searched for.
+### 4.1 — Move Google Fonts from CSS `@import` to HTML `<link>`
+**Problem:** `@import` in CSS is render-blocking — the browser can't discover the font request until it parses the stylesheet. `index.html` already has the preconnect hints but the font stylesheet load is delayed.
+**Fix:** Delete the `@import` from `editorial.css`. Add `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?...&display=swap">` in `index.html` after the preconnect links.
+**Files:** `src/editorial.css`, `index.html`
 
-### 3.3 — Hero meta-line line-break control
-**Problem:** "5 SHIPPED PROJECTS · DALLAS, TX · OPEN TO ENGINEERING ROLES" wraps awkwardly on mobile (`TX` hangs alone).
+### 4.2 — Delete unused image assets
+**Problem:** `src/assets/images/MeBGrm.webp` and `src/assets/images/boyd-roberts-headshot.png` are not imported by any component and are dead build weight. The `.webp` headshot replaces the `.png`.
+**Fix:** Delete both.
+**Files:** `src/assets/images/`
 
-**Fix:** Use `&nbsp;` between `DALLAS,` and `TX`, or split the meta into two stacked lines on mobile.
+---
 
+## Phase 5 — Accessibility & Content *(~30 min)*
+
+### 5.1 — Screen-reader-friendly hero meta line
+**Problem:** "5 SHIPPED PROJECTS • DALLAS, TX • OPEN TO ENGINEERING ROLES" — screen readers announce `•` as "bullet", making it choppy. The dots are visual-only separators.
+**Fix:** Add `aria-label="5 shipped projects, Dallas TX, open to engineering roles"` to the meta paragraph. Visual output unchanged.
 **Files:** `src/components/About/index.jsx`
-**Acceptance:** No orphan words on any breakpoint 320px → 1920px.
 
-### 3.4 — Hero CTAs slightly more generous
-**Problem:** "VIEW WORK" / "GET IN TOUCH" buttons feel cramped at the current 0.78rem font + 0.66rem padding.
+### 5.2 — Remove redundant `aria-label` on social cards
+**Problem:** `aria-label={profile.name}` overrides the card's visible content and announces just "Email", "LinkedIn", "GitHub" — not useful. The visible `.social-name` + `.social-handle` content is already accessible.
+**Fix:** Remove the `aria-label` prop. Let visible content speak.
+**Files:** `src/components/Contact/index.jsx`
 
-**Fix:** Bump padding to `0.78rem 1.25rem`. Optionally add an arrow glyph (`→`) that animates on hover.
-
-**Files:** `src/editorial.css`
-**Acceptance:** CTAs feel weighty without dominating.
-
-### 3.5 — Knowledge GitHub CTA placement
-**Problem:** "REVIEW BUILD HISTORY ON GITHUB" floats orphaned between section subtitle and language map.
-
-**Fix:** Tuck it into the language map panel as a footer link, or pair it with the panel below using a thin connecting hairline.
-
+### 5.3 — Elevate AI experience section
+**Problem:** The AI experience panel is the last item in Knowledge — three bullets most visitors never reach. Given that AI tooling is central to Boyd's workflow and differentiates him, it deserves more visibility.
+**Fix:** Move the AI experience panel above Certifications. Add a kicker label (`AI-ACCELERATED WORK`) to match the editorial heading pattern.
 **Files:** `src/components/Resume/index.jsx`, `src/editorial.css`
-**Acceptance:** Button feels anchored to a specific section, not orphaned.
+
+### 5.4 — Hero tagline rewrite
+**Problem:** "I build production-grade web products with React, TypeScript, Node.js, Java, and Python." leads with a tech list rather than delivered value. The language list belongs in Knowledge.
+**Fix:** Rewrite to lead with outcome: e.g. "I turn product ideas into production-ready software — interactive UIs, backend systems, and AI-accelerated workflows." (exact copy TBD)
+**Files:** `src/components/About/index.jsx`
 
 ---
 
-## Out of scope (intentionally deferred)
+## Out of Scope
 
-- **Light-mode toggle** — site is committed to dark-only luxury aesthetic.
-- **More projects** — current 5 represent the strongest work; padding the grid weakens it.
-- **Blog / writing section** — no compelling content yet.
-- **Custom domain** — `coleyrockin.github.io/react-portfolio` is fine until there's a personal brand reason to switch.
+- CSS file split — 1250 lines is manageable as-is; component CSS files add tooling complexity for no gain at this scale.
+- Light mode — dark-only is intentional.
+- More projects — 5 is right; padding the grid dilutes it.
+- Blog / writing — no compelling content yet.
+- Custom domain — not a priority.
 
 ---
 
-## Effort summary
+## Priority Order
 
-| Phase | Items | Est. time | Risk |
+| Phase | Items | Est. | Risk |
 |---|---|---|---|
-| Phase 1 | 3 fixes | ~30 min | Low — visual only, no logic changes |
-| Phase 2 | 4 ornaments | ~45 min | Low — additive copy + CSS |
-| Phase 3 | 5 refinements | ~10–15 min each | Very low — micro-tweaks |
+| 1 — CSS Cleanup | 6 | ~20 min | None |
+| 4 — Performance | 2 | ~15 min | Very low |
+| 2 — Hero Elevation | 3 | ~45 min | Low |
+| 5 — Content | 4 | ~30 min | Low |
+| 3 — Interaction | 3 | ~30 min | Medium |
 
-**Total time to fully ship Phase 1 + 2:** ~75 minutes of focused work.
-
-**Recommended execution order:** 1.1 → 1.3 → 1.2 → 2.2 → 2.1 → 2.3 → 2.4 → Phase 3 as time permits.
+**Recommended order:** 1 → 4 → 2 → 5 → 3
