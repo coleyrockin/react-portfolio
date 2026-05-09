@@ -20,6 +20,8 @@ function getSectionFromHash(hash) {
 
 function App() {
   const mainRef = useRef(null);
+  const exitTimeoutRef = useRef(null);
+  const [isExiting, setIsExiting] = useState(false);
 
   const [currentSection, setCurrentSection] = useState(() => {
     if (typeof window === "undefined") {
@@ -77,25 +79,34 @@ function App() {
     document.title = `Boyd Roberts | ${currentSection.name}`;
   }, [currentSection.name]);
 
+  useEffect(() => {
+    return () => {
+      if (exitTimeoutRef.current) clearTimeout(exitTimeoutRef.current);
+    };
+  }, []);
+
   const handleSectionChange = (section) => {
-    if (section.slug === currentSection.slug) {
-      return;
-    }
+    if (section.slug === currentSection.slug) return;
 
-    setCurrentSection(section);
+    if (exitTimeoutRef.current) clearTimeout(exitTimeoutRef.current);
 
-    if (mainRef.current) {
-      mainRef.current.focus({ preventScroll: true });
-    }
+    setIsExiting(true);
 
-    if (typeof window === "undefined") {
-      return;
-    }
+    exitTimeoutRef.current = setTimeout(() => {
+      setCurrentSection(section);
+      setIsExiting(false);
 
-    const nextHash = `#${section.slug}`;
-    if (window.location.hash !== nextHash) {
-      window.history.pushState(null, "", nextHash);
-    }
+      if (mainRef.current) {
+        mainRef.current.focus({ preventScroll: true });
+      }
+
+      if (typeof window !== "undefined") {
+        const nextHash = `#${section.slug}`;
+        if (window.location.hash !== nextHash) {
+          window.history.pushState(null, "", nextHash);
+        }
+      }
+    }, 180);
   };
 
   return (
@@ -109,7 +120,7 @@ function App() {
         setCurrentSection={handleSectionChange}
       />
       <main className="main-content" id="main-content" tabIndex="-1" ref={mainRef}>
-        <section className="content-shell" key={currentSection.slug}>
+        <section className={`content-shell${isExiting ? " content-shell--exiting" : ""}`} key={currentSection.slug}>
           <currentSection.comp />
         </section>
       </main>

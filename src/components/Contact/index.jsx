@@ -21,7 +21,6 @@ function Contact() {
                 href={profile.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={profile.name}
               >
                 <div className="social-icon-wrap">{Icon ? <Icon /> : null}</div>
                 <div className="social-text">

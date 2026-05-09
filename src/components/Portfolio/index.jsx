@@ -53,13 +53,26 @@ const ProjectCard = memo(function ProjectCard({ project }) {
           <span>Stack</span> {stack}
         </p>
         <div className="project-actions">
-          <a href={project.repo} target="_blank" rel="noopener noreferrer">
-            View Repository
-          </a>
-          {project.demo && (
-            <a href={project.demo} target="_blank" rel="noopener noreferrer" className="demo-link">
-              Live Demo
-            </a>
+          {project.featured && project.demo ? (
+            <>
+              <a href={project.demo} target="_blank" rel="noopener noreferrer" className="demo-link">
+                Live Demo
+              </a>
+              <a href={project.repo} target="_blank" rel="noopener noreferrer">
+                View Repository
+              </a>
+            </>
+          ) : (
+            <>
+              <a href={project.repo} target="_blank" rel="noopener noreferrer">
+                View Repository
+              </a>
+              {project.demo && (
+                <a href={project.demo} target="_blank" rel="noopener noreferrer" className="demo-link">
+                  Live Demo
+                </a>
+              )}
+            </>
           )}
         </div>
       </div>

@@ -19,8 +19,8 @@ function About() {
           </div>
           <div className="hero-copy">
             <h2 className="hero-name">Boyd Roberts.</h2>
-            <p className="hero-tagline">I build production-grade web products with React, TypeScript, Node.js, Java, and Python.</p>
-            <p className="hero-meta">{projects.length} shipped projects&nbsp;•&nbsp;Dallas,&nbsp;TX&nbsp;•&nbsp;Open to engineering roles</p>
+            <p className="hero-tagline">I turn product ideas into production-ready software — clean frontends, resilient backends, and AI-integrated workflows.</p>
+            <p className="hero-meta" aria-label={`${projects.length} shipped projects, Dallas TX, open to engineering roles`}>{projects.length} shipped projects&nbsp;•&nbsp;Dallas,&nbsp;TX&nbsp;•&nbsp;Open to engineering roles</p>
             <div className="hero-cta-row">
               <a className="hero-cta hero-cta--primary" href="#portfolio">
                 View work

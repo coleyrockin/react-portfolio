@@ -58,6 +58,15 @@ function Resume() {
         ))}
       </section>
 
+      <section className="ai-experience-panel">
+        <h3>AI-Accelerated Work</h3>
+        <ul className="ai-experience-list">
+          {aiExperienceCopy.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      </section>
+
       <section className="certification-panel">
         <h3>Certifications</h3>
         <ul className="cert-list">
@@ -70,15 +79,6 @@ function Resume() {
                 {cert.buttonText}
               </a>
             </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="ai-experience-panel">
-        <h3>AI Experience</h3>
-        <ul className="ai-experience-list">
-          {aiExperienceCopy.map((item) => (
-            <li key={item}>{item}</li>
           ))}
         </ul>
       </section>
