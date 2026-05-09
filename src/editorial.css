@@ -380,16 +380,35 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.45rem;
   min-width: 136px;
   border: 1px solid var(--line-strong);
   border-radius: var(--radius-control);
-  padding: 0.66rem 1.05rem;
+  padding: 0.78rem 1.25rem;
   font-size: 0.76rem;
   font-weight: var(--weight-label);
   letter-spacing: 0.09em;
   text-transform: uppercase;
   text-decoration: none;
-  transition: transform var(--motion-hover) var(--ease-soft), box-shadow var(--motion-hover) var(--ease-soft), border-color var(--motion-hover) var(--ease-soft), background var(--motion-hover) var(--ease-soft);
+  transition: transform var(--motion-hover) var(--ease-soft), box-shadow var(--motion-hover) var(--ease-soft), border-color var(--motion-hover) var(--ease-soft), background var(--motion-hover) var(--ease-soft), gap var(--motion-hover) var(--ease-soft);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hero-cta::after {
+    content: "→";
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity var(--motion-hover) var(--ease-soft), transform var(--motion-hover) var(--ease-soft);
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .hero-cta:hover::after {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -628,7 +647,8 @@ a {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, transparent 62%, rgba(0, 0, 0, 0.22));
+    linear-gradient(180deg, rgba(0, 0, 0, 0.32) 0%, transparent 28%),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.22) 0%, transparent 38%);
   pointer-events: none;
 }
 
@@ -978,6 +998,17 @@ a {
   .social-grid,
   .cert-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 601px) and (max-width: 960px) {
+  .about-highlight-grid > div:last-child:not(:nth-child(2n)),
+  .language-group-grid > div:last-child:not(:nth-child(2n)),
+  .capability-grid > div:last-child:not(:nth-child(2n)),
+  .social-grid > div:last-child:not(:nth-child(2n)) {
+    grid-column: 1 / -1;
+    max-width: calc(50% - 7px);
+    margin-inline: auto;
   }
 }
 
