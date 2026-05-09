@@ -192,7 +192,7 @@ a {
 }
 
 .section-link:hover {
-  color: var(--ink);
+  color: var(--ink-secondary);
   transform: translateY(-1px);
 }
 
@@ -343,6 +343,10 @@ a {
   letter-spacing: -0.045em;
   line-height: 0.82;
   text-wrap: balance;
+  background: linear-gradient(170deg, var(--ink) 35%, #cdb99a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .hero-tagline {
@@ -534,7 +538,7 @@ a {
   width: 100%;
   height: auto;
   border-radius: var(--radius-chip);
-  filter: grayscale(0.6) brightness(0.85);
+  filter: grayscale(0.25) brightness(0.95);
   opacity: 0.92;
   transition: filter var(--motion-hover) var(--ease-soft), opacity var(--motion-hover) var(--ease-soft);
 }
@@ -638,7 +642,7 @@ a {
 .project-image {
   display: block;
   object-fit: cover;
-  filter: saturate(0.88) contrast(1.06) brightness(0.88);
+  filter: saturate(0.92) contrast(1.04) brightness(0.94);
   transition: transform 450ms var(--ease-editorial), filter 250ms var(--ease-editorial);
 }
 
@@ -714,9 +718,10 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 0;
   text-align: center;
 }
+
 
 /* Pin the actions row to the bottom so CTAs align across cards regardless
    of description length — eliminates the visual asymmetry where shorter
@@ -727,12 +732,16 @@ a {
 }
 
 .project-content h3 {
-  margin: 0;
+  margin: 0 0 0.55rem;
   font-family: "Instrument Serif", Georgia, serif;
   font-size: clamp(1.9rem, 3.2vw, 3rem);
   font-weight: 400;
   line-height: 0.94;
   letter-spacing: -0.02em;
+}
+
+.project-content .project-category + h3 {
+  margin-top: 0.2rem;
 }
 
 .project-content p {
@@ -747,6 +756,14 @@ a {
 .project-stack {
   color: var(--muted);
   font-size: 0.88rem;
+}
+
+.project-meta {
+  margin-top: 0.85rem;
+}
+
+.project-stack {
+  margin-top: 0.3rem;
 }
 
 .project-stack span {
@@ -947,17 +964,30 @@ a {
 }
 
 @media (max-width: 960px) {
-  .about-highlight-grid,
-  .project-grid,
-  .language-group-grid,
-  .capability-grid,
-  .social-grid,
-  .cert-list {
+  .project-grid {
     grid-template-columns: 1fr;
   }
 
   .project-grid--symmetrical .reveal:first-child {
     grid-column: auto;
+  }
+
+  .about-highlight-grid,
+  .language-group-grid,
+  .capability-grid,
+  .social-grid,
+  .cert-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .about-highlight-grid,
+  .language-group-grid,
+  .capability-grid,
+  .social-grid,
+  .cert-list {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1028,7 +1058,7 @@ a {
 
 /* Section eyebrows: small-caps numbered kicker that opens each section */
 .section-eyebrow {
-  margin: 0 0 22px;
+  margin: 0 0 12px;
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
@@ -1050,12 +1080,16 @@ a {
   letter-spacing: 0.18em;
 }
 
-/* Strengthen the existing top hairline divider on each section panel */
+/* Gold hairline above each section panel */
 .about-panel::before,
 .portfolio-panel::before,
 .knowledge-panel::before,
 .contact-panel::before {
+  content: "";
+  display: block;
   width: 96px;
+  height: 1px;
+  margin: 0 auto 28px;
   background: linear-gradient(90deg, transparent, var(--gold-border), transparent);
   opacity: 0.55;
 }
@@ -1171,7 +1205,7 @@ a {
 @media (max-width: 720px) {
   .section-eyebrow {
     font-size: 0.64rem;
-    margin-bottom: 16px;
+    margin-bottom: 10px;
   }
   .section-eyebrow-num {
     font-size: 0.56rem;
