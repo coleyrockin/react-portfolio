@@ -48,7 +48,7 @@ Create a full visual overhaul of the React portfolio using a less-is-more editor
 - Flatten visual weight, increase whitespace, reduce effects.
 - Keep accessibility and section switching behavior intact.
 
-## Styling Plan (`src/index.css`)
+## Styling Plan (`src/editorial.css`)
 - Rebuild around a tighter variable system:
   - neutral background layers
   - one accent color

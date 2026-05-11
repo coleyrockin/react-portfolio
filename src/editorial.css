@@ -181,11 +181,6 @@ a {
   transition: color var(--motion-hover) var(--ease-soft), background var(--motion-hover) var(--ease-soft), border-color var(--motion-hover) var(--ease-soft), transform var(--motion-hover) var(--ease-soft);
 }
 
-.section-link:hover {
-  color: var(--ink-secondary);
-  transform: translateY(-1px);
-}
-
 .section-link.is-active {
   border-color: var(--line-strong);
   background: var(--ink);
@@ -193,7 +188,17 @@ a {
 }
 
 .section-link.is-active:focus-visible {
-  outline-color: rgba(0, 0, 0, 0.55);
+  outline: none;
+  box-shadow:
+    inset 0 0 0 2px rgba(0, 0, 0, 0.58),
+    0 0 0 3px var(--gold-focus);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .section-link:hover {
+    color: var(--ink-secondary);
+    transform: translateY(-1px);
+  }
 }
 
 .main-content {
@@ -961,10 +966,12 @@ a {
   transition: transform var(--motion-hover) var(--ease-soft), border-color var(--motion-hover) var(--ease-soft), background var(--motion-hover) var(--ease-soft);
 }
 
-.footer-icon:hover {
-  transform: translateY(-2px);
-  border-color: var(--gold);
-  background: var(--gold-soft);
+@media (hover: hover) and (pointer: fine) {
+  .footer-icon:hover {
+    transform: translateY(-2px);
+    border-color: var(--gold);
+    background: var(--gold-soft);
+  }
 }
 
 .project-actions a:focus-visible,
@@ -1060,10 +1067,6 @@ a {
     top: 8px;
     margin-top: 10px;
     border-radius: 12px;
-  }
-
-  .brand-kicker {
-    display: none;
   }
 
   .section-link {

@@ -23,7 +23,7 @@ describe("Portfolio site", () => {
 
     await user.click(screen.getByRole("button", { name: "Portfolio" }));
 
-    expect(screen.getByRole("heading", { name: "Selected Work" })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: "Selected Work" })).toBeInTheDocument();
     expect(window.location.hash).toBe("#portfolio");
     await waitFor(() => {
       expect(document.title).toBe("Boyd Roberts | Portfolio");
@@ -42,6 +42,7 @@ describe("Portfolio site", () => {
     const user = userEvent.setup();
     render(<App />);
     await user.click(screen.getByRole("button", { name: "Portfolio" }));
+    await screen.findByRole("heading", { name: "Selected Work" });
 
     const projectCards = screen.getAllByRole("article");
     const projectRepoLinks = screen.getAllByRole("link", { name: "View Repository" });
@@ -62,9 +63,9 @@ describe("Portfolio site", () => {
     render(<App />);
     await user.click(screen.getByRole("button", { name: "Contact" }));
 
-    const scoped = within(screen.getByRole("region", { name: "Social Profiles" }));
+    const scoped = within(await screen.findByRole("region", { name: "Social Profiles" }));
     socialLinks.forEach((profile) => {
-      expect(scoped.getByRole("link", { name: profile.name })).toHaveAttribute("href", profile.href);
+      expect(scoped.getByRole("link", { name: new RegExp(profile.name, "i") })).toHaveAttribute("href", profile.href);
     });
   });
 
@@ -96,6 +97,7 @@ describe("Portfolio site", () => {
     const user = userEvent.setup();
     render(<App />);
     await user.click(screen.getByRole("button", { name: "Knowledge" }));
+    await screen.findByRole("heading", { name: "Engineering Knowledge" });
 
     languageGroups.forEach((group) => {
       expect(screen.getByRole("heading", { name: group.title })).toBeInTheDocument();
@@ -104,7 +106,7 @@ describe("Portfolio site", () => {
       });
     });
 
-    expect(screen.getByRole("heading", { name: "AI Experience" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "AI-Accelerated Work" })).toBeInTheDocument();
   });
 
   test("hero 'View Projects' CTA navigates to portfolio and focuses main", async () => {
@@ -148,6 +150,7 @@ describe("Portfolio site", () => {
     render(<App />);
 
     await user.click(screen.getByRole("button", { name: "Portfolio" }));
+    await screen.findByRole("heading", { name: "Selected Work" });
     window.history.pushState({}, "", "/#main-content");
     fireEvent(window, new HashChangeEvent("hashchange"));
 
