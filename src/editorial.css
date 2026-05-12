@@ -351,9 +351,9 @@ a {
 
 .hero-name {
   margin: 0;
-  max-width: 15ch;
+  max-width: 16ch;
   font-family: "Instrument Serif", Georgia, serif;
-  font-size: clamp(4rem, 10vw, 8rem);
+  font-size: clamp(4rem, 9vw, 7.25rem);
   font-weight: 400;
   letter-spacing: 0;
   line-height: 0.82;
