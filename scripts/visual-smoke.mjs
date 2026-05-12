@@ -83,6 +83,37 @@ async function launchBrowser() {
   }
 }
 
+async function settleRevealStates(page) {
+  await page.evaluate(async () => {
+    await document.fonts?.ready;
+
+    const pause = (duration) => new Promise((resolve) => setTimeout(resolve, duration));
+    const nextFrame = () => new Promise((resolve) => requestAnimationFrame(resolve));
+    const revealItems = [...document.querySelectorAll(".reveal")];
+
+    for (const item of revealItems) {
+      item.scrollIntoView({ block: "center", inline: "nearest" });
+      await nextFrame();
+      await pause(90);
+    }
+
+    const root = document.documentElement;
+    const maxY = Math.max(0, root.scrollHeight - window.innerHeight);
+    const stepSize = Math.max(1, Math.floor(window.innerHeight * 0.7));
+    const steps = Math.max(1, Math.ceil(maxY / stepSize));
+
+    for (let index = 0; index <= steps; index += 1) {
+      window.scrollTo(0, Math.round((maxY * index) / steps));
+      await nextFrame();
+      await pause(80);
+    }
+
+    window.scrollTo(0, 0);
+    await nextFrame();
+    await pause(160);
+  });
+}
+
 async function inspectPage(page, route, viewport) {
   const consoleErrors = [];
   const pageErrors = [];
@@ -98,6 +129,7 @@ async function inspectPage(page, route, viewport) {
 
   await page.setViewportSize({ width: viewport.width, height: viewport.height });
   await page.goto(`${baseUrl}${route.hash}`, { waitUntil: "networkidle" });
+  await settleRevealStates(page);
 
   const checks = await page.evaluate((expectedHeading) => {
     const root = document.documentElement;
