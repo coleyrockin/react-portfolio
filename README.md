@@ -13,7 +13,7 @@
 
 > Single-page React 19 portfolio — migrated from Create React App to Vite,
 > CI-enforced quality gates (lint + test + build), strict CSP, WCAG-aware
-> component tree, and **0 npm advisories**. Lighthouse: **91 / 100 / 100 / 100**.
+> component tree, manual visual smoke coverage, and **0 npm advisories**. Lighthouse: **91 / 100 / 100 / 100**.
 
 ---
 
@@ -32,6 +32,7 @@ Highlights selected engineering work, language breadth, certifications, and AI w
 - **Hash-based routing** — deep-linkable sections with full browser back/forward support
 - **Editorial portrait hero** — optimized headshot treatment with credential badges and direct work/contact CTAs
 - **Dark editorial design system** — ink, gold, and muted neutral tokens with serif display type and restrained motion
+- **Release preview assets** — dedicated Open Graph/Twitter social preview image and refreshed README screenshot
 - **Responsive from 320px up** — mobile-first layout with a fluid `clamp()` type scale
 - **Accessibility-first** — skip link, `aria-current` nav, reduced-motion support, keyboard focus management, semantic landmarks, descriptive alt text
 - **Data-driven content** — projects, languages, certifications, and social links centralized in `src/data/*`
@@ -49,7 +50,7 @@ Measured with Lighthouse 12 against the production build (`npm run preview`):
 | Best Practices | **100** |
 | SEO | **100** |
 
-Key Web Vitals: **LCP 2.9 s · CLS 0 · TBT 0 ms**. Hero photo ships as a 25 KB WebP (down from 353 KB PNG). Non-hero images carry `loading="lazy"`; the hero photo uses `fetchPriority="high"` and explicit dimensions to front-load the LCP element.
+Key Web Vitals: **LCP 2.9 s · CLS 0 · TBT 0 ms**. Hero photo ships as responsive WebP variants (`360w`, `540w`, `720w`). Non-hero images carry `loading="lazy"`; the hero photo uses `fetchPriority="high"` and explicit dimensions to front-load the LCP element.
 
 Deliberate accessibility choices, verified in `App.test.jsx`:
 
@@ -73,6 +74,11 @@ Deliberate accessibility choices, verified in `App.test.jsx`:
 - Skip-link hash change does not reset the active section
 
 Run with `npm test` (Vitest + jsdom + Testing Library).
+
+Manual release smoke:
+
+- `npm run visual:smoke` builds the site, starts a local Vite preview, captures mobile/desktop screenshots for all four hash routes, and writes evidence to ignored `reports/visual-smoke/`.
+- The smoke script fails on horizontal overflow, missing image alt text, missing route headings, unresolved CSP placeholders, browser console errors, or page errors.
 
 ## Security
 
@@ -123,6 +129,7 @@ npm run dev
 | `npm run lint:fix` | Lint and auto-fix |
 | `npm run format` | Format `src/` with Prettier |
 | `npm run check` | Lint + test + build (full CI pipeline) |
+| `npm run visual:smoke` | Build, preview, screenshot, and validate all routes at mobile + desktop sizes |
 
 <details>
 <summary><strong>Project Structure</strong></summary>
@@ -153,13 +160,14 @@ react-portfolio/
 - Accessibility-conscious React (skip link, reduced-motion, semantic landmarks, keyboard-friendly nav)
 - Data-driven portfolio content with reusable section components and centralized link sources
 - CI-enforced quality gates (lint + test + build) before any deploy, plus a strict production content-security policy
+- Manual visual release proof via Playwright screenshots and route health checks
 - Measurable results: Lighthouse **91 / 100 / 100 / 100** with LCP under 3 seconds
 
 ## What I'd do next
 
-- Split `App.test.jsx` into per-component test files and add Playwright visual regression against the live preview URL
+- Promote `visual:smoke` into CI only if visual regressions become frequent enough to justify the runtime cost
+- Split `App.test.jsx` into per-component test files when behavior grows beyond the current section-routing coverage
 - Pre-render the static shell with `vite-plugin-ssg` or similar for near-instant FCP
-- Add a `srcset` for the hero photo (480 / 960 / 1440) and a blurhash placeholder to cut LCP further
 - Migrate content modules (`src/data/*`) to MDX so project case studies can include inline diagrams and code
 
 ## License

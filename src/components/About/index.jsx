@@ -1,4 +1,6 @@
 import ImgMe from "../../assets/images/headshot.webp";
+import ImgMe360 from "../../assets/images/headshot-360.webp";
+import ImgMe540 from "../../assets/images/headshot-540.webp";
 import Fullstack from "../../assets/images/fullstack.png";
 import BaylorBadge from "../../assets/images/baylor-badge.svg";
 import { projects } from "../../data/projects";
@@ -15,7 +17,17 @@ function About() {
         <p className="hero-kicker">Software Engineer</p>
         <div className="hero-grid">
           <div className="profile-photo-wrap">
-            <img className="profile-photo" src={ImgMe} alt="Boyd Roberts" fetchPriority="high" decoding="async" width={720} height={1045} />
+            <img
+              className="profile-photo"
+              src={ImgMe}
+              srcSet={`${ImgMe360} 360w, ${ImgMe540} 540w, ${ImgMe} 720w`}
+              sizes="(min-width: 900px) 320px, (max-width: 720px) 220px, 280px"
+              alt="Boyd Roberts"
+              fetchPriority="high"
+              decoding="async"
+              width={720}
+              height={1046}
+            />
           </div>
           <div className="hero-copy">
             <h2 className="hero-name">Boyd Roberts.</h2>

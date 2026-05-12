@@ -7,23 +7,24 @@ Current status after the May 2026 audit and polish passes. The site is intention
 - CSS cleanup: duplicate/dead rules removed, hover-only states guarded for pointer devices, Safari mask support added.
 - Performance cleanup: Google Fonts load from `index.html`, production source maps are disabled, and unused local assets are pruned.
 - Hero polish: desktop two-column composition, tighter portrait/name rhythm, outcome-led tagline, keyboard-friendly meta text.
+- Release polish: manual visual smoke workflow, responsive hero image variants, refreshed README screenshot, and dedicated social preview image.
 - Portfolio polish: featured case study marker, larger featured image area, consistent project image overlay, demo-first featured CTA order.
 - Knowledge polish: numbered section eyebrows, language tier sentence-key, AI work elevated above certifications.
 - Accessibility cleanup: duplicate credential links removed, contact links use visible labels, active nav focus is visually distinct.
 
 ## Next Best Work
 
-### 1. Add Visual Regression Coverage
+### 1. Promote Visual Smoke Only If Needed
 
-Use Playwright against the local preview build for the four hash routes at desktop and mobile sizes. Keep it screenshot-focused and cheap to run manually before visual pushes.
+`npm run visual:smoke` is intentionally manual today. Move it into CI only if visual regressions become frequent enough to justify the extra browser runtime.
 
-**Files:** `package.json`, `tests/` or `src/App.visual.test.*`
+**Files:** `.github/workflows/ci.yml`, `package.json`
 
-### 2. Responsive Hero Images
+### 2. Add Blur Placeholder
 
-Generate 480 / 960 / 1440 hero variants and wire `srcset`/`sizes` for the portrait. The current WebP is acceptable, but this is the clearest remaining LCP improvement.
+The hero now uses responsive WebP sources. A tiny blur placeholder is the next optional LCP/perceived-load refinement.
 
-**Files:** `src/assets/images/`, `src/components/About/index.jsx`
+**Files:** `src/assets/images/`, `src/components/About/index.jsx`, `src/editorial.css`
 
 ### 3. Split Tests When Behavior Grows
 

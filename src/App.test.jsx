@@ -65,7 +65,7 @@ describe("Portfolio site", () => {
 
     const scoped = within(await screen.findByRole("region", { name: "Social Profiles" }));
     socialLinks.forEach((profile) => {
-      expect(scoped.getByRole("link", { name: new RegExp(profile.name, "i") })).toHaveAttribute("href", profile.href);
+      expect(scoped.getByRole("link", { name: `${profile.name}: ${profile.handle}` })).toHaveAttribute("href", profile.href);
     });
   });
 
