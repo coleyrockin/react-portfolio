@@ -79,6 +79,7 @@ Manual release smoke:
 
 - `npm run visual:smoke` builds the site, starts a local Vite preview, captures mobile/desktop screenshots for all four hash routes, and writes evidence to ignored `reports/visual-smoke/`.
 - The smoke script fails on horizontal overflow, missing image alt text, missing route headings, unresolved CSP placeholders, browser console errors, or page errors.
+- It defaults to `127.0.0.1:4173`; set `VISUAL_SMOKE_PORT=4174` if that port is already occupied by another local preview.
 
 ## Security
 
@@ -129,7 +130,7 @@ npm run dev
 | `npm run lint:fix` | Lint and auto-fix |
 | `npm run format` | Format `src/` with Prettier |
 | `npm run check` | Lint + test + build (full CI pipeline) |
-| `npm run visual:smoke` | Build, preview, screenshot, and validate all routes at mobile + desktop sizes |
+| `npm run visual:smoke` | Build, preview, screenshot, and validate all routes at mobile + desktop sizes. Defaults to port 4173; override with `VISUAL_SMOKE_PORT` if needed. |
 
 <details>
 <summary><strong>Project Structure</strong></summary>

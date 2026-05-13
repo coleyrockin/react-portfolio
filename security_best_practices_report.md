@@ -2,18 +2,29 @@
 
 ## Executive Summary
 
-This repository is a static React 19 + Vite portfolio deployed to GitHub Pages. The application has a strong baseline for its risk profile: no backend, no auth/session state, no forms, no client storage, no runtime API calls, no raw HTML rendering, no `eval`, and outbound links consistently use `rel="noopener noreferrer"`.
+This repository is a static React 19 + Vite portfolio deployed to GitHub Pages. The current application has a strong security baseline for its risk profile: no backend, no authentication/session state, no forms, no runtime API calls, no service worker, no browser storage, no raw HTML rendering, no `eval`, and outbound links consistently use `rel="noopener noreferrer"`.
 
-No critical or high-severity best-practice failures were found. The main recommendations are hardening items: avoid publishing source maps by default, move security headers to an edge/header-capable host if possible, tighten CSP over time, pin GitHub Actions more strictly, and add lint guardrails for future risky DOM/React patterns.
+No critical, high, or medium findings were found in the current codebase. Dependency audit is clean for runtime and development dependencies. The remaining items are low-severity hardening recommendations around static-hosting header limits, third-party font loading, and immutable GitHub Actions pinning.
 
 ## Scope
 
 - Language/framework: JavaScript, React 19, Vite.
 - Runtime model: browser-only static SPA.
+- Hosting model: GitHub Pages.
 - Relevant guidance loaded:
   - `javascript-general-web-frontend-security.md`
   - `javascript-typescript-react-web-frontend-security.md`
-- Backend guidance was not loaded because this repo does not contain a backend.
+- Backend guidance was not loaded because this repo does not contain backend code.
+
+## Verification Performed
+
+- `npm audit --omit=dev`: 0 vulnerabilities.
+- `npm audit`: 0 vulnerabilities.
+- `npm run check`: lint, 12 tests, and production build passed.
+- `npm run visual:smoke`: all route/viewport scenarios passed after using an alternate local port because `127.0.0.1:4173` was occupied by another local preview.
+- Static scan for DOM XSS sinks, string code execution, unsafe navigation, browser storage, `postMessage`, service workers, dynamic script injection, credentialed fetches, common secret patterns, and committed secret-like files.
+- Production header check against `https://coleyrockin.github.io/react-portfolio/`.
+- Production build check for CSP placeholder leakage, `unsafe-inline`, `unsafe-eval`, source maps, and social-preview metadata.
 
 ## Critical
 
@@ -29,81 +40,65 @@ None for the current static-site threat model.
 
 ## Low
 
-### BP-1: Public source maps are enabled by default
+### BP-1: Security headers are constrained by GitHub Pages hosting
 
-- Rule ID: `REACT-CONFIG-001`
+- Rule ID: `REACT-HEADERS-001`, `JS-CSP-001`
 - Severity: Low
-- Status: Fixed
-- Location: `vite.config.js:11-14`
-- Evidence:
-
-```js
-build: {
-  outDir: "build",
-  sourcemap: false,
-},
-```
-
-- Impact: Public source maps could expose original source structure, comments, and future internal implementation details. The current repo is public and contains no secrets, so this was not a vulnerability, but it was a poor default if the project later adds private logic, internal URLs, feature flags, or non-public code.
-- Fix: Public source map emission is now disabled by default.
-- Mitigation: If source maps are needed for error reporting, upload them to a private error-reporting service rather than serving them from GitHub Pages.
-- False positive notes: This was low risk because the repository source is already public.
-
-### BP-2: Security headers are only partially visible in repository-controlled config
-
-- Rule ID: `REACT-HEADERS-001`
-- Severity: Low
-- Location: `index.html:6-8`
+- Location: `index.html:6-7`, `vite.config.js:4-15`
 - Evidence:
 
 ```html
-<meta http-equiv="Content-Security-Policy"
-  content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'" />
+<meta http-equiv="Content-Security-Policy" content="__CONTENT_SECURITY_POLICY__" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 ```
 
-- Impact: The app has a CSP and referrer policy, but meta-delivered CSP cannot provide every header-level protection. In particular, clickjacking controls such as `frame-ancestors` must be set via HTTP headers, and `X-Content-Type-Options: nosniff` is not visible in this repo.
-- Fix: If the site moves to a header-capable host or CDN, set CSP and related headers at the edge: `Content-Security-Policy`, `X-Content-Type-Options: nosniff`, and `frame-ancestors 'none'` unless embedding is required.
-- Mitigation: Keep the current early meta CSP as a GitHub Pages-compatible fallback and document that header-level protections depend on hosting.
-- False positive notes: GitHub Pages may constrain custom response headers, so this may be an accepted platform limitation.
+```js
+[
+  "default-src 'self'",
+  "script-src 'self'",
+  `style-src 'self'${allowInlineStyles ? " 'unsafe-inline'" : ""} https://fonts.googleapis.com`,
+  "font-src 'self' https://fonts.gstatic.com",
+  "img-src 'self' data:",
+  "connect-src 'self'",
+  "base-uri 'self'",
+  "form-action 'none'",
+  "object-src 'none'",
+].join("; ");
+```
 
-### BP-3: CSP still allows inline styles
+- Impact: The app has an early meta CSP and referrer policy, but meta-delivered CSP cannot provide every header-level control. Runtime headers from GitHub Pages include HTTPS/HSTS, but app-controlled `Content-Security-Policy`, `X-Content-Type-Options: nosniff`, and clickjacking controls such as `frame-ancestors` are not visible as HTTP headers.
+- Fix: If the site moves to a header-capable host/CDN, set security headers at the edge: `Content-Security-Policy`, `X-Content-Type-Options: nosniff`, `Referrer-Policy`, and `frame-ancestors 'none'` unless embedding is required.
+- Mitigation: Keep the current meta CSP early in `index.html`, keep `script-src 'self'`, and continue avoiding raw DOM/HTML sinks.
+- False positive notes: This is a GitHub Pages platform limitation rather than an application vulnerability.
 
-- Rule ID: `REACT-CSP-001`
+### BP-2: Google Fonts remains a third-party stylesheet/font dependency
+
+- Rule ID: `REACT-SRI-001`, `JS-SUPPLY-001`
 - Severity: Low
-- Location: `index.html:6-7`, `src/components/NeuralCanvas.jsx:89-102`
+- Location: `index.html:12-14`, `vite.config.js:8-9`
 - Evidence:
 
 ```html
-style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" />
 ```
 
-```jsx
-<canvas
-  ref={canvasRef}
-  className={className}
-  style={{
-    position: "absolute",
-    inset: 0,
-    width: "100%",
-    height: "100%",
-    borderRadius: "inherit",
-    pointerEvents: "none",
-  }}
-  aria-hidden="true"
-/>
+```js
+`style-src 'self'${allowInlineStyles ? " 'unsafe-inline'" : ""} https://fonts.googleapis.com`,
+"font-src 'self' https://fonts.gstatic.com",
 ```
 
-- Impact: `style-src 'unsafe-inline'` is less dangerous than `script-src 'unsafe-inline'`, but it still weakens CSP and makes future style-injection mistakes harder to contain.
-- Fix: Move inline styles into a CSS class, remove unused inline-style components if they are dead code, then test whether `style-src 'self' https://fonts.googleapis.com` works.
-- Mitigation: Keep `script-src 'self'` strict and continue avoiding raw DOM/HTML sinks.
-- False positive notes: The inline style component is not currently imported, so the immediate runtime risk appears very low.
+- Impact: Google Fonts is a small third-party dependency and privacy/supply-chain exposure. The CSP is narrowly scoped to Google Fonts, and no third-party script executes, so this is low risk.
+- Fix: For maximum static-site hardening, self-host the selected font files and remove `fonts.googleapis.com` / `fonts.gstatic.com` from CSP.
+- Mitigation: Keep the current CSP allowlist narrow and avoid adding third-party scripts or tag managers.
+- False positive notes: SRI is not practical for the Google Fonts CSS response because it can vary by user agent; self-hosting is the cleaner fix if this becomes important.
 
-### BP-4: GitHub Actions are pinned to version tags, not immutable SHAs
+### BP-3: GitHub Actions are pinned to version tags, not immutable SHAs
 
-- Rule ID: CI supply-chain hardening
+- Rule ID: `REACT-SUPPLY-001`
 - Severity: Low
-- Location: `.github/workflows/ci.yml:17-20`, `.github/workflows/deploy.yml:21-24`, `.github/workflows/deploy.yml:35-49`, `.github/workflows/codeql.yml:23-35`
+- Location: `.github/workflows/ci.yml:17-20`, `.github/workflows/deploy.yml:21-24`, `.github/workflows/deploy.yml:35-49`, `.github/workflows/codeql.yml:21-35`
 - Evidence:
 
 ```yaml
@@ -115,56 +110,61 @@ uses: github/codeql-action/init@v3
 uses: github/codeql-action/analyze@v3
 ```
 
-- Impact: Major-version tags are standard and usually acceptable for small projects, but immutable SHA pinning gives stronger supply-chain integrity because the exact action code cannot move under the same tag.
-- Fix: Pin each third-party action to a full commit SHA and use Dependabot to keep action pins updated.
-- Mitigation: The repo already uses least-privilege workflow permissions and Dependabot for GitHub Actions updates, which reduces risk.
-- False positive notes: This is a hardening recommendation, not evidence of a compromised workflow.
+- Impact: Major-version tags are common and acceptable for small public projects, but immutable SHA pinning gives stronger supply-chain integrity because the exact action code cannot move under the same tag.
+- Fix: Pin each action to a full commit SHA and use Dependabot to keep the pins updated.
+- Mitigation: Current workflows use scoped permissions, `npm ci`, Dependabot, CI, Pages deployment, and CodeQL, which is a good baseline for this repo.
+- False positive notes: This is a supply-chain hardening recommendation, not evidence of compromised workflow code.
 
-### BP-5: Manual `gh-pages` deploy path duplicates the GitHub Pages workflow
+## Positive Controls
 
-- Rule ID: deploy-path minimization
-- Severity: Low
-- Status: Fixed
-- Location: `package.json:17-30`
+### BP-4: Production CSP is currently strict for scripts and styles
+
+- Location: `vite.config.js:4-15`, `build/index.html:6`
+- Evidence: Production build output contains `script-src 'self'` and `style-src 'self' https://fonts.googleapis.com`, with no `unsafe-inline` or `unsafe-eval`. Development mode still permits inline styles because Vite/React development tooling may need it; production does not.
+
+### BP-5: Public source maps are disabled
+
+- Location: `vite.config.js:34-37`
 - Evidence:
 
-```json
-"check": "npm run lint && npm run test && npm run build"
+```js
+build: {
+  outDir: "build",
+  sourcemap: false,
+},
 ```
 
-- Impact: The repository already deploys through GitHub Actions with scoped Pages permissions. Keeping a separate local publish path increased the chance of accidental manual deployment from an unreviewed local build.
-- Fix: The `deploy` script and `gh-pages` development dependency have been removed; deployment now flows through `.github/workflows/deploy.yml`.
-- Mitigation: Continue using the workflow in `.github/workflows/deploy.yml` as the normal release path.
-- False positive notes: If local deployment is reintroduced later, document the intended operator path and required review checks.
-
-## Informational / Positive Controls
+- Note: This avoids publishing source maps from GitHub Pages.
 
 ### BP-6: React rendering uses safe defaults
 
-- Location: `src/components/Portfolio/index.jsx:45-58`, `src/components/Contact/index.jsx:18-30`, `src/components/Footer/index.jsx:15-23`
-- Evidence: Project and social data are rendered through JSX text/attributes, and blank-target links include `rel="noopener noreferrer"`.
-- Note: This aligns with React guidance to rely on escaping-by-default and avoid raw HTML escape hatches.
+- Location: `src/components/Portfolio/index.jsx:47-77`, `src/components/Contact/index.jsx:19-31`, `src/components/Footer/index.jsx:14-22`
+- Evidence: Project and social data render through JSX text/attributes, no `dangerouslySetInnerHTML` is used, and external links include `rel="noopener noreferrer"`.
 
 ### BP-7: Hash routing is allowlisted
 
-- Location: `src/App.jsx:16-18`, `src/App.jsx:36-61`, `src/App.jsx:80-98`
-- Evidence: `window.location.hash` is normalized and matched against the fixed `sections` list before state changes or rendering.
-- Note: This is a good pattern for client-side routing because unrecognized hash values are not rendered as markup or used as open redirects.
+- Location: `src/App.jsx:9-18`, `src/App.jsx:38-72`, `src/App.jsx:103-107`
+- Evidence: `window.location.hash` is normalized and matched against a fixed `sections` list before state changes or rendering. Unknown hashes are not rendered as markup and are not used for redirects.
 
-### BP-8: CI and dependency governance are already strong for repo size
+### BP-8: Client configuration does not expose secrets
 
-- Location: `.github/workflows/ci.yml:9-35`, `.github/workflows/codeql.yml:11-37`, `.github/dependabot.yml:1-40`
-- Evidence: CI uses read-only contents permission, CodeQL runs on push/PR/schedule, and Dependabot covers npm plus GitHub Actions.
-- Note: This is a solid baseline; SHA pinning would improve it further.
+- Location: `.env.example:1-6`, `src/components/About/index.jsx:10-11`, `src/data/languages.js:1`
+- Evidence: `.env.example` warns not to commit `.env.local`, and the only `import.meta.env` use is `BASE_URL` for public asset paths.
+
+### BP-9: Dependency and CI governance are solid for repo size
+
+- Location: `package-lock.json`, `.github/workflows/ci.yml:17-29`, `.github/workflows/deploy.yml:21-29`, `.github/workflows/codeql.yml:11-35`, `.github/dependabot.yml:1-40`
+- Evidence: The repo has a lockfile, CI uses `npm ci`, CodeQL runs on push/PR/schedule, and Dependabot covers npm plus GitHub Actions.
 
 ## Recommended Fix Order
 
-1. BP-3: Move inline styles to CSS and tighten `style-src`.
-2. BP-4: Pin GitHub Actions to immutable SHAs.
-3. BP-2: Add edge/header-level security headers if the hosting platform supports them.
+1. Optional: Self-host fonts if you want to remove the last third-party resource dependency.
+2. Optional: Pin GitHub Actions to immutable commit SHAs.
+3. Optional: Move to a header-capable host/CDN if you want HTTP-level CSP, `nosniff`, and `frame-ancestors`.
 
 ## Suggested Verification
 
 - Run `npm run check` after any code/config hardening change.
-- After CSP changes, run `npm run build` and manually load the built site or preview server to check browser console CSP violations.
-- After workflow hardening, verify GitHub Actions still runs CI, CodeQL, Dependabot, and Pages deployment successfully.
+- Run `npm audit --omit=dev` and full `npm audit` before releases.
+- After CSP changes, run `npm run build` and inspect `build/index.html` for `unsafe-inline`, `unsafe-eval`, and unresolved `__CONTENT_SECURITY_POLICY__`.
+- After deploys, verify GitHub Actions and Pages are green and inspect live response headers.

@@ -9,7 +9,8 @@ const cwd = process.cwd();
 const reportDir = path.join(cwd, "reports", "visual-smoke");
 const screenshotDir = path.join(reportDir, "screenshots");
 const host = "127.0.0.1";
-const port = 4173;
+const requestedPort = Number(process.env.VISUAL_SMOKE_PORT);
+const port = Number.isInteger(requestedPort) && requestedPort > 0 ? requestedPort : 4173;
 const baseUrl = `http://${host}:${port}/react-portfolio/`;
 const routes = [
   { hash: "#about", heading: "Boyd Roberts." },
@@ -48,12 +49,27 @@ function waitForUrl(url, timeoutMs = 15000) {
   return new Promise((resolve, reject) => {
     const attempt = () => {
       const request = http.get(url, (response) => {
-        response.resume();
-        if (response.statusCode && response.statusCode < 500) {
-          resolve();
-        } else {
-          retry();
-        }
+        const contentType = response.headers["content-type"] || "";
+        let body = "";
+
+        response.setEncoding("utf8");
+        response.on("data", (chunk) => {
+          body += chunk;
+        });
+        response.on("end", () => {
+          if (
+            response.statusCode &&
+            response.statusCode >= 200 &&
+            response.statusCode < 300 &&
+            contentType.includes("text/html") &&
+            body.includes('id="root"') &&
+            !body.includes("__CONTENT_SECURITY_POLICY__")
+          ) {
+            resolve();
+          } else {
+            retry();
+          }
+        });
       });
 
       request.on("error", retry);
