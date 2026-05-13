@@ -102,12 +102,12 @@ None for the current static-site threat model.
 - Evidence:
 
 ```yaml
-uses: actions/checkout@v4
-uses: actions/setup-node@v4
-uses: actions/upload-pages-artifact@v3
-uses: actions/deploy-pages@v4
-uses: github/codeql-action/init@v3
-uses: github/codeql-action/analyze@v3
+uses: actions/checkout@v5
+uses: actions/setup-node@v5
+uses: actions/upload-pages-artifact@v4
+uses: actions/deploy-pages@v5
+uses: github/codeql-action/init@v4
+uses: github/codeql-action/analyze@v4
 ```
 
 - Impact: Major-version tags are common and acceptable for small public projects, but immutable SHA pinning gives stronger supply-chain integrity because the exact action code cannot move under the same tag.
