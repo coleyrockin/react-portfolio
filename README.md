@@ -27,6 +27,15 @@ A single-page developer portfolio built with React 19 and Vite.
 
 Highlights selected engineering work, language breadth, certifications, and AI workflow experience — with hash-based deep linking, an editorial portrait hero, mobile-first responsive layout, and an accessibility-conscious component tree.
 
+## Recruiter / Reviewer Quick Path
+
+| Need | Link or command |
+|---|---|
+| Live portfolio | [coleyrockin.github.io/react-portfolio](https://coleyrockin.github.io/react-portfolio/) |
+| Best project demo | [World Asset Prices](https://world-asset-prices.vercel.app) |
+| Source code | [github.com/coleyrockin/react-portfolio](https://github.com/coleyrockin/react-portfolio) |
+| Validation | `npm run check` and `VISUAL_SMOKE_PORT=4174 npm run visual:smoke` |
+
 ## Featured Project Links
 
 | Project | Live | Source |
@@ -87,7 +96,7 @@ Run with `npm test` (Vitest + jsdom + Testing Library).
 
 Manual release smoke:
 
-- `npm run visual:smoke` builds the site, starts a local Vite preview, captures mobile/desktop screenshots for all four hash routes, and writes evidence to ignored `reports/visual-smoke/`.
+- `npm run visual:smoke` builds the site, starts a local Vite preview, captures 360px, 390px, and desktop screenshots for all four hash routes, and writes evidence to ignored `reports/visual-smoke/`.
 - The smoke script fails on horizontal overflow, missing image alt text, missing route headings, unresolved CSP placeholders, browser console errors, or page errors.
 - It defaults to `127.0.0.1:4173`; set `VISUAL_SMOKE_PORT=4174` if that port is already occupied by another local preview.
 
@@ -140,7 +149,7 @@ npm run dev
 | `npm run lint:fix` | Lint and auto-fix |
 | `npm run format` | Format `src/` with Prettier |
 | `npm run check` | Lint + test + build (full CI pipeline) |
-| `npm run visual:smoke` | Build, preview, screenshot, and validate all routes at mobile + desktop sizes. Defaults to port 4173; override with `VISUAL_SMOKE_PORT` if needed. |
+| `npm run visual:smoke` | Build, preview, screenshot, and validate all routes at 360px, 390px, and desktop sizes. Defaults to port 4173; override with `VISUAL_SMOKE_PORT` if needed. |
 
 <details>
 <summary><strong>Project Structure</strong></summary>

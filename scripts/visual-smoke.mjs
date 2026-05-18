@@ -19,6 +19,7 @@ const routes = [
   { hash: "#contact", heading: "Contact" },
 ];
 const viewports = [
+  { name: "narrow", width: 360, height: 780 },
   { name: "mobile", width: 390, height: 844 },
   { name: "desktop", width: 1440, height: 1000 },
 ];
@@ -110,7 +111,7 @@ async function settleRevealStates(page) {
     for (const item of revealItems) {
       item.scrollIntoView({ block: "center", inline: "nearest" });
       await nextFrame();
-      await pause(90);
+      await pause(35);
     }
 
     const root = document.documentElement;
@@ -121,12 +122,12 @@ async function settleRevealStates(page) {
     for (let index = 0; index <= steps; index += 1) {
       window.scrollTo(0, Math.round((maxY * index) / steps));
       await nextFrame();
-      await pause(80);
+      await pause(30);
     }
 
     window.scrollTo(0, 0);
     await nextFrame();
-    await pause(160);
+    await pause(540);
   });
 }
 

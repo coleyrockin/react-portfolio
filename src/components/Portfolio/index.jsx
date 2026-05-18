@@ -2,7 +2,7 @@ import { memo, useMemo, useState } from "react";
 import { projects } from "../../data/projects";
 import RevealItem from "../RevealItem";
 
-const ProjectCard = memo(function ProjectCard({ project }) {
+const ProjectCard = memo(function ProjectCard({ project, isLead = false }) {
   const [imageFailed, setImageFailed] = useState(!project.image);
   const coverTags = useMemo(() => project.tags.slice(0, 3), [project.tags]);
   const stack = useMemo(() => project.tags.slice(0, 4).join(" • "), [project.tags]);
@@ -10,9 +10,14 @@ const ProjectCard = memo(function ProjectCard({ project }) {
   const previewLabel = project.demo
     ? `${project.name} live demo`
     : `${project.name} repository`;
+  const cardClass = [
+    "project-card",
+    project.featured ? "project-card--featured" : "",
+    isLead ? "project-card--lead" : "",
+  ].filter(Boolean).join(" ");
 
   return (
-    <article className={`project-card${project.featured ? " project-card--featured" : ""}`}>
+    <article className={cardClass}>
       {project.featured && (
         <p className="project-featured-tag" aria-hidden="true">Featured Case Study</p>
       )}
@@ -56,24 +61,34 @@ const ProjectCard = memo(function ProjectCard({ project }) {
         <p className="project-stack" aria-label={`${project.name} technology stack`}>
           <span>Stack</span> {stack}
         </p>
+        {project.metrics?.length > 0 && (
+          <dl className="project-metrics" aria-label={`${project.name} key metrics`}>
+            {project.metrics.map((metric) => (
+              <div className="project-metric" key={`${project.name}-${metric.label}`}>
+                <dt>{metric.label}</dt>
+                <dd>{metric.value}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
         <div className="project-actions">
           {project.featured && project.demo ? (
             <>
               <a href={project.demo} target="_blank" rel="noopener noreferrer" className="demo-link">
-                Live Demo
+                Live
               </a>
               <a href={project.repo} target="_blank" rel="noopener noreferrer">
-                View Repository
+                Source
               </a>
             </>
           ) : (
             <>
               <a href={project.repo} target="_blank" rel="noopener noreferrer">
-                View Repository
+                Source
               </a>
               {project.demo && (
                 <a href={project.demo} target="_blank" rel="noopener noreferrer" className="demo-link">
-                  Live Demo
+                  Live
                 </a>
               )}
             </>
@@ -101,7 +116,7 @@ function Portfolio() {
       <div className="project-grid project-grid--symmetrical">
         {projectsByPriority.map((project, i) => (
           <RevealItem delay={Math.min(i, 5)} key={project.name}>
-            <ProjectCard project={project} />
+            <ProjectCard project={project} isLead={i === 0} />
           </RevealItem>
         ))}
       </div>

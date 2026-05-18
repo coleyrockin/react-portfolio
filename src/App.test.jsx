@@ -14,6 +14,8 @@ describe("Portfolio site", () => {
     render(<App />);
 
     expect(screen.getByRole("heading", { name: /boyd\s*roberts\./i })).toBeInTheDocument();
+    expect(screen.getByText(/react\s*•\s*next\.js\s*•\s*node\s*•\s*ai workflows\s*•\s*central texas/i)).toBeInTheDocument();
+    expect(screen.getByRole("list", { name: "Portfolio proof points" })).toHaveTextContent("CI + CodeQL");
     expect(window.location.hash).toBe("#about");
   });
 
@@ -45,7 +47,7 @@ describe("Portfolio site", () => {
     await screen.findByRole("heading", { name: "Selected Work" });
 
     const projectCards = screen.getAllByRole("article");
-    const projectRepoLinks = screen.getAllByRole("link", { name: "View Repository" });
+    const projectRepoLinks = screen.getAllByRole("link", { name: "Source" });
 
     expect(projectRepoLinks).toHaveLength(5);
     expect(projectCards.length).toBeGreaterThanOrEqual(5);
@@ -58,6 +60,10 @@ describe("Portfolio site", () => {
         "href",
         expectedHref
       );
+      project.metrics.forEach((metric) => {
+        expect(screen.getByText(metric.label)).toBeInTheDocument();
+        expect(screen.getByText(metric.value)).toBeInTheDocument();
+      });
     });
   });
 
@@ -159,6 +165,8 @@ describe("Portfolio site", () => {
 
     expect(window.location.hash).toBe("#main-content");
     expect(screen.getByRole("heading", { name: "Selected Work" })).toBeInTheDocument();
-    expect(document.title).toBe("Boyd Roberts | Portfolio");
+    await waitFor(() => {
+      expect(document.title).toBe("Boyd Roberts | Portfolio");
+    });
   });
 });

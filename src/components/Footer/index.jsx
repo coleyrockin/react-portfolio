@@ -24,7 +24,7 @@ function Footer() {
           );
         })}
       </ul>
-      <p className="footer-copy">© {currentYear} Boyd Roberts · Built in React + Vite · Dallas, TX</p>
+      <p className="footer-copy">© {currentYear} Boyd Roberts · Built in React + Vite · Central Texas</p>
     </footer>
   );
 }

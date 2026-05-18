@@ -11,6 +11,7 @@ Current status after the May 2026 audit and polish passes. The site is intention
 - Portfolio polish: featured case study marker, larger featured image area, consistent project image overlay, demo-first featured CTA order.
 - Link polish: verified all project repository URLs, kept WestWardRPG repository-only until a live demo exists, and made project previews open live demos when available.
 - Repository polish: README now includes a concise live/source project link table for public GitHub visitors.
+- Recruiter polish: hero proof chips, Central Texas location language, compact project metrics, and 360px visual smoke coverage.
 - Knowledge polish: numbered section eyebrows, language tier sentence-key, AI work elevated above certifications.
 - Accessibility cleanup: duplicate credential links removed, contact links use visible labels, active nav focus is visually distinct.
 

@@ -9,6 +9,7 @@ import RevealItem from "../RevealItem";
 function About() {
   const baseUrl = (import.meta.env.BASE_URL || "/").replace(/\/$/, "");
   const baylorCertificate = `${baseUrl}/certificates/baylor-java-python-certificate.pdf`;
+  const proofItems = [`${projects.length} public builds`, "CI + CodeQL", "Live demos"];
 
   return (
     <article className="about-panel">
@@ -32,7 +33,7 @@ function About() {
           <div className="hero-copy">
             <h2 className="hero-name">Boyd Roberts.</h2>
             <p className="hero-tagline">I turn product ideas into production-ready software — clean frontends, resilient backends, and AI-integrated workflows.</p>
-            <p className="hero-meta" aria-label={`${projects.length} shipped projects, Dallas TX, open to engineering roles`}>{projects.length} shipped projects&nbsp;•&nbsp;Dallas,&nbsp;TX&nbsp;•&nbsp;Open to engineering roles</p>
+            <p className="hero-meta" aria-label="React, Next.js, Node, AI workflows, Central Texas">React&nbsp;•&nbsp;Next.js&nbsp;•&nbsp;Node&nbsp;•&nbsp;AI workflows&nbsp;•&nbsp;Central Texas</p>
             <div className="hero-cta-row">
               <a className="hero-cta hero-cta--primary" href="#portfolio">
                 View work
@@ -41,6 +42,11 @@ function About() {
                 Get in touch
               </a>
             </div>
+            <ul className="hero-proof-list" aria-label="Portfolio proof points">
+              {proofItems.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
