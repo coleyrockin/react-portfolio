@@ -51,9 +51,12 @@ describe("Portfolio site", () => {
     expect(projectCards.length).toBeGreaterThanOrEqual(5);
 
     projects.forEach((project) => {
-      expect(screen.getByRole("link", { name: project.name + " repository" })).toHaveAttribute(
+      const previewLabel = project.demo ? `${project.name} live demo` : `${project.name} repository`;
+      const expectedHref = project.demo || project.repo;
+
+      expect(screen.getByRole("link", { name: previewLabel })).toHaveAttribute(
         "href",
-        project.repo
+        expectedHref
       );
     });
   });

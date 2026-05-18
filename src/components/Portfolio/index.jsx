@@ -6,6 +6,10 @@ const ProjectCard = memo(function ProjectCard({ project }) {
   const [imageFailed, setImageFailed] = useState(!project.image);
   const coverTags = useMemo(() => project.tags.slice(0, 3), [project.tags]);
   const stack = useMemo(() => project.tags.slice(0, 4).join(" • "), [project.tags]);
+  const previewHref = project.demo || project.repo;
+  const previewLabel = project.demo
+    ? `${project.name} live demo`
+    : `${project.name} repository`;
 
   return (
     <article className={`project-card${project.featured ? " project-card--featured" : ""}`}>
@@ -13,11 +17,11 @@ const ProjectCard = memo(function ProjectCard({ project }) {
         <p className="project-featured-tag" aria-hidden="true">Featured Case Study</p>
       )}
       <a
-        href={project.repo}
+        href={previewHref}
         target="_blank"
         rel="noopener noreferrer"
         className="project-image-link"
-        aria-label={`${project.name} repository`}
+        aria-label={previewLabel}
       >
         {imageFailed ? (
           <div className="project-image-fallback" aria-label={`${project.name} preview fallback`}>

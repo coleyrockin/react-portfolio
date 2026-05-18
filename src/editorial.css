@@ -1066,12 +1066,18 @@ a {
   .top-nav {
     top: 8px;
     margin-top: 10px;
+    padding-inline: calc(10px + env(safe-area-inset-left, 0px)) calc(10px + env(safe-area-inset-right, 0px));
     border-radius: 12px;
   }
 
+  .section-nav {
+    gap: 5px;
+  }
+
   .section-link {
-    font-size: 0.64rem;
-    padding: 0.3rem 0.52rem;
+    font-size: clamp(0.56rem, 2.25vw, 0.64rem);
+    letter-spacing: 0.08em;
+    padding: 0.3rem 0.46rem;
   }
 
   .profile-photo-wrap {

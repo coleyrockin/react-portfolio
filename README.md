@@ -27,6 +27,16 @@ A single-page developer portfolio built with React 19 and Vite.
 
 Highlights selected engineering work, language breadth, certifications, and AI workflow experience — with hash-based deep linking, an editorial portrait hero, mobile-first responsive layout, and an accessibility-conscious component tree.
 
+## Featured Project Links
+
+| Project | Live | Source |
+|---|---|---|
+| World Asset Prices | [world-asset-prices.vercel.app](https://world-asset-prices.vercel.app) | [GitHub](https://github.com/coleyrockin/world-asset-prices) |
+| POWO | [proof-of-workout-next.vercel.app](https://proof-of-workout-next.vercel.app) | [GitHub](https://github.com/coleyrockin/POWO) |
+| CherryTree | [cherry-tree-psi.vercel.app](https://cherry-tree-psi.vercel.app) | [GitHub](https://github.com/coleyrockin/CherryTree) |
+| WestWardRPG | Repository-first playable engine | [GitHub](https://github.com/coleyrockin/WestWardRPG) |
+| CJIIIPICKLEBALL | [cjspickleball.netlify.app](https://cjspickleball.netlify.app) | [GitHub](https://github.com/coleyrockin/CJIIIPICKLEBALL) |
+
 ## Features
 
 - **Hash-based routing** — deep-linkable sections with full browser back/forward support
