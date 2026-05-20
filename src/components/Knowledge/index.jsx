@@ -7,7 +7,7 @@ import {
   languageSourceNote,
 } from "../../data/languages";
 
-function Resume() {
+function Knowledge() {
   return (
     <article className="knowledge-panel">
       <p className="section-eyebrow"><span className="section-eyebrow-num">03</span> Engineering Depth</p>
@@ -86,4 +86,4 @@ function Resume() {
   );
 }
 
-export default Resume;
+export default Knowledge;

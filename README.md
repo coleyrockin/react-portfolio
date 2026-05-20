@@ -159,7 +159,7 @@ react-portfolio/
 ├── .github/workflows/    # CI + GitHub Pages deploy
 ├── public/               # Static assets, manifest, favicons, certificates
 ├── src/
-│   ├── components/       # About, Portfolio, Contact, Resume, Nav, Footer, RevealItem
+│   ├── components/       # About, Portfolio, Contact, Knowledge, Nav, Footer, RevealItem
 │   ├── data/             # projects, languages, socialLinks, iconMap
 │   ├── hooks/            # useInViewport (IntersectionObserver w/ reduced-motion guard)
 │   ├── App.jsx           # Hash-routed shell

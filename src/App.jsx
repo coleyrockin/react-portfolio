@@ -3,13 +3,13 @@ import Nav from "./components/Nav";
 import About from "./components/About";
 import Footer from "./components/Footer";
 import Portfolio from "./components/Portfolio";
-import Resume from "./components/Resume";
+import Knowledge from "./components/Knowledge";
 import Contact from "./components/Contact";
 
 const sections = [
   { name: "About", slug: "about", comp: About },
   { name: "Portfolio", slug: "portfolio", comp: Portfolio },
-  { name: "Knowledge", slug: "knowledge", comp: Resume },
+  { name: "Knowledge", slug: "knowledge", comp: Knowledge },
   { name: "Contact", slug: "contact", comp: Contact },
 ];
 
