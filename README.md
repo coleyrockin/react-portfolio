@@ -86,7 +86,7 @@ Deliberate accessibility choices, verified in `App.test.jsx`:
 - Default section (About) renders and URL hash normalizes to `#about`
 - Hash-based section navigation (Portfolio, Contact, Knowledge)
 - Deep-linking from a URL hash on first render
-- Portfolio: five project cards + repository action links match the data module
+- Portfolio: five project cards + source/demo action links and metric chips match the data module
 - About: credential badges remain the only credential link surface
 - Contact / Footer: social links render from the same single source of truth
 - Skip link exists and points at `#main-content`

@@ -40,7 +40,7 @@ describe("Portfolio site", () => {
     expect(window.location.hash).toBe("#knowledge");
   });
 
-  test("renders five portfolio projects with repository actions", async () => {
+  test("renders five portfolio projects with source/demo actions and metrics", async () => {
     const user = userEvent.setup();
     render(<App />);
     await user.click(screen.getByRole("button", { name: "Portfolio" }));
