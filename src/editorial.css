@@ -1359,6 +1359,10 @@ a {
   object-position: center center;
 }
 
+.project-card--lead .project-image {
+  object-position: center top;
+}
+
 /* GitHub CTA tucked inside language map panel */
 .tech-proof-link--anchored {
   margin: 1.2rem auto 0;
@@ -1381,5 +1385,9 @@ a {
 
   .project-card--featured .project-image {
     object-position: 18% center;
+  }
+
+  .project-card--lead .project-image {
+    object-position: 18% top;
   }
 }

@@ -1,4 +1,4 @@
-import WorldAssetPricesImage from "../assets/images/portfolio/world-asset-prices.jpg";
+import WorldAssetPricesImage from "../assets/images/portfolio/world-asset-prices-dark.jpg";
 import CherryTreeImage from "../assets/images/portfolio/cherrytree.jpg";
 import WestWardRPGImage from "../assets/images/portfolio/westwardrpg.jpg";
 import POWOImage from "../assets/images/portfolio/powo.jpg";
