@@ -2,7 +2,7 @@ import { memo, useMemo, useState } from "react";
 import { projects } from "../../data/projects";
 import RevealItem from "../RevealItem";
 
-const ProjectCard = memo(function ProjectCard({ project, isLead = false }) {
+const ProjectCard = memo(function ProjectCard({ project, isLead = false, index = 0 }) {
   const [imageFailed, setImageFailed] = useState(!project.image);
   const coverTags = useMemo(() => project.tags.slice(0, 3), [project.tags]);
   const stack = useMemo(() => project.tags.slice(0, 4).join(" • "), [project.tags]);
@@ -15,9 +15,11 @@ const ProjectCard = memo(function ProjectCard({ project, isLead = false }) {
     project.featured ? "project-card--featured" : "",
     isLead ? "project-card--lead" : "",
   ].filter(Boolean).join(" ");
+  const projectNum = String(index + 1).padStart(2, "0");
 
   return (
     <article className={cardClass}>
+      <span className="project-num" aria-hidden="true">{projectNum}</span>
       {project.featured && (
         <p className="project-featured-tag" aria-hidden="true">Featured Case Study</p>
       )}
@@ -116,7 +118,7 @@ function Portfolio() {
       <div className="project-grid project-grid--symmetrical">
         {projectsByPriority.map((project, i) => (
           <RevealItem delay={Math.min(i, 5)} key={project.name}>
-            <ProjectCard project={project} isLead={i === 0} />
+            <ProjectCard project={project} isLead={i === 0} index={i} />
           </RevealItem>
         ))}
       </div>

@@ -762,6 +762,7 @@ a {
 }
 
 .project-card {
+  position: relative;
   height: 100%;
   overflow: hidden;
   border: 1px solid var(--line);
@@ -779,6 +780,39 @@ a {
     border-color: var(--gold-border);
     box-shadow: 0 34px 90px rgba(0, 0, 0, 0.68);
   }
+
+  .project-card--featured:hover,
+  .project-card--lead:hover {
+    transform: translateY(-6px);
+    border-color: var(--gold-border-strong);
+  }
+}
+
+/* Editorial project numeral — sits in the content area's upper right and
+   acts as a faded ordinal marker matching the About highlight grid. */
+.project-num {
+  position: absolute;
+  z-index: 2;
+  bottom: 14px;
+  right: 18px;
+  color: var(--gold);
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: clamp(3.4rem, 6vw, 5.6rem);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  opacity: 0.12;
+  pointer-events: none;
+  user-select: none;
+}
+
+.project-card--featured .project-num,
+.project-card--lead .project-num {
+  font-size: clamp(4.6rem, 9vw, 8rem);
+  opacity: 0.16;
+  bottom: 18px;
+  right: 22px;
 }
 
 .project-image-link {
@@ -995,9 +1029,34 @@ a {
 .language-map-panel,
 .certification-panel,
 .ai-experience-panel {
+  position: relative;
   width: min(960px, 100%);
   margin-top: 1.4rem;
   padding: 22px;
+}
+
+/* Hairline gold dividers between Knowledge sub-panels — echoes the
+   top-of-panel hairline so the four subsections feel like chapters
+   inside the same editorial spread instead of four separate cards. */
+.capability-grid,
+.ai-experience-panel,
+.certification-panel {
+  position: relative;
+}
+
+.capability-grid::before,
+.ai-experience-panel::before,
+.certification-panel::before {
+  content: "";
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  width: 96px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-border), transparent);
+  opacity: 0.55;
+  transform: translateX(-50%);
+  pointer-events: none;
 }
 
 .language-group-grid,
@@ -1375,12 +1434,16 @@ a {
 .section-eyebrow-num {
   display: inline-flex;
   align-items: center;
-  padding: 0.2rem 0.55rem;
-  border: 1px solid var(--gold-border);
+  padding: 0.2rem 0.62rem;
+  border: 1px solid var(--gold-border-strong);
   border-radius: 999px;
+  background: var(--gold-soft);
   color: var(--gold);
-  font-size: 0.62rem;
-  letter-spacing: 0.18em;
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: 0.84rem;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.04em;
 }
 
 /* Gold hairline above each section panel */
