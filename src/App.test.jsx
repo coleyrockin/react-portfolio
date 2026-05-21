@@ -14,7 +14,12 @@ describe("Portfolio site", () => {
     render(<App />);
 
     expect(screen.getByRole("heading", { name: /boyd\s*roberts\./i })).toBeInTheDocument();
-    expect(screen.getByText(/react\s*•\s*next\.js\s*•\s*node\s*•\s*ai workflows\s*•\s*central texas/i)).toBeInTheDocument();
+    const stackRow = screen.getByRole("list", { name: /core stack/i });
+    expect(within(stackRow).getByText(/react/i)).toBeInTheDocument();
+    expect(within(stackRow).getByText(/next\.js/i)).toBeInTheDocument();
+    expect(within(stackRow).getByText(/node\.js/i)).toBeInTheDocument();
+    expect(within(stackRow).getByText(/ai workflows/i)).toBeInTheDocument();
+    expect(within(stackRow).getByText(/central texas/i)).toBeInTheDocument();
     expect(screen.getByRole("list", { name: "Portfolio proof points" })).toHaveTextContent("CI + CodeQL");
     expect(window.location.hash).toBe("#about");
   });

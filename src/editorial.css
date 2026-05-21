@@ -307,24 +307,43 @@ a {
 
 /* Soft gold halo behind the head: lifts the photo off the pure-black bg
    so the dark suit doesn't disappear at desktop widths. Sits behind the
-   image (z-index 0) and the photo itself sits at z-index 1. */
+   image (z-index 0) and the photo itself sits at z-index 1.
+   Stronger than before so the portrait feels curated, not pasted. */
 .profile-photo-wrap::before {
   content: "";
   position: absolute;
   z-index: 0;
-  top: 6%;
+  top: 0%;
   left: 50%;
-  width: 130%;
-  height: 70%;
+  width: 160%;
+  height: 88%;
   transform: translateX(-50%);
   background: radial-gradient(
-    ellipse 50% 55% at 50% 35%,
-    rgba(201, 163, 106, 0.16) 0%,
-    rgba(201, 163, 106, 0.06) 40%,
-    transparent 75%
+    ellipse 50% 55% at 50% 36%,
+    rgba(201, 163, 106, 0.30) 0%,
+    rgba(201, 163, 106, 0.12) 38%,
+    rgba(201, 163, 106, 0.04) 62%,
+    transparent 80%
   );
   pointer-events: none;
-  filter: blur(2px);
+  filter: blur(6px);
+}
+
+/* Outer ambient glow — extends the warm wash further out and adds dimension
+   without introducing a hard frame. Stays behind the halo and image. */
+.profile-photo-wrap::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: -12% -22%;
+  background: radial-gradient(
+    ellipse 60% 50% at 50% 42%,
+    rgba(201, 163, 106, 0.10) 0%,
+    rgba(201, 163, 106, 0.03) 45%,
+    transparent 72%
+  );
+  pointer-events: none;
+  filter: blur(28px);
 }
 
 .profile-photo {
@@ -353,9 +372,9 @@ a {
   margin: 0;
   max-width: 16ch;
   font-family: "Instrument Serif", Georgia, serif;
-  font-size: clamp(4rem, 9vw, 7.25rem);
+  font-size: clamp(4.5rem, 12vw, 10rem);
   font-weight: 400;
-  letter-spacing: 0;
+  letter-spacing: -0.035em;
   line-height: 0.82;
   text-wrap: balance;
   background: linear-gradient(170deg, var(--ink) 35%, #cdb99a 100%);
@@ -381,6 +400,71 @@ a {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   text-wrap: balance;
+}
+
+/* Tech stack icon row — replaces the comma-separated meta text. Monochrome
+   gold-tinted glyphs read instantly and give the hero visual rhythm. */
+.hero-stack-row {
+  list-style: none;
+  margin: 1.1rem auto 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 18px 22px;
+}
+
+.hero-stack-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--gold);
+  font-size: 1.05rem;
+  line-height: 1;
+  transition: color var(--motion-hover) var(--ease-soft);
+}
+
+.hero-stack-item svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+  flex-shrink: 0;
+  filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.6));
+}
+
+.hero-stack-label {
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: var(--weight-label);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hero-stack-item--location {
+  position: relative;
+  padding-left: 22px;
+  margin-left: 4px;
+}
+
+.hero-stack-item--location::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 1px;
+  height: 14px;
+  background: var(--line-strong);
+  transform: translateY(-50%);
+}
+
+.hero-stack-item--location {
+  color: var(--faint);
+}
+
+.hero-stack-item--location svg {
+  width: 14px;
+  height: 14px;
 }
 
 .hero-cta-row {
@@ -487,7 +571,15 @@ a {
 }
 
 .about-highlight-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  /* Asymmetric editorial layout: feature card (Core Stack) spans left column
+     across both rows; the two supporting cards stack on the right. */
+  grid-template-columns: 1.7fr 1fr;
+  grid-template-rows: auto auto;
+  grid-auto-flow: column;
+}
+
+.about-highlight-grid > :first-child {
+  grid-row: 1 / span 2;
 }
 
 .highlight-item,
@@ -506,11 +598,35 @@ a {
 }
 
 .highlight-item {
+  position: relative;
+  overflow: hidden;
   min-height: 148px;
   padding: 22px 18px;
   display: grid;
   align-content: center;
   justify-items: center;
+}
+
+/* Feature variant — Core Stack on desktop. Larger, more breathing room, and
+   leans into the gold accent for asymmetric visual weight. */
+.highlight-item--feature {
+  min-height: 100%;
+  padding: 32px 28px;
+  border-color: var(--gold-border);
+  background:
+    linear-gradient(145deg, rgba(201, 163, 106, 0.06), rgba(255, 255, 255, 0.02));
+  box-shadow: var(--shadow), 0 0 0 1px rgba(201, 163, 106, 0.08);
+}
+
+.highlight-item--feature h3 {
+  font-size: 0.95rem;
+}
+
+.highlight-item--feature p {
+  margin-top: 0.7rem;
+  font-size: 1.02rem;
+  color: var(--ink-secondary);
+  max-width: 32ch;
 }
 
 .highlight-item h3,
@@ -1095,10 +1211,21 @@ a {
   .cert-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  /* Reset the desktop asymmetric layout — feature card no longer spans two
+     rows once we drop below the 2-column breakpoint. */
+  .about-highlight-grid {
+    grid-template-rows: auto;
+    grid-auto-flow: row;
+  }
+
+  .about-highlight-grid > :first-child {
+    grid-row: auto;
+    grid-column: 1 / -1;
+  }
 }
 
 @media (min-width: 601px) and (max-width: 960px) {
-  .about-highlight-grid > div:last-child:not(:nth-child(2n)),
   .language-group-grid > div:last-child:not(:nth-child(2n)),
   .capability-grid > div:last-child:not(:nth-child(2n)),
   .social-grid > div:last-child:not(:nth-child(2n)) {
@@ -1115,6 +1242,10 @@ a {
   .social-grid,
   .cert-list {
     grid-template-columns: 1fr;
+  }
+
+  .about-highlight-grid > :first-child {
+    grid-column: auto;
   }
 }
 
@@ -1298,16 +1429,35 @@ a {
   color: var(--faint);
 }
 
-/* Numbered highlight cards (Core Stack / Focus / GitHub) */
+/* Numbered highlight cards (Core Stack / Focus / GitHub) — huge faded
+   editorial numeral sits behind the card content as a decorative anchor. */
 .highlight-num {
-  display: block;
-  margin-bottom: 0.5rem;
+  position: absolute;
+  top: -0.18em;
+  right: 0.12em;
+  z-index: 0;
   color: var(--gold);
   font-family: "Instrument Serif", Georgia, serif;
-  font-size: 1.1rem;
+  font-size: clamp(5rem, 11vw, 9rem);
   font-weight: 400;
-  letter-spacing: 0.04em;
+  letter-spacing: -0.04em;
+  line-height: 1;
   font-style: italic;
+  opacity: 0.10;
+  pointer-events: none;
+  user-select: none;
+}
+
+.highlight-item--feature .highlight-num {
+  font-size: clamp(7rem, 16vw, 13rem);
+  opacity: 0.14;
+  top: -0.22em;
+}
+
+.highlight-item > h3,
+.highlight-item > p {
+  position: relative;
+  z-index: 1;
 }
 
 .highlight-item h3 {

@@ -5,6 +5,16 @@ import Fullstack from "../../assets/images/fullstack.png";
 import BaylorBadge from "../../assets/images/baylor-badge.svg";
 import { projects } from "../../data/projects";
 import RevealItem from "../RevealItem";
+import { SiReact, SiNextdotjs, SiNodedotjs } from "react-icons/si";
+import { HiSparkles } from "react-icons/hi2";
+import { FaMapMarkerAlt } from "react-icons/fa";
+
+const heroStack = [
+  { key: "react", label: "React", Icon: SiReact },
+  { key: "next", label: "Next.js", Icon: SiNextdotjs },
+  { key: "node", label: "Node.js", Icon: SiNodedotjs },
+  { key: "ai", label: "AI workflows", Icon: HiSparkles },
+];
 
 function About() {
   const baseUrl = (import.meta.env.BASE_URL || "/").replace(/\/$/, "");
@@ -33,7 +43,18 @@ function About() {
           <div className="hero-copy">
             <h2 className="hero-name">Boyd Roberts.</h2>
             <p className="hero-tagline">I turn product ideas into production-ready software — clean frontends, resilient backends, and AI-integrated workflows.</p>
-            <p className="hero-meta" aria-label="React, Next.js, Node, AI workflows, Central Texas">React&nbsp;•&nbsp;Next.js&nbsp;•&nbsp;Node&nbsp;•&nbsp;AI workflows&nbsp;•&nbsp;Central Texas</p>
+            <ul className="hero-stack-row" aria-label="Core stack: React, Next.js, Node.js, AI workflows">
+              {heroStack.map(({ key, label, Icon }) => (
+                <li key={key} className="hero-stack-item">
+                  <Icon aria-hidden="true" focusable="false" />
+                  <span className="hero-stack-label">{label}</span>
+                </li>
+              ))}
+              <li className="hero-stack-item hero-stack-item--location">
+                <FaMapMarkerAlt aria-hidden="true" focusable="false" />
+                <span className="hero-stack-label">Central Texas</span>
+              </li>
+            </ul>
             <div className="hero-cta-row">
               <a className="hero-cta hero-cta--primary" href="#portfolio">
                 View work
@@ -58,7 +79,7 @@ function About() {
 
       <div className="about-highlight-grid">
         <RevealItem delay={0}>
-          <div className="highlight-item">
+          <div className="highlight-item highlight-item--feature">
             <span className="highlight-num" aria-hidden="true">01</span>
             <h3>Core Stack</h3>
             <p>React, Next.js, Node.js, TypeScript, Java, Python</p>
