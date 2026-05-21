@@ -4,6 +4,8 @@ Current status after the May 2026 audit and polish passes. The site is intention
 
 ## Shipped
 
+- Cinematic hero pass (May 2026-05-20): hero name pushed to `clamp(4.5rem, 12vw, 10rem)` with `-0.035em` tracking, headshot halo strengthened plus outer ambient glow, tech badges replaced with monochrome gold icon row + Central Texas chip, highlight tiles converted to an asymmetric editorial grid (Core Stack feature card spans two rows, Focus/GitHub stacked) with huge faded background numerals.
+- Knowledge a11y parity (2026-05-20): AI-Accelerated Work and Certifications sections now carry matching `aria-label`s alongside Engineering Capabilities.
 - CSS cleanup: duplicate/dead rules removed, hover-only states guarded for pointer devices, Safari mask support added.
 - Performance cleanup: Google Fonts load from `index.html`, production source maps are disabled, and unused local assets are pruned.
 - Hero polish: desktop two-column composition, tighter portrait/name rhythm, outcome-led tagline, keyboard-friendly meta text.
@@ -16,6 +18,17 @@ Current status after the May 2026 audit and polish passes. The site is intention
 - Accessibility cleanup: duplicate credential links removed, contact links use visible labels, active nav focus is visually distinct.
 
 ## Next Best Work
+
+### 0. Carry the Editorial Language Across Sections (pick up first)
+
+About panel now has a clear editorial voice. Apply the same treatment to Portfolio and Knowledge:
+
+- Faded background numerals behind each project card
+- Hover lift + subtle image zoom on `.project-image`
+- Hairline gold-tinted dividers between major panels
+- Gold italic eyebrows on each section
+
+**Files:** `src/components/Portfolio/`, `src/components/Knowledge/`, `src/editorial.css`
 
 ### 1. Promote Visual Smoke Only If Needed
 
