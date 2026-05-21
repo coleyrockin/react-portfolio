@@ -58,7 +58,7 @@ function Knowledge() {
         ))}
       </section>
 
-      <section className="ai-experience-panel">
+      <section className="ai-experience-panel" aria-label="AI-Accelerated Work">
         <h3>AI-Accelerated Work</h3>
         <ul className="ai-experience-list">
           {aiExperienceCopy.map((item) => (
@@ -67,7 +67,7 @@ function Knowledge() {
         </ul>
       </section>
 
-      <section className="certification-panel">
+      <section className="certification-panel" aria-label="Certifications">
         <h3>Certifications</h3>
         <ul className="cert-list">
           {certifications.map((cert) => (
