@@ -270,6 +270,7 @@ a {
   position: relative;
   display: grid;
   justify-items: center;
+  overflow: hidden;
 }
 
 .hero-kicker {
@@ -299,10 +300,10 @@ a {
   align-items: flex-end;
   justify-content: center;
   /* The photo already has a true-black background that matches the page,
-     so the sides need no masking. Single vertical fade dissolves the suit
-     and shoulders into the page so the head emerges cleanly. */
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 62%, transparent 100%);
-          mask-image: linear-gradient(to bottom, #000 0%, #000 62%, transparent 100%);
+     so the wrapper only handles the vertical dissolve; the image itself
+     feathers the sides so the portrait no longer reads as a hard rectangle. */
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 68%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 0%, #000 68%, transparent 100%);
 }
 
 /* Soft gold halo behind the head: lifts the photo off the pure-black bg
@@ -313,37 +314,36 @@ a {
   content: "";
   position: absolute;
   z-index: 0;
-  top: 0%;
+  top: -13%;
   left: 50%;
-  width: 160%;
-  height: 88%;
-  transform: translateX(-50%);
+  width: 245%;
+  height: 122%;
+  transform: translateX(-48%) rotate(-5deg);
   background: radial-gradient(
-    ellipse 50% 55% at 50% 36%,
-    rgba(201, 163, 106, 0.30) 0%,
-    rgba(201, 163, 106, 0.12) 38%,
-    rgba(201, 163, 106, 0.04) 62%,
-    transparent 80%
+    ellipse 44% 52% at 52% 34%,
+    rgba(201, 163, 106, 0.34) 0%,
+    rgba(201, 163, 106, 0.17) 34%,
+    rgba(201, 163, 106, 0.07) 58%,
+    transparent 84%
   );
   pointer-events: none;
-  filter: blur(6px);
+  filter: blur(14px);
+  opacity: 0.42;
 }
 
-/* Outer ambient glow — extends the warm wash further out and adds dimension
-   without introducing a hard frame. Stays behind the halo and image. */
+/* Edge feather — sits above the image and erases the source image's
+   rectangular backdrop so the portrait dissolves into the page. */
 .profile-photo-wrap::after {
   content: "";
   position: absolute;
-  z-index: 0;
-  inset: -12% -22%;
-  background: radial-gradient(
-    ellipse 60% 50% at 50% 42%,
-    rgba(201, 163, 106, 0.10) 0%,
-    rgba(201, 163, 106, 0.03) 45%,
-    transparent 72%
-  );
+  z-index: 2;
+  inset: -1% -5% -2%;
+  background:
+    linear-gradient(90deg, #020202 0%, rgba(2, 2, 2, 0.82) 8%, transparent 25%, transparent 74%, rgba(2, 2, 2, 0.86) 92%, #020202 100%),
+    linear-gradient(180deg, rgba(2, 2, 2, 0.92) 0%, transparent 17%, transparent 68%, rgba(2, 2, 2, 0.94) 100%);
   pointer-events: none;
-  filter: blur(28px);
+  filter: none;
+  opacity: 0.92;
 }
 
 .profile-photo {
@@ -355,8 +355,16 @@ a {
   object-fit: cover;
   object-position: 50% 18%;
   /* Bright + warm so the face reads against the near-pure-black page
-     background. The mask handles the seamless bottom blend. */
-  filter: grayscale(0.1) contrast(1.06) brightness(1.06);
+     background. This mask feathers the side/top edges while the wrapper
+     handles the bottom dissolve. */
+  -webkit-mask-image: radial-gradient(ellipse 58% 76% at 50% 36%, #000 0%, #000 42%, rgba(0, 0, 0, 0.58) 57%, rgba(0, 0, 0, 0.16) 72%, transparent 88%);
+          mask-image: radial-gradient(ellipse 58% 76% at 50% 36%, #000 0%, #000 42%, rgba(0, 0, 0, 0.58) 57%, rgba(0, 0, 0, 0.16) 72%, transparent 88%);
+  filter:
+    grayscale(0.1)
+    contrast(1.06)
+    brightness(1.06)
+    drop-shadow(0 0 38px rgba(201, 163, 106, 0.24))
+    drop-shadow(-22px -10px 88px rgba(201, 163, 106, 0.18));
   opacity: 1;
   border: 0;
   border-radius: 0;
