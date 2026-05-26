@@ -5,15 +5,13 @@
 ![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=flat&logo=vite&logoColor=white)
 ![Vitest](https://img.shields.io/badge/Vitest-4-6E9F18?style=flat&logo=vitest&logoColor=white)
 ![ESLint](https://img.shields.io/badge/ESLint-9-4B32C3?style=flat&logo=eslint&logoColor=white)
-![Lighthouse Perf](https://img.shields.io/badge/Lighthouse_Perf-91-brightgreen?style=flat&logo=lighthouse&logoColor=white)
-![Lighthouse A11y](https://img.shields.io/badge/Lighthouse_A11y-100-brightgreen?style=flat&logo=lighthouse&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-yellow?style=flat)
 
 **Live Site:** [coleyrockin.github.io/react-portfolio](https://coleyrockin.github.io/react-portfolio/)
 
-> Single-page React 19 portfolio — migrated from Create React App to Vite,
-> CI-enforced quality gates (lint + test + build), strict CSP, WCAG-aware
-> component tree, manual visual smoke coverage, and **0 npm advisories**. Lighthouse: **91 / 100 / 100 / 100**.
+> Single-page React 19 portfolio with hash-based sections, CI-enforced quality gates
+> (lint + test + build), strict CSP, WCAG-aware component tree, and manual visual
+> smoke coverage.
 
 ---
 
@@ -181,7 +179,8 @@ react-portfolio/
 - Data-driven portfolio content with reusable section components and centralized link sources
 - CI-enforced quality gates (lint + test + build) before any deploy, plus a strict production content-security policy
 - Manual visual release proof via Playwright screenshots and route health checks
-- Measurable results: Lighthouse **91 / 100 / 100 / 100** with LCP under 3 seconds
+- Security and verification state is documented in [ROADMAP.md](docs/ROADMAP.md) and
+  [security_best_practices_report.md](security_best_practices_report.md)
 
 ## What I'd do next
 
@@ -189,6 +188,20 @@ react-portfolio/
 - Split `App.test.jsx` into per-component test files when behavior grows beyond the current section-routing coverage
 - Pre-render the static shell with `vite-plugin-ssg` or similar for near-instant FCP
 - Migrate content modules (`src/data/*`) to MDX so project case studies can include inline diagrams and code
+
+## Current project status
+
+- This is a recruiter-ready portfolio; no new feature roadmap is being built in this cycle.
+- Current state, verification status, and next-agent execution plan are tracked in:
+  - [docs/ROADMAP.md](docs/ROADMAP.md)
+  - [security_best_practices_report.md](security_best_practices_report.md)
+
+## Validation status (current)
+
+- Validation commands should pass in a clean environment:
+  - `npm run check`
+  - `npm run visual:smoke`
+- For latest benchmark numbers (e.g., Lighthouse), use the latest run artifact rather than hard-coded values in this file.
 
 ## License
 
