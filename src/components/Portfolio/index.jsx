@@ -7,21 +7,25 @@ const ProjectCard = memo(function ProjectCard({ project, isLead = false, index =
   const coverTags = useMemo(() => project.tags.slice(0, 3), [project.tags]);
   const stack = useMemo(() => project.tags.slice(0, 4).join(" • "), [project.tags]);
   const previewHref = project.demo || project.repo;
-  const previewLabel = project.demo
-    ? `${project.name} live demo`
-    : `${project.name} repository`;
+  const previewLabel = project.demo ? `${project.name} live demo` : `${project.name} repository`;
   const cardClass = [
     "project-card",
     project.featured ? "project-card--featured" : "",
     isLead ? "project-card--lead" : "",
-  ].filter(Boolean).join(" ");
+  ]
+    .filter(Boolean)
+    .join(" ");
   const projectNum = String(index + 1).padStart(2, "0");
 
   return (
     <article className={cardClass}>
-      <span className="project-num" aria-hidden="true">{projectNum}</span>
+      <span className="project-num" aria-hidden="true">
+        {projectNum}
+      </span>
       {project.featured && (
-        <p className="project-featured-tag" aria-hidden="true">Featured Case Study</p>
+        <p className="project-featured-tag" aria-hidden="true">
+          Featured Case Study
+        </p>
       )}
       <a
         href={previewHref}
@@ -76,7 +80,12 @@ const ProjectCard = memo(function ProjectCard({ project, isLead = false, index =
         <div className="project-actions">
           {project.featured && project.demo ? (
             <>
-              <a href={project.demo} target="_blank" rel="noopener noreferrer" className="demo-link">
+              <a
+                href={project.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="demo-link"
+              >
                 Live
               </a>
               <a href={project.repo} target="_blank" rel="noopener noreferrer">
@@ -89,7 +98,12 @@ const ProjectCard = memo(function ProjectCard({ project, isLead = false, index =
                 Source
               </a>
               {project.demo && (
-                <a href={project.demo} target="_blank" rel="noopener noreferrer" className="demo-link">
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="demo-link"
+                >
                   Live
                 </a>
               )}
@@ -110,10 +124,13 @@ function Portfolio() {
 
   return (
     <section className="portfolio-panel portfolio-panel--minimal">
-      <p className="section-eyebrow"><span className="section-eyebrow-num">02</span> Selected Work · {projects.length} Projects</p>
+      <p className="section-eyebrow">
+        <span className="section-eyebrow-num">02</span> Selected Work · {projects.length} Projects
+      </p>
       <h2 className="panel-title">Selected Work</h2>
       <p className="project-note">
-        Minimal case studies from real builds, focused on outcomes, architecture choices, and production quality.
+        Minimal case studies from real builds, focused on outcomes, architecture choices, and
+        production quality.
       </p>
       <div className="project-grid project-grid--symmetrical">
         {projectsByPriority.map((project, i) => (

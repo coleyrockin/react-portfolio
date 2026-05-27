@@ -10,7 +10,7 @@
 **Live Site:** [coleyrockin.github.io/react-portfolio](https://coleyrockin.github.io/react-portfolio/)
 
 > Single-page React 19 portfolio with hash-based sections, CI-enforced quality gates
-> (lint + test + build), strict CSP, WCAG-aware component tree, and manual visual
+> (format + lint + test + build), strict CSP, WCAG-aware component tree, and manual visual
 > smoke coverage.
 
 ---
@@ -54,7 +54,7 @@ Highlights selected engineering work, language breadth, certifications, and AI w
 - **Accessibility-first** — skip link, `aria-current` nav, reduced-motion support, keyboard focus management, semantic landmarks, descriptive alt text
 - **Data-driven content** — projects, languages, certifications, and social links centralized in `src/data/*`
 - **PWA-ready** — web app manifest, themed favicons, OG/Twitter meta, JSON-LD `Person` schema
-- **CI/CD** — GitHub Actions runs lint + test + build on every push; separate workflow deploys to GitHub Pages
+- **CI/CD** — GitHub Actions runs format + lint + test + build on every push; separate workflow deploys to GitHub Pages
 
 ## Performance & Accessibility
 
@@ -146,7 +146,7 @@ npm run dev
 | `npm run lint` | Lint `src/` with ESLint |
 | `npm run lint:fix` | Lint and auto-fix |
 | `npm run format` | Format `src/` with Prettier |
-| `npm run check` | Lint + test + build (full CI pipeline) |
+| `npm run check` | Format check + lint + test + build (full CI pipeline) |
 | `npm run visual:smoke` | Build, preview, screenshot, and validate all routes at 360px, 390px, and desktop sizes. Defaults to port 4173; override with `VISUAL_SMOKE_PORT` if needed. |
 
 <details>
@@ -177,7 +177,7 @@ react-portfolio/
 - Migrating a mature Create React App project to Vite + React 19 + Vitest without dropping a single test
 - Accessibility-conscious React (skip link, reduced-motion, semantic landmarks, keyboard-friendly nav)
 - Data-driven portfolio content with reusable section components and centralized link sources
-- CI-enforced quality gates (lint + test + build) before any deploy, plus a strict production content-security policy
+- CI-enforced quality gates (format + lint + test + build) before any deploy, plus a strict production content-security policy
 - Manual visual release proof via Playwright screenshots and route health checks
 - Security and verification state is documented in [ROADMAP.md](docs/ROADMAP.md) and
   [security_best_practices_report.md](security_best_practices_report.md)
@@ -199,7 +199,7 @@ react-portfolio/
 ## Validation status (current)
 
 - Validation commands should pass in a clean environment:
-  - `npm run check`
+  - `npm run check` (format check + lint + test + build)
   - `npm run visual:smoke`
 - For latest benchmark numbers (e.g., Lighthouse), use the latest run artifact rather than hard-coded values in this file.
 

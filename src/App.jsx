@@ -120,7 +120,10 @@ function App() {
         setCurrentSection={handleSectionChange}
       />
       <main className="main-content" id="main-content" tabIndex="-1" ref={mainRef}>
-        <section className={`content-shell${isExiting ? " content-shell--exiting" : ""}`} key={currentSection.slug}>
+        <section
+          className={`content-shell${isExiting ? " content-shell--exiting" : ""}`}
+          key={currentSection.slug}
+        >
           <currentSection.comp />
         </section>
       </main>

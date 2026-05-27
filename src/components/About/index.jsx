@@ -23,7 +23,9 @@ function About() {
 
   return (
     <article className="about-panel">
-      <p className="section-eyebrow"><span className="section-eyebrow-num">01</span> Introduction</p>
+      <p className="section-eyebrow">
+        <span className="section-eyebrow-num">01</span> Introduction
+      </p>
       <div className="about-header-wrap">
         <p className="hero-kicker">Software Engineer</p>
         <div className="hero-grid">
@@ -42,8 +44,14 @@ function About() {
           </div>
           <div className="hero-copy">
             <h2 className="hero-name">Boyd Roberts.</h2>
-            <p className="hero-tagline">I turn product ideas into production-ready software — clean frontends, resilient backends, and AI-integrated workflows.</p>
-            <ul className="hero-stack-row" aria-label="Core stack: React, Next.js, Node.js, AI workflows">
+            <p className="hero-tagline">
+              I turn product ideas into production-ready software — clean frontends, resilient
+              backends, and AI-integrated workflows.
+            </p>
+            <ul
+              className="hero-stack-row"
+              aria-label="Core stack: React, Next.js, Node.js, AI workflows"
+            >
               {heroStack.map(({ key, label, Icon }) => (
                 <li key={key} className="hero-stack-item">
                   <Icon aria-hidden="true" focusable="false" />
@@ -73,28 +81,35 @@ function About() {
       </div>
 
       <p className="about-text">
-        Trained at Southern Methodist University and Baylor Professional Education&rsquo;s 255-hour Java + Python program.
-        I focus on clean architecture, readable code, and shipping practical features that hold up in production.
+        Trained at Southern Methodist University and Baylor Professional Education&rsquo;s 255-hour
+        Java + Python program. I focus on clean architecture, readable code, and shipping practical
+        features that hold up in production.
       </p>
 
       <div className="about-highlight-grid">
         <RevealItem delay={0}>
           <div className="highlight-item highlight-item--feature">
-            <span className="highlight-num" aria-hidden="true">01</span>
+            <span className="highlight-num" aria-hidden="true">
+              01
+            </span>
             <h3>Core Stack</h3>
             <p>React, Next.js, Node.js, TypeScript, Java, Python</p>
           </div>
         </RevealItem>
         <RevealItem delay={1}>
           <div className="highlight-item">
-            <span className="highlight-num" aria-hidden="true">02</span>
+            <span className="highlight-num" aria-hidden="true">
+              02
+            </span>
             <h3>Focus</h3>
             <p>Production-ready systems, practical UX, and maintainable implementation</p>
           </div>
         </RevealItem>
         <RevealItem delay={2}>
           <div className="highlight-item">
-            <span className="highlight-num" aria-hidden="true">03</span>
+            <span className="highlight-num" aria-hidden="true">
+              03
+            </span>
             <h3>GitHub</h3>
             <p>Public build history and real project code at github.com/coleyrockin</p>
           </div>
@@ -108,10 +123,21 @@ function About() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src={Fullstack} alt="Southern Methodist University Full Stack Web Development credential badge" loading="lazy" decoding="async" />
+            <img
+              src={Fullstack}
+              alt="Southern Methodist University Full Stack Web Development credential badge"
+              loading="lazy"
+              decoding="async"
+            />
           </a>
           <a href={baylorCertificate} target="_blank" rel="noopener noreferrer">
-            <img src={BaylorBadge} alt="Baylor University Professional Education certificate" className="baylor-badge" loading="lazy" decoding="async" />
+            <img
+              src={BaylorBadge}
+              alt="Baylor University Professional Education certificate"
+              className="baylor-badge"
+              loading="lazy"
+              decoding="async"
+            />
           </a>
         </div>
       </RevealItem>

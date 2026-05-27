@@ -11,7 +11,8 @@ export const projects = [
     category: "Realtime Financial Data Platform",
     description:
       "Tracks major stocks, ETFs, currencies, and crypto by market cap in a single live dashboard with watchlist and trend sparklines.",
-    scope: "Built with React 19 + Vercel serverless using resilient cache fallbacks (live -> fresh -> stale-if-error) and a secured logo proxy.",
+    scope:
+      "Built with React 19 + Vercel serverless using resilient cache fallbacks (live -> fresh -> stale-if-error) and a secured logo proxy.",
     highlights: ["Single endpoint architecture", "CI quality gates", "Production caching strategy"],
     metrics: [
       { label: "Tracked Assets", value: "Top 10+" },
@@ -29,7 +30,8 @@ export const projects = [
     category: "Health Analytics Dashboard",
     description:
       "Transforms Apple Health exports into a mobile-first analytics experience with workout, sleep, cardio, and VO2 Max trend tracking.",
-    scope: "Built in Next.js 15 with data parsing pipelines, period-over-period comparison views, and animated metric reveals.",
+    scope:
+      "Built in Next.js 15 with data parsing pipelines, period-over-period comparison views, and animated metric reveals.",
     highlights: ["91-day health timeline", "HealthKit XML parser", "Performance-focused mobile UX"],
     metrics: [
       { label: "Data Window", value: "91 days" },
@@ -46,7 +48,8 @@ export const projects = [
     category: "Interactive Motion Experience",
     description:
       "Delivers a cinematic WebGL gallery with layered motion choreography, ambient sound design, and progressive media loading.",
-    scope: "Built with Three.js + GSAP + Lenis, including reduced-motion accessibility and DPR-aware rendering for stable performance.",
+    scope:
+      "Built with Three.js + GSAP + Lenis, including reduced-motion accessibility and DPR-aware rendering for stable performance.",
     highlights: ["240+ animated petals", "Three GSAP motion modes", "Reduced-motion support"],
     metrics: [
       { label: "Animated Elements", value: "240+" },
@@ -63,8 +66,13 @@ export const projects = [
     category: "Polyglot Browser Game Engine",
     description:
       "Framework-free RPG featuring raycasting combat, quest systems, weather simulation, localization, and an NPC-driven in-game economy.",
-    scope: "Built across 9 languages with custom rendering, AI pathfinding, economic simulation logic, and Playwright-driven quality checks.",
-    highlights: ["9-language architecture", "Canvas engine + AI systems", "Playwright QA automation"],
+    scope:
+      "Built across 9 languages with custom rendering, AI pathfinding, economic simulation logic, and Playwright-driven quality checks.",
+    highlights: [
+      "9-language architecture",
+      "Canvas engine + AI systems",
+      "Playwright QA automation",
+    ],
     metrics: [
       { label: "Languages", value: "9" },
       { label: "Localization", value: "8 locales" },
@@ -79,8 +87,13 @@ export const projects = [
     category: "Client Marketing Site",
     description:
       "Production community site for a real sports brand focused on conversion, affiliate performance, and polished content presentation.",
-    scope: "Implemented with custom coupon tooling, 10+ affiliate integrations, Open Graph setup, and strict CSP script-src 'self' hardening.",
-    highlights: ["Real client delivery", "Affiliate conversion features", "Security-first deployment"],
+    scope:
+      "Implemented with custom coupon tooling, 10+ affiliate integrations, Open Graph setup, and strict CSP script-src 'self' hardening.",
+    highlights: [
+      "Real client delivery",
+      "Affiliate conversion features",
+      "Security-first deployment",
+    ],
     metrics: [
       { label: "Affiliate Partners", value: "10+" },
       { label: "Delivery Type", value: "Production" },

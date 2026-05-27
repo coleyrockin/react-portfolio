@@ -20,7 +20,9 @@ describe("Portfolio site", () => {
     expect(within(stackRow).getByText(/node\.js/i)).toBeInTheDocument();
     expect(within(stackRow).getByText(/ai workflows/i)).toBeInTheDocument();
     expect(within(stackRow).getByText(/central texas/i)).toBeInTheDocument();
-    expect(screen.getByRole("list", { name: "Portfolio proof points" })).toHaveTextContent("CI + CodeQL");
+    expect(screen.getByRole("list", { name: "Portfolio proof points" })).toHaveTextContent(
+      "CI + CodeQL"
+    );
     expect(window.location.hash).toBe("#about");
   });
 
@@ -58,7 +60,9 @@ describe("Portfolio site", () => {
     expect(projectCards.length).toBeGreaterThanOrEqual(5);
 
     projects.forEach((project) => {
-      const previewLabel = project.demo ? `${project.name} live demo` : `${project.name} repository`;
+      const previewLabel = project.demo
+        ? `${project.name} live demo`
+        : `${project.name} repository`;
       const expectedHref = project.demo || project.repo;
 
       expect(screen.getByRole("link", { name: previewLabel })).toHaveAttribute(
@@ -79,7 +83,9 @@ describe("Portfolio site", () => {
 
     const scoped = within(await screen.findByRole("region", { name: "Social Profiles" }));
     socialLinks.forEach((profile) => {
-      expect(scoped.getByRole("link", { name: `${profile.name}: ${profile.handle}` })).toHaveAttribute("href", profile.href);
+      expect(
+        scoped.getByRole("link", { name: `${profile.name}: ${profile.handle}` })
+      ).toHaveAttribute("href", profile.href);
     });
   });
 
@@ -92,9 +98,15 @@ describe("Portfolio site", () => {
     const links = screen.getAllByRole("link");
 
     expect(links.filter((link) => link.getAttribute("href") === smuCredentialUrl)).toHaveLength(1);
-    expect(links.filter((link) => link.getAttribute("href")?.endsWith(baylorCertificatePath))).toHaveLength(1);
-    expect(screen.queryByRole("link", { name: "View SMU Developer Credential" })).not.toBeInTheDocument();
-    expect(screen.queryByRole("link", { name: "View Baylor Java + Python Certificate" })).not.toBeInTheDocument();
+    expect(
+      links.filter((link) => link.getAttribute("href")?.endsWith(baylorCertificatePath))
+    ).toHaveLength(1);
+    expect(
+      screen.queryByRole("link", { name: "View SMU Developer Credential" })
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("link", { name: "View Baylor Java + Python Certificate" })
+    ).not.toBeInTheDocument();
   });
 
   test("renders footer social icons from the same link source", () => {
@@ -156,7 +168,10 @@ describe("Portfolio site", () => {
   test("renders skip link to main content", () => {
     render(<App />);
 
-    expect(screen.getByRole("link", { name: "Skip to content" })).toHaveAttribute("href", "#main-content");
+    expect(screen.getByRole("link", { name: "Skip to content" })).toHaveAttribute(
+      "href",
+      "#main-content"
+    );
   });
 
   test("skip link hash does not reset the active section", async () => {

@@ -20,7 +20,7 @@ No critical, high, or medium findings were found in the current codebase. Depend
 
 - `npm audit --omit=dev`: 0 vulnerabilities.
 - `npm audit`: 0 vulnerabilities.
-- `npm run check`: lint, 12 tests, and production build passed.
+- `npm run check`: format check, lint, 12 tests, and production build passed.
 - `npm run visual:smoke`: all route/viewport scenarios passed after using an alternate local port because `127.0.0.1:4173` was occupied by another local preview.
 - Static scan for DOM XSS sinks, string code execution, unsafe navigation, browser storage, `postMessage`, service workers, dynamic script injection, credentialed fetches, common secret patterns, and committed secret-like files.
 - Production header check against `https://coleyrockin.github.io/react-portfolio/`.

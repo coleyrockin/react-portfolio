@@ -10,7 +10,9 @@ import {
 function Knowledge() {
   return (
     <article className="knowledge-panel">
-      <p className="section-eyebrow"><span className="section-eyebrow-num">03</span> Engineering Depth</p>
+      <p className="section-eyebrow">
+        <span className="section-eyebrow-num">03</span> Engineering Depth
+      </p>
       <h2 className="panel-title">Engineering Knowledge</h2>
       <p className="knowledge-intro">
         Technologies and capabilities reflected in shipped work, with public references on GitHub.
@@ -20,11 +22,24 @@ function Knowledge() {
         <h3>Language Map</h3>
         <p className="language-source-note">{languageSourceNote}</p>
         <p className="language-tier-key" aria-label="Tier legend">
-          <span className="tier-mark tier-mark--primary" aria-hidden="true">●</span> Primary
-          <span className="tier-sep" aria-hidden="true">·</span>
-          <span className="tier-mark tier-mark--proficient" aria-hidden="true">◐</span> Proficient
-          <span className="tier-sep" aria-hidden="true">·</span>
-          <span className="tier-mark tier-mark--familiar" aria-hidden="true">○</span> Familiar
+          <span className="tier-mark tier-mark--primary" aria-hidden="true">
+            ●
+          </span>{" "}
+          Primary
+          <span className="tier-sep" aria-hidden="true">
+            ·
+          </span>
+          <span className="tier-mark tier-mark--proficient" aria-hidden="true">
+            ◐
+          </span>{" "}
+          Proficient
+          <span className="tier-sep" aria-hidden="true">
+            ·
+          </span>
+          <span className="tier-mark tier-mark--familiar" aria-hidden="true">
+            ○
+          </span>{" "}
+          Familiar
         </p>
         <div className="language-group-grid">
           {languageGroups.map((group, i) => (
@@ -33,7 +48,10 @@ function Knowledge() {
                 <h4>{group.title}</h4>
                 <div className="language-chip-wrap">
                   {group.languages.map((language) => (
-                    <span className={`language-chip language-chip--${language.tier}`} key={`${group.title}-${language.name}`}>
+                    <span
+                      className={`language-chip language-chip--${language.tier}`}
+                      key={`${group.title}-${language.name}`}
+                    >
                       {language.name}
                     </span>
                   ))}
@@ -42,7 +60,12 @@ function Knowledge() {
             </RevealItem>
           ))}
         </div>
-        <a className="tech-proof-link tech-proof-link--anchored" href="https://github.com/coleyrockin" target="_blank" rel="noopener noreferrer">
+        <a
+          className="tech-proof-link tech-proof-link--anchored"
+          href="https://github.com/coleyrockin"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Review build history on GitHub
         </a>
       </section>
