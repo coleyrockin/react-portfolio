@@ -62,12 +62,12 @@ Measured with Lighthouse 12 against the production build (`npm run preview`):
 
 | Category | Score |
 |---|---|
-| Performance | **91** |
+| Performance | **97** |
 | Accessibility | **100** |
 | Best Practices | **100** |
 | SEO | **100** |
 
-Key Web Vitals: **LCP 2.9 s · CLS 0 · TBT 0 ms**. Hero photo ships as responsive WebP variants (`360w`, `540w`, `720w`). Non-hero images carry `loading="lazy"`; the hero photo uses `fetchPriority="high"` and explicit dimensions to front-load the LCP element.
+Key Web Vitals: **LCP 2.4 s · CLS 0.001 · TBT 0 ms**. Hero photo ships as responsive WebP variants (`360w`, `540w`, `720w`). Non-hero images carry `loading="lazy"`; the hero photo uses `fetchPriority="high"` and explicit dimensions to front-load the LCP element. Fonts are self-hosted (Manrope variable + Instrument Serif) so the critical path has no third-party origins.
 
 Deliberate accessibility choices, verified in `App.test.jsx`:
 
@@ -79,18 +79,19 @@ Deliberate accessibility choices, verified in `App.test.jsx`:
 
 ## Testing
 
-12 integration tests cover:
+25 tests across `App.test.jsx` and per-component suites (`Nav`, `Portfolio`, `Contact`) cover:
 
 - Default section (About) renders and URL hash normalizes to `#about`
-- Hash-based section navigation (Portfolio, Contact, Knowledge)
-- Deep-linking from a URL hash on first render
-- Portfolio: five project cards + source/demo action links and metric chips match the data module
+- Hash-based section navigation (Portfolio, Contact, Knowledge) + deep-linking on first render
+- Portfolio: five project cards, accessible names, `rel="noopener noreferrer"` on every external link, metric chips match the data module
+- Contact: every social link uses an allowed scheme (`mailto:` or `https://`), accessible names tied to handle
+- Nav: every section button renders, `aria-current="page"` flips with the active section, click + keyboard (Enter / Space) activation both fire the section setter
 - About: credential badges remain the only credential link surface
-- Contact / Footer: social links render from the same single source of truth
-- Skip link exists and points at `#main-content`
-- Skip-link hash change does not reset the active section
+- Footer: social links render from the same single source of truth
+- Skip link points at `#main-content` and a `#main-content` hash change does not reset the active section
+- `axe-core` scan of the rendered shell asserts zero a11y violations
 
-Run with `npm test` (Vitest + jsdom + Testing Library).
+Run with `npm test` (Vitest + jsdom + Testing Library + vitest-axe).
 
 Manual release smoke:
 
@@ -100,7 +101,7 @@ Manual release smoke:
 
 ## Security
 
-- Strict production `Content-Security-Policy` meta tag: `default-src 'self'`, scripts same-origin only, fonts pinned to Google, no inline executable scripts, no inline style allowance, no form exfil, no object embeds
+- Strict production `Content-Security-Policy` meta tag: `default-src 'self'`, scripts same-origin only, fonts self-hosted (no third-party origins), no inline executable scripts, `upgrade-insecure-requests`, `object-src 'none'`, `form-action 'self'`
 - `Referrer-Policy: strict-origin-when-cross-origin`
 - Least-privilege GitHub Actions (`contents: read` on CI; `pages: write` / `id-token: write` scoped only to the deploy job)
 - All outbound links include `rel="noopener noreferrer"`
@@ -180,7 +181,7 @@ react-portfolio/
 - CI-enforced quality gates (format + lint + test + build) before any deploy, plus a strict production content-security policy
 - Manual visual release proof via Playwright screenshots and route health checks
 - Security and verification state is documented in [ROADMAP.md](docs/ROADMAP.md) and
-  [security_best_practices_report.md](security_best_practices_report.md)
+  [security-review.md](docs/security-review.md)
 
 ## What I'd do next
 
@@ -194,7 +195,7 @@ react-portfolio/
 - This is a recruiter-ready portfolio; no new feature roadmap is being built in this cycle.
 - Current state, verification status, and next-agent execution plan are tracked in:
   - [docs/ROADMAP.md](docs/ROADMAP.md)
-  - [security_best_practices_report.md](security_best_practices_report.md)
+  - [docs/security-review.md](docs/security-review.md)
 
 ## Validation status (current)
 

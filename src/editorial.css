@@ -1,3 +1,27 @@
+/* Self-hosted fonts (Manrope variable + Instrument Serif) — keeps CSP strict and removes the
+   third-party fonts.googleapis.com / fonts.gstatic.com dependency. */
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("./assets/fonts/manrope-variable.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./assets/fonts/instrument-serif-regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./assets/fonts/instrument-serif-italic.woff2") format("woff2");
+}
+
 :root {
   --bg: #020202;
   --bg-mid: #000000;

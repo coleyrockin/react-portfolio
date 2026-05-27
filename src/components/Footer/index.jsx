@@ -1,3 +1,4 @@
+import { memo } from "react";
 import ICON_BY_KEY from "../../data/iconMap";
 import { socialLinks } from "../../data/socialLinks";
 
@@ -31,4 +32,6 @@ function Footer() {
   );
 }
 
-export default Footer;
+// Footer receives no changing props but App re-renders on every section change.
+// memo() short-circuits those re-renders.
+export default memo(Footer);
