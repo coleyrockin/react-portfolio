@@ -1,11 +1,22 @@
-import { memo, useMemo, useState } from "react";
+import { memo, useState } from "react";
 import { projects } from "../../data/projects";
 import RevealItem from "../RevealItem";
 
+// Hoisted: `projects` is a module-static array, so the priority order never
+// changes between renders. Doing this at module scope avoids a per-mount
+// useMemo and the array allocation it would cache.
+const projectsByPriority = [
+  ...projects.filter((project) => project.featured),
+  ...projects.filter((project) => !project.featured),
+];
+
 const ProjectCard = memo(function ProjectCard({ project, isLead = false, index = 0 }) {
   const [imageFailed, setImageFailed] = useState(!project.image);
-  const coverTags = useMemo(() => project.tags.slice(0, 3), [project.tags]);
-  const stack = useMemo(() => project.tags.slice(0, 4).join(" • "), [project.tags]);
+  // Cheap slice + join — useMemo's bookkeeping costs more than the work and
+  // the parent <ProjectCard /> is already memo'd, so reference stability of
+  // the array doesn't buy anything downstream.
+  const coverTags = project.tags.slice(0, 3);
+  const stack = project.tags.slice(0, 4).join(" • ");
   const previewHref = project.demo || project.repo;
   const previewLabel = project.demo ? `${project.name} live demo` : `${project.name} repository`;
   const cardClass = [
@@ -116,12 +127,6 @@ const ProjectCard = memo(function ProjectCard({ project, isLead = false, index =
 });
 
 function Portfolio() {
-  const projectsByPriority = useMemo(() => {
-    const featured = projects.filter((project) => project.featured);
-    const standard = projects.filter((project) => !project.featured);
-    return [...featured, ...standard];
-  }, []);
-
   return (
     <section className="portfolio-panel portfolio-panel--minimal">
       <p className="section-eyebrow">

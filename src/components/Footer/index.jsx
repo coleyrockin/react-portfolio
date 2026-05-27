@@ -2,9 +2,12 @@ import { memo } from "react";
 import ICON_BY_KEY from "../../data/iconMap";
 import { socialLinks } from "../../data/socialLinks";
 
-function Footer() {
-  const currentYear = new Date().getFullYear();
+// Captured once at module init; portfolio footer is static enough that we
+// accept the tab-open-across-New-Year staleness in exchange for skipping
+// per-mount Date allocation.
+const currentYear = new Date().getFullYear();
 
+function Footer() {
   return (
     <footer className="footer-shell">
       <ul className="footer-links" aria-label="Social links">
