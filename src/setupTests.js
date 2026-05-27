@@ -3,6 +3,11 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import "@testing-library/jest-dom";
+import { expect } from "vitest";
+import * as axeMatchers from "vitest-axe/matchers";
+
+// Wires `expect(result).toHaveNoViolations()` for axe-core scans.
+expect.extend(axeMatchers);
 
 class IntersectionObserver {
   constructor(cb) {

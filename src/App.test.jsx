@@ -1,5 +1,6 @@
 import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { axe } from "vitest-axe";
 import App from "./App";
 import { languageGroups } from "./data/languages";
 import { projects } from "./data/projects";
@@ -172,6 +173,14 @@ describe("Portfolio site", () => {
       "href",
       "#main-content"
     );
+  });
+
+  test("rendered shell has no axe-detectable a11y violations", async () => {
+    const { container } = render(<App />);
+    // Wait for the default section to mount before scanning.
+    await screen.findByRole("heading", { name: /boyd\s*roberts\./i });
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
   });
 
   test("skip link hash does not reset the active section", async () => {
