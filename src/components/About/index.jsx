@@ -16,13 +16,11 @@ const heroStack = [
 function About() {
   const baseUrl = (import.meta.env.BASE_URL || "/").replace(/\/$/, "");
   const baylorCertificate = `${baseUrl}/certificates/baylor-java-python-certificate.pdf`;
-  // Headshot is the LCP element. Served from public/images with a stable URL so
-  // index.html can preload it (`<link rel="preload" as="image">`). The srcSet and
-  // sizes below MUST stay byte-identical to that preload tag or the browser will
-  // fetch the image twice.
+  // Headshot is the LCP element. Served full-res (720x1046, the highest-quality
+  // master in the repo) as a single source so every display gets the crispest
+  // image — no downscaled srcSet variant. Stable public URL so index.html can
+  // preload it; the href there MUST match this one or the browser double-fetches.
   const headshot = `${baseUrl}/images/headshot.webp`;
-  const headshot360 = `${baseUrl}/images/headshot-360.webp`;
-  const headshot540 = `${baseUrl}/images/headshot-540.webp`;
   const proofItems = [`${projects.length} public builds`, "CI + CodeQL", "Live demos"];
 
   return (
@@ -37,8 +35,6 @@ function About() {
             <img
               className="profile-photo"
               src={headshot}
-              srcSet={`${headshot360} 360w, ${headshot540} 540w, ${headshot} 720w`}
-              sizes="(min-width: 900px) 320px, (max-width: 720px) 220px, 280px"
               alt="Boyd Roberts"
               fetchPriority="high"
               decoding="async"
