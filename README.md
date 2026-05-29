@@ -62,30 +62,35 @@ Measured with Lighthouse 12 against the production build (`npm run preview`):
 
 | Category | Score |
 |---|---|
-| Performance | **97** |
+| Performance | **98** |
 | Accessibility | **100** |
 | Best Practices | **100** |
 | SEO | **100** |
 
-Key Web Vitals: **LCP 2.3 s · CLS 0 · TBT 0 ms**. Hero photo ships as responsive WebP variants (`360w`, `540w`, `720w`); project cards each ship 720w + 1280w WebP variants via `srcSet` + `sizes`. Non-hero images carry `loading="lazy"`; the hero photo uses `fetchPriority="high"` and explicit dimensions to front-load the LCP element. Fonts are self-hosted (Manrope variable + Instrument Serif) so the critical path has no third-party origins.
+Key Web Vitals: **LCP 2.3 s · CLS 0 · TBT 0 ms**. Hero photo ships as responsive WebP variants (`360w`, `540w`, `720w`); project cards each ship 720w + 1280w WebP variants via `srcSet` + `sizes`. Non-hero images carry `loading="lazy"`; the hero photo uses `fetchPriority="high"` and explicit dimensions to front-load the LCP element. Fonts are self-hosted (Manrope variable + Instrument Serif), served from `public/fonts` and `<link rel="preload">`-ed so branded type fetches in parallel with the stylesheet — the critical path has no third-party origins.
 
 Deliberate accessibility choices, verified in `App.test.jsx`:
 
 - Skip link to `#main-content` as the first focusable element
-- `aria-current="page"` on the active section button; focus moves to `<main>` on navigation
+- `aria-current="page"` on the active section button; focus moves to `<main>` and scroll resets to top on navigation
 - Semantic landmarks (`<header>`, `<nav>`, `<main>`, `<footer>`) with labelled regions
 - `prefers-reduced-motion` short-circuits reveal transitions
+- Gold (not browser-default) `:focus-visible` ring on every interactive control; custom `::selection`
 - No divs-as-buttons; every interactive control is a real `<button>` or `<a>`
+- A render `ErrorBoundary` wraps the active section — a thrown error shows an on-theme fallback instead of a blank page
 
 ## Testing
 
-25 tests across `App.test.jsx` and per-component suites (`Nav`, `Portfolio`, `Contact`) cover:
+36 tests across `App.test.jsx` and per-component suites (`Nav`, `Portfolio`, `Contact`, `Knowledge`, `ErrorBoundary`, `useInViewport`) cover:
 
 - Default section (About) renders and URL hash normalizes to `#about`
 - Hash-based section navigation (Portfolio, Contact, Knowledge) + deep-linking on first render
+- Scroll resets to top on section change; rapid section clicks land on the last selection (exit-transition race)
 - Portfolio: five project cards, accessible names, `rel="noopener noreferrer"` on every external link, metric chips match the data module
 - Contact: every social link uses an allowed scheme (`mailto:` or `https://`), accessible names tied to handle
+- Knowledge: language groups + chips, capability pillars, AI-work bullets, and certifications all render from the data module
 - Nav: every section button renders, `aria-current="page"` flips with the active section, click + keyboard (Enter / Space) activation both fire the section setter
+- `useInViewport` returns visible immediately under `prefers-reduced-motion`; `ErrorBoundary` renders its fallback when a child throws
 - About: credential badges remain the only credential link surface
 - Footer: social links render from the same single source of truth
 - Skip link points at `#main-content` and a `#main-content` hash change does not reset the active section
@@ -158,7 +163,7 @@ react-portfolio/
 ├── .github/workflows/    # CI + GitHub Pages deploy
 ├── public/               # Static assets, manifest, favicons, certificates
 ├── src/
-│   ├── components/       # About, Portfolio, Contact, Knowledge, Nav, Footer, RevealItem
+│   ├── components/       # About, Portfolio, Contact, Knowledge, Nav, Footer, RevealItem, ErrorBoundary
 │   ├── data/             # projects, languages, socialLinks, iconMap
 │   ├── hooks/            # useInViewport (IntersectionObserver w/ reduced-motion guard)
 │   ├── App.jsx           # Hash-routed shell

@@ -1,5 +1,6 @@
-import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
+import { act, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { vi } from "vitest";
 import { axe } from "vitest-axe";
 import App from "./App";
 import { languageGroups } from "./data/languages";
@@ -197,5 +198,45 @@ describe("Portfolio site", () => {
     await waitFor(() => {
       expect(document.title).toBe("Boyd Roberts | Portfolio");
     });
+  });
+
+  test("resets scroll to top when switching sections", () => {
+    vi.useFakeTimers();
+    const scrollSpy = vi.spyOn(window, "scrollTo").mockImplementation(() => {});
+    try {
+      render(<App />);
+      fireEvent.click(screen.getByRole("button", { name: "Portfolio" }));
+      // The swap (and scroll reset) happen after the 180ms exit transition.
+      act(() => {
+        vi.advanceTimersByTime(200);
+      });
+      expect(screen.getByRole("heading", { name: "Selected Work" })).toBeInTheDocument();
+      expect(scrollSpy).toHaveBeenCalledWith(0, 0);
+    } finally {
+      scrollSpy.mockRestore();
+      vi.useRealTimers();
+    }
+  });
+
+  test("rapid section clicks land on the last selection, not a stale one", () => {
+    vi.useFakeTimers();
+    try {
+      render(<App />);
+      // Click Portfolio, then Knowledge before the 180ms exit completes.
+      fireEvent.click(screen.getByRole("button", { name: "Portfolio" }));
+      act(() => {
+        vi.advanceTimersByTime(90);
+      });
+      fireEvent.click(screen.getByRole("button", { name: "Knowledge" }));
+      act(() => {
+        vi.advanceTimersByTime(200);
+      });
+      // Only the final selection should render; the pending Portfolio swap is cancelled.
+      expect(screen.getByRole("heading", { name: "Engineering Knowledge" })).toBeInTheDocument();
+      expect(screen.queryByRole("heading", { name: "Selected Work" })).not.toBeInTheDocument();
+      expect(window.location.hash).toBe("#knowledge");
+    } finally {
+      vi.useRealTimers();
+    }
   });
 });

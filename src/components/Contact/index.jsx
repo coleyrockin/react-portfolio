@@ -6,7 +6,7 @@ function Contact() {
   return (
     <article className="contact-panel">
       <p className="section-eyebrow">
-        <span className="section-eyebrow-num">04</span> Reach Out
+        <span className="section-eyebrow-num">04</span> Contact
       </p>
       <h2 className="panel-title">Contact</h2>
       <p className="contact-intro">
