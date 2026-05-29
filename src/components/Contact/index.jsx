@@ -8,7 +8,8 @@ function Contact() {
       <p className="section-eyebrow">Contact</p>
       <h2 className="panel-title">Contact</h2>
       <p className="contact-intro">
-        For engineering opportunities, reach me directly by email, LinkedIn, or GitHub.
+        For full-time, contract, or advisory opportunities — reach me directly by email, LinkedIn,
+        or GitHub.
       </p>
 
       <section className="social-grid" aria-label="Social Profiles">
@@ -33,6 +34,8 @@ function Contact() {
           );
         })}
       </section>
+
+      <p className="contact-availability">Based in Central Texas · open to remote</p>
     </article>
   );
 }
