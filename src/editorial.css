@@ -878,33 +878,6 @@ a {
   }
 }
 
-/* Editorial project numeral — sits in the content area's upper right and
-   acts as a faded ordinal marker matching the About highlight grid. */
-.project-num {
-  position: absolute;
-  z-index: 2;
-  bottom: 14px;
-  right: 18px;
-  color: var(--gold);
-  font-family: "Instrument Serif", Georgia, serif;
-  font-size: clamp(3.4rem, 6vw, 5.6rem);
-  font-weight: 400;
-  font-style: italic;
-  letter-spacing: -0.03em;
-  line-height: 1;
-  opacity: 0.12;
-  pointer-events: none;
-  user-select: none;
-}
-
-.project-card--featured .project-num,
-.project-card--lead .project-num {
-  font-size: clamp(4.6rem, 9vw, 8rem);
-  opacity: 0.16;
-  bottom: 18px;
-  right: 22px;
-}
-
 .project-image-link {
   position: relative;
   display: block;
@@ -1509,32 +1482,16 @@ a {
    Editorial polish layer (added in roadmap pass)
    ───────────────────────────────────────────────────────────────────── */
 
-/* Section eyebrows: small-caps numbered kicker that opens each section */
+/* Section eyebrows: small-caps kicker that opens each section */
 .section-eyebrow {
   margin: 0 0 12px;
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
   color: var(--muted);
   font-size: 0.72rem;
   font-weight: var(--weight-label);
   letter-spacing: 0.18em;
   text-transform: uppercase;
-}
-
-.section-eyebrow-num {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.2rem 0.62rem;
-  border: 1px solid var(--gold-border-strong);
-  border-radius: 999px;
-  background: var(--gold-soft);
-  color: var(--gold);
-  font-family: "Instrument Serif", Georgia, serif;
-  font-size: 0.84rem;
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: 0.04em;
 }
 
 /* Gold hairline above each section panel */
@@ -1587,31 +1544,6 @@ a {
 .tier-sep {
   margin: 0 0.15rem;
   color: var(--faint);
-}
-
-/* Numbered highlight cards (Core Stack / Focus / GitHub) — huge faded
-   editorial numeral sits behind the card content as a decorative anchor. */
-.highlight-num {
-  position: absolute;
-  top: -0.18em;
-  right: 0.12em;
-  z-index: 0;
-  color: var(--gold);
-  font-family: "Instrument Serif", Georgia, serif;
-  font-size: clamp(5rem, 11vw, 9rem);
-  font-weight: 400;
-  letter-spacing: -0.04em;
-  line-height: 1;
-  font-style: italic;
-  opacity: 0.1;
-  pointer-events: none;
-  user-select: none;
-}
-
-.highlight-item--feature .highlight-num {
-  font-size: clamp(7rem, 16vw, 13rem);
-  opacity: 0.14;
-  top: -0.22em;
 }
 
 .highlight-item > h3,
@@ -1684,10 +1616,6 @@ a {
   .section-eyebrow {
     font-size: 0.64rem;
     margin-bottom: 10px;
-  }
-  .section-eyebrow-num {
-    font-size: 0.56rem;
-    padding: 0.15rem 0.45rem;
   }
   .footer-copy {
     text-align: center;

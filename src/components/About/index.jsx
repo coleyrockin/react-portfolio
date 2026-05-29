@@ -25,9 +25,7 @@ function About() {
 
   return (
     <article className="about-panel">
-      <p className="section-eyebrow">
-        <span className="section-eyebrow-num">01</span> Introduction
-      </p>
+      <p className="section-eyebrow">Introduction</p>
       <div className="about-header-wrap">
         <p className="hero-kicker">Software Engineer</p>
         <div className="hero-grid">
@@ -89,27 +87,18 @@ function About() {
       <div className="about-highlight-grid">
         <RevealItem delay={0}>
           <div className="highlight-item highlight-item--feature">
-            <span className="highlight-num" aria-hidden="true">
-              01
-            </span>
             <h3>Core Stack</h3>
             <p>React, Next.js, Node.js, TypeScript, Java, Python</p>
           </div>
         </RevealItem>
         <RevealItem delay={1}>
           <div className="highlight-item">
-            <span className="highlight-num" aria-hidden="true">
-              02
-            </span>
             <h3>Focus</h3>
             <p>Production-ready systems, practical UX, and maintainable implementation</p>
           </div>
         </RevealItem>
         <RevealItem delay={2}>
           <div className="highlight-item">
-            <span className="highlight-num" aria-hidden="true">
-              03
-            </span>
             <h3>GitHub</h3>
             <p>Public build history and real project code at github.com/coleyrockin</p>
           </div>

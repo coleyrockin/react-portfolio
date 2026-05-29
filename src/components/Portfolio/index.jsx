@@ -10,7 +10,7 @@ const projectsByPriority = [
   ...projects.filter((project) => !project.featured),
 ];
 
-const ProjectCard = memo(function ProjectCard({ project, isLead = false, index = 0 }) {
+const ProjectCard = memo(function ProjectCard({ project, isLead = false }) {
   const [imageFailed, setImageFailed] = useState(!project.image);
   // Cheap slice + join — useMemo's bookkeeping costs more than the work and
   // the parent <ProjectCard /> is already memo'd, so reference stability of
@@ -26,13 +26,9 @@ const ProjectCard = memo(function ProjectCard({ project, isLead = false, index =
   ]
     .filter(Boolean)
     .join(" ");
-  const projectNum = String(index + 1).padStart(2, "0");
 
   return (
     <article className={cardClass}>
-      <span className="project-num" aria-hidden="true">
-        {projectNum}
-      </span>
       {project.featured && (
         <p className="project-featured-tag" aria-hidden="true">
           Featured Case Study
@@ -131,9 +127,7 @@ const ProjectCard = memo(function ProjectCard({ project, isLead = false, index =
 function Portfolio() {
   return (
     <section className="portfolio-panel portfolio-panel--minimal">
-      <p className="section-eyebrow">
-        <span className="section-eyebrow-num">02</span> Selected Work · {projects.length} Projects
-      </p>
+      <p className="section-eyebrow">Selected Work · {projects.length} Projects</p>
       <h2 className="panel-title">Selected Work</h2>
       <p className="project-note">
         Minimal case studies from real builds, focused on outcomes, architecture choices, and
@@ -142,7 +136,7 @@ function Portfolio() {
       <div className="project-grid project-grid--symmetrical">
         {projectsByPriority.map((project, i) => (
           <RevealItem delay={Math.min(i, 5)} key={project.name}>
-            <ProjectCard project={project} isLead={i === 0} index={i} />
+            <ProjectCard project={project} isLead={i === 0} />
           </RevealItem>
         ))}
       </div>

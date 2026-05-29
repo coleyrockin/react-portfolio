@@ -10,9 +10,7 @@ import {
 function Knowledge() {
   return (
     <article className="knowledge-panel">
-      <p className="section-eyebrow">
-        <span className="section-eyebrow-num">03</span> Engineering Depth
-      </p>
+      <p className="section-eyebrow">Engineering Depth</p>
       <h2 className="panel-title">Engineering Knowledge</h2>
       <p className="knowledge-intro">
         Technologies and capabilities reflected in shipped work, with public references on GitHub.
