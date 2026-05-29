@@ -9,10 +9,8 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- LCP image (headshot). srcset/sizes must match the <img> in About exactly. -->
-  <link rel="preload" as="image" fetchpriority="high"
-    imagesrcset="%BASE_URL%images/headshot-360.webp 360w, %BASE_URL%images/headshot-540.webp 540w, %BASE_URL%images/headshot.webp 720w"
-    imagesizes="(min-width: 900px) 320px, (max-width: 720px) 220px, 280px" />
+  <!-- LCP image (headshot). href must match the <img> src in About exactly. -->
+  <link rel="preload" as="image" fetchpriority="high" href="%BASE_URL%images/headshot.webp" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/manrope-variable.woff2" />
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="/fonts/instrument-serif-regular.woff2" />

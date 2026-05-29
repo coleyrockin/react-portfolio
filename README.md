@@ -67,7 +67,7 @@ Measured with Lighthouse 12 against the production build (`npm run preview`):
 | Best Practices | **100** |
 | SEO | **100** |
 
-Key Web Vitals: **LCP 2.3 s · CLS 0 · TBT 0 ms**. Hero photo ships as responsive WebP variants (`360w`, `540w`, `720w`); project cards each ship 720w + 1280w WebP variants via `srcSet` + `sizes`. Non-hero images carry `loading="lazy"`; the hero photo is the LCP element — `<link rel="preload" as="image">`-ed with a matching responsive `imagesrcset`, served with `fetchPriority="high"` and explicit dimensions so it starts downloading before the bundle parses. Fonts are self-hosted (Manrope variable + Instrument Serif), served from `public/fonts` and `<link rel="preload">`-ed so branded type fetches in parallel with the stylesheet — the critical path has no third-party origins.
+Key Web Vitals: **LCP 2.3 s · CLS 0 · TBT 0 ms**. The hero photo ships at full resolution (720×1046 WebP) for maximum crispness on every display; project cards each ship 720w + 1280w WebP variants via `srcSet` + `sizes`. Non-hero images carry `loading="lazy"`; the hero photo is the LCP element — `<link rel="preload" as="image">`-ed and served with `fetchPriority="high"` and explicit dimensions so it starts downloading before the bundle parses. Fonts are self-hosted (Manrope variable + Instrument Serif), served from `public/fonts` and `<link rel="preload">`-ed so branded type fetches in parallel with the stylesheet — the critical path has no third-party origins.
 
 Deliberate accessibility choices, verified in `App.test.jsx`:
 
