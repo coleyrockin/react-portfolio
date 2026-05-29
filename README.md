@@ -67,7 +67,7 @@ Measured with Lighthouse 12 against the production build (`npm run preview`):
 | Best Practices | **100** |
 | SEO | **100** |
 
-Key Web Vitals: **LCP 2.4 s · CLS 0.001 · TBT 0 ms**. Hero photo ships as responsive WebP variants (`360w`, `540w`, `720w`). Non-hero images carry `loading="lazy"`; the hero photo uses `fetchPriority="high"` and explicit dimensions to front-load the LCP element. Fonts are self-hosted (Manrope variable + Instrument Serif) so the critical path has no third-party origins.
+Key Web Vitals: **LCP 2.3 s · CLS 0 · TBT 0 ms**. Hero photo ships as responsive WebP variants (`360w`, `540w`, `720w`); project cards each ship 720w + 1280w WebP variants via `srcSet` + `sizes`. Non-hero images carry `loading="lazy"`; the hero photo uses `fetchPriority="high"` and explicit dimensions to front-load the LCP element. Fonts are self-hosted (Manrope variable + Instrument Serif) so the critical path has no third-party origins.
 
 Deliberate accessibility choices, verified in `App.test.jsx`:
 

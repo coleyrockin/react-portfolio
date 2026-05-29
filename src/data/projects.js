@@ -1,8 +1,13 @@
-import WorldAssetPricesImage from "../assets/images/portfolio/world-asset-prices-dark.jpg";
-import CherryTreeImage from "../assets/images/portfolio/cherrytree.jpg";
-import WestWardRPGImage from "../assets/images/portfolio/westwardrpg.jpg";
-import POWOImage from "../assets/images/portfolio/powo.jpg";
-import CJIIIPickleballImage from "../assets/images/portfolio/cjiiipickleball.jpg";
+import WorldAssetPricesImage from "../assets/images/portfolio/world-asset-prices-dark-1280.webp";
+import WorldAssetPricesImage720 from "../assets/images/portfolio/world-asset-prices-dark-720.webp";
+import CherryTreeImage from "../assets/images/portfolio/cherrytree-1280.webp";
+import CherryTreeImage720 from "../assets/images/portfolio/cherrytree-720.webp";
+import WestWardRPGImage from "../assets/images/portfolio/westwardrpg-1280.webp";
+import WestWardRPGImage720 from "../assets/images/portfolio/westwardrpg-720.webp";
+import POWOImage from "../assets/images/portfolio/powo-1280.webp";
+import POWOImage720 from "../assets/images/portfolio/powo-720.webp";
+import CJIIIPickleballImage from "../assets/images/portfolio/cjiiipickleball-1280.webp";
+import CJIIIPickleballImage720 from "../assets/images/portfolio/cjiiipickleball-720.webp";
 
 export const projects = [
   {
@@ -22,6 +27,7 @@ export const projects = [
     demo: "https://world-asset-prices.vercel.app",
     tags: ["TypeScript", "React 19", "Vercel", "Node.js"],
     image: WorldAssetPricesImage,
+    imageSrcSet: `${WorldAssetPricesImage720} 720w, ${WorldAssetPricesImage} 1280w`,
     imageAlt: "World Asset Prices — live global assets dashboard",
   },
   {
@@ -41,6 +47,7 @@ export const projects = [
     demo: "https://proof-of-workout-next.vercel.app",
     tags: ["Next.js 15", "TypeScript", "React", "Apple Health"],
     image: POWOImage,
+    imageSrcSet: `${POWOImage720} 720w, ${POWOImage} 1280w`,
     imageAlt: "POWO fitness dashboard preview",
   },
   {
@@ -59,6 +66,7 @@ export const projects = [
     demo: "https://cherry-tree-psi.vercel.app",
     tags: ["JavaScript", "Three.js", "GSAP", "Vite"],
     image: CherryTreeImage,
+    imageSrcSet: `${CherryTreeImage720} 720w, ${CherryTreeImage} 1280w`,
     imageAlt: "CherryTree cinematic gallery preview",
   },
   {
@@ -80,6 +88,7 @@ export const projects = [
     repo: "https://github.com/coleyrockin/WestWardRPG",
     tags: ["JavaScript", "TypeScript", "Python", "Go"],
     image: WestWardRPGImage,
+    imageSrcSet: `${WestWardRPGImage720} 720w, ${WestWardRPGImage} 1280w`,
     imageAlt: "WestWardRPG browser game preview",
   },
   {
@@ -102,6 +111,7 @@ export const projects = [
     demo: "https://cjspickleball.netlify.app",
     tags: ["HTML", "CSS", "JavaScript", "Web Security"],
     image: CJIIIPickleballImage,
+    imageSrcSet: `${CJIIIPickleballImage720} 720w, ${CJIIIPickleballImage} 1280w`,
     imageAlt: "CJIIIPICKLEBALL community site preview",
   },
 ];
