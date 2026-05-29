@@ -1,6 +1,3 @@
-import ImgMe from "../../assets/images/headshot.webp";
-import ImgMe360 from "../../assets/images/headshot-360.webp";
-import ImgMe540 from "../../assets/images/headshot-540.webp";
 import Fullstack from "../../assets/images/fullstack.webp";
 import BaylorBadge from "../../assets/images/baylor-badge.svg";
 import { projects } from "../../data/projects";
@@ -19,6 +16,13 @@ const heroStack = [
 function About() {
   const baseUrl = (import.meta.env.BASE_URL || "/").replace(/\/$/, "");
   const baylorCertificate = `${baseUrl}/certificates/baylor-java-python-certificate.pdf`;
+  // Headshot is the LCP element. Served from public/images with a stable URL so
+  // index.html can preload it (`<link rel="preload" as="image">`). The srcSet and
+  // sizes below MUST stay byte-identical to that preload tag or the browser will
+  // fetch the image twice.
+  const headshot = `${baseUrl}/images/headshot.webp`;
+  const headshot360 = `${baseUrl}/images/headshot-360.webp`;
+  const headshot540 = `${baseUrl}/images/headshot-540.webp`;
   const proofItems = [`${projects.length} public builds`, "CI + CodeQL", "Live demos"];
 
   return (
@@ -32,8 +36,8 @@ function About() {
           <div className="profile-photo-wrap">
             <img
               className="profile-photo"
-              src={ImgMe}
-              srcSet={`${ImgMe360} 360w, ${ImgMe540} 540w, ${ImgMe} 720w`}
+              src={headshot}
+              srcSet={`${headshot360} 360w, ${headshot540} 540w, ${headshot} 720w`}
               sizes="(min-width: 900px) 320px, (max-width: 720px) 220px, 280px"
               alt="Boyd Roberts"
               fetchPriority="high"
@@ -128,6 +132,8 @@ function About() {
               alt="Southern Methodist University Full Stack Web Development credential badge"
               loading="lazy"
               decoding="async"
+              width={192}
+              height={192}
             />
           </a>
           <a href={baylorCertificate} target="_blank" rel="noopener noreferrer">
