@@ -466,17 +466,6 @@ a {
   text-wrap: balance;
 }
 
-.hero-meta {
-  margin: 1rem auto 0;
-  max-width: 48ch;
-  color: var(--faint);
-  font-size: 0.78rem;
-  font-weight: var(--weight-label);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  text-wrap: balance;
-}
-
 /* Tech stack icon row — replaces the comma-separated meta text. Monochrome
    gold-tinted glyphs read instantly and give the hero visual rhythm. */
 .hero-stack-row {
@@ -938,9 +927,10 @@ a {
   display: block;
   object-fit: cover;
   filter: saturate(0.92) contrast(1.04) brightness(0.94);
-  transition:
-    transform 450ms var(--ease-editorial),
-    filter 250ms var(--ease-editorial);
+  /* Only transform animates — the hover filter delta (saturate .92->.98) is
+     imperceptible, and animating filter forces a per-frame repaint of a large
+     image. Letting it snap keeps the zoom on the compositor. */
+  transition: transform 450ms var(--ease-editorial);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -1346,10 +1336,6 @@ a {
     justify-content: flex-start;
   }
 
-  .hero-meta {
-    margin: 1rem 0 0;
-  }
-
   .hero-proof-list {
     justify-content: flex-start;
   }
@@ -1441,10 +1427,6 @@ a {
 
   .hero-name {
     font-size: clamp(3rem, 17vw, 5rem);
-  }
-
-  .hero-meta {
-    font-size: 0.68rem;
   }
 
   .hero-proof-list {
