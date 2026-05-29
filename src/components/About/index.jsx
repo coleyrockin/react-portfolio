@@ -1,7 +1,7 @@
 import ImgMe from "../../assets/images/headshot.webp";
 import ImgMe360 from "../../assets/images/headshot-360.webp";
 import ImgMe540 from "../../assets/images/headshot-540.webp";
-import Fullstack from "../../assets/images/fullstack.png";
+import Fullstack from "../../assets/images/fullstack.webp";
 import BaylorBadge from "../../assets/images/baylor-badge.svg";
 import { projects } from "../../data/projects";
 import RevealItem from "../RevealItem";

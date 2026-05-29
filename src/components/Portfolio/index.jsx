@@ -60,6 +60,8 @@ const ProjectCard = memo(function ProjectCard({ project, isLead = false, index =
         ) : (
           <img
             src={project.image}
+            srcSet={project.imageSrcSet}
+            sizes="(min-width: 900px) 700px, 100vw"
             alt={project.imageAlt || `${project.name} project preview`}
             className="project-image"
             loading="lazy"
