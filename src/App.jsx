@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import Portfolio from "./components/Portfolio";
 import Knowledge from "./components/Knowledge";
 import Contact from "./components/Contact";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 const sections = [
   { name: "About", slug: "about", comp: About },
@@ -42,10 +43,13 @@ function App() {
         setCurrentSection((previousSection) => {
           if (previousSection.slug === matchedSection.slug) return previousSection;
           // Section changed via hash (e.g. in-page CTA, browser back/forward).
-          // Move focus to <main> so keyboard/AT users land in the new content.
+          // Move focus to <main> so keyboard/AT users land in the new content,
+          // and reset scroll so the new section opens at the top (not mid-scroll
+          // from the previous one). Instant — correct for reduced-motion users.
           if (mainRef.current) {
             mainRef.current.focus({ preventScroll: true });
           }
+          window.scrollTo(0, 0);
           return matchedSection;
         });
         return;
@@ -99,6 +103,8 @@ function App() {
       if (mainRef.current) {
         mainRef.current.focus({ preventScroll: true });
       }
+      // Open the new section at the top rather than the previous scroll offset.
+      window.scrollTo(0, 0);
 
       if (typeof window !== "undefined") {
         const nextHash = `#${section.slug}`;
@@ -124,7 +130,9 @@ function App() {
           className={`content-shell${isExiting ? " content-shell--exiting" : ""}`}
           key={currentSection.slug}
         >
-          <currentSection.comp />
+          <ErrorBoundary key={currentSection.slug}>
+            <currentSection.comp />
+          </ErrorBoundary>
         </section>
       </main>
       <Footer />

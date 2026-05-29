@@ -37,6 +37,9 @@ HTMLCanvasElement.prototype.getContext = function () {
   };
 };
 
+// jsdom does not implement scrollTo; App resets scroll on section change.
+window.scrollTo = () => {};
+
 window.matchMedia = (query) => ({
   matches: false,
   media: query,
