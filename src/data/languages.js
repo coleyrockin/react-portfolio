@@ -33,6 +33,18 @@ export const languageGroups = [
       { name: "GLSL", tier: "familiar" },
     ],
   },
+  {
+    title: "Frameworks & Tools",
+    languages: [
+      { name: "React", tier: "primary" },
+      { name: "Node.js", tier: "primary" },
+      { name: "REST APIs", tier: "primary" },
+      { name: "Express", tier: "proficient" },
+      { name: "MongoDB", tier: "proficient" },
+      { name: "SQL", tier: "proficient" },
+      { name: "Three.js", tier: "familiar" },
+    ],
+  },
 ];
 
 export const capabilityPillars = [

@@ -30,10 +30,13 @@
   --panel: #090909;
   --panel-soft: #101010;
   --surface-glass: rgba(5, 5, 5, 0.78);
+  --surface-badge: rgba(8, 11, 19, 0.78);
+  --gradient-fallback: linear-gradient(140deg, #0a0a0a, #17130d);
   --ink: #f7f4ee;
   --ink-secondary: #d6d0c8;
   --muted: #a7a29b;
-  --faint: #6f6a64;
+  /* Lightened from #6f6a64 (3.87:1) to clear WCAG AA 4.5:1 on dark surfaces. */
+  --faint: #8a8580;
   --line: rgba(247, 244, 238, 0.12);
   --line-strong: rgba(247, 244, 238, 0.24);
   --gold: #c9a36a;
@@ -199,6 +202,9 @@ a {
 
 .section-link {
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid transparent;
   border-radius: var(--radius-control);
   background: transparent;
@@ -802,7 +808,7 @@ a {
   display: inline-flex;
   border: 1px solid var(--line-strong);
   border-radius: var(--radius-chip);
-  background: rgba(8, 11, 19, 0.78);
+  background: var(--surface-badge);
   padding: 0.45rem;
   transition:
     border-color var(--motion-hover) var(--ease-soft),
@@ -947,7 +953,7 @@ a {
   flex-direction: column;
   justify-content: space-between;
   padding: 18px;
-  background: linear-gradient(140deg, #0a0a0a, #17130d);
+  background: var(--gradient-fallback);
 }
 
 .project-image-kicker,
@@ -1081,7 +1087,7 @@ a {
 
 .project-metric dt {
   color: var(--faint);
-  font-size: 0.58rem;
+  font-size: 0.66rem;
   font-weight: var(--weight-label);
   letter-spacing: 0.11em;
   text-transform: uppercase;
@@ -1497,6 +1503,26 @@ a {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  /* animation-duration suppression alone is unreliable (the Chrome UA
+     stylesheet can override it), so neutralise the section transitions
+     by their property directly. */
+  .content-shell,
+  .content-shell--exiting {
+    animation: none;
+  }
+}
+
+/* Touch devices: meet the 44px minimum tap target regardless of viewport. */
+@media (pointer: coarse) {
+  .section-link {
+    min-height: 44px;
+  }
+
+  .footer-icon {
+    min-width: 44px;
+    min-height: 44px;
   }
 }
 

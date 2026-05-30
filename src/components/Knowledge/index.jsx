@@ -17,7 +17,7 @@ function Knowledge() {
       </p>
 
       <section className="language-map-panel">
-        <h3>Language Map</h3>
+        <h3>Language &amp; Stack Map</h3>
         <p className="language-source-note">{languageSourceNote}</p>
         <p className="language-tier-key" aria-label="Tier legend">
           <span className="tier-mark tier-mark--primary" aria-hidden="true">
