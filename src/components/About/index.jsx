@@ -128,6 +128,8 @@ function About() {
               className="baylor-badge"
               loading="lazy"
               decoding="async"
+              width={200}
+              height={200}
             />
           </a>
         </div>

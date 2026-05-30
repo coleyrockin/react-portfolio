@@ -19,6 +19,9 @@ function getSectionFromHash(hash) {
   return sections.find((section) => section.slug === slug) || null;
 }
 
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 function App() {
   const mainRef = useRef(null);
   const exitTimeoutRef = useRef(null);
@@ -94,9 +97,7 @@ function App() {
 
     if (exitTimeoutRef.current) clearTimeout(exitTimeoutRef.current);
 
-    setIsExiting(true);
-
-    exitTimeoutRef.current = setTimeout(() => {
+    const commit = () => {
       setCurrentSection(section);
       setIsExiting(false);
 
@@ -106,13 +107,21 @@ function App() {
       // Open the new section at the top rather than the previous scroll offset.
       window.scrollTo(0, 0);
 
-      if (typeof window !== "undefined") {
-        const nextHash = `#${section.slug}`;
-        if (window.location.hash !== nextHash) {
-          window.history.pushState(null, "", nextHash);
-        }
+      const nextHash = `#${section.slug}`;
+      if (window.location.hash !== nextHash) {
+        window.history.pushState(null, "", nextHash);
       }
-    }, 180);
+    };
+
+    // Reduced-motion users get no exit animation, so don't make them sit
+    // through the 180ms exit window — switch immediately.
+    if (prefersReducedMotion()) {
+      commit();
+      return;
+    }
+
+    setIsExiting(true);
+    exitTimeoutRef.current = setTimeout(commit, 180);
   };
 
   return (

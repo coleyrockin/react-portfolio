@@ -41,8 +41,8 @@ Highlights selected engineering work, language breadth, certifications, and AI w
 | World Asset Prices | [world-asset-prices.vercel.app](https://world-asset-prices.vercel.app) | [GitHub](https://github.com/coleyrockin/world-asset-prices) |
 | POWO | [proof-of-workout-next.vercel.app](https://proof-of-workout-next.vercel.app) | [GitHub](https://github.com/coleyrockin/POWO) |
 | CherryTree | [cherry-tree-psi.vercel.app](https://cherry-tree-psi.vercel.app) | [GitHub](https://github.com/coleyrockin/CherryTree) |
-| WestWardRPG | Repository-first playable engine | [GitHub](https://github.com/coleyrockin/WestWardRPG) |
-| CJIIIPICKLEBALL | [cjspickleball.netlify.app](https://cjspickleball.netlify.app) | [GitHub](https://github.com/coleyrockin/CJIIIPICKLEBALL) |
+| WestWardRPG | [westward-rpg.vercel.app](https://westward-rpg.vercel.app) | [GitHub](https://github.com/coleyrockin/WestWardRPG) |
+| CJIII Pickleball | [cjspickleball.netlify.app](https://cjspickleball.netlify.app) | [GitHub](https://github.com/coleyrockin/CJIIIPICKLEBALL) |
 
 ## Features
 
@@ -58,7 +58,7 @@ Highlights selected engineering work, language breadth, certifications, and AI w
 
 ## Performance & Accessibility
 
-Measured with Lighthouse 12 against the production build (`npm run preview`):
+Measured locally with Lighthouse 12 against the production build (`npm run preview`). Production GitHub Pages scores will vary with CDN latency — treat these as a local baseline, not a guarantee:
 
 | Category | Score |
 |---|---|

@@ -20,7 +20,7 @@ export const projects = [
       "Built with React 19 + Vercel serverless using resilient cache fallbacks (live -> fresh -> stale-if-error) and a secured logo proxy.",
     highlights: ["Single endpoint architecture", "CI quality gates", "Production caching strategy"],
     metrics: [
-      { label: "Tracked Assets", value: "Top 10+" },
+      { label: "Tracked Assets", value: "Top 10 by cap" },
       { label: "API Surface", value: "1 endpoint" },
     ],
     repo: "https://github.com/coleyrockin/world-asset-prices",
@@ -31,21 +31,21 @@ export const projects = [
     imageAlt: "World Asset Prices — live global assets dashboard",
   },
   {
-    name: "POWO",
+    name: "POWO — Proof of Workout",
     featured: true,
     category: "Health Analytics Dashboard",
     description:
       "Transforms Apple Health exports into a mobile-first analytics experience with workout, sleep, cardio, and VO2 Max trend tracking.",
     scope:
-      "Built in Next.js 15 with data parsing pipelines, period-over-period comparison views, and animated metric reveals.",
+      "Built in Next.js 16 with data parsing pipelines, period-over-period comparison views, and animated metric reveals.",
     highlights: ["91-day health timeline", "HealthKit XML parser", "Performance-focused mobile UX"],
     metrics: [
       { label: "Data Window", value: "91 days" },
-      { label: "Framework", value: "Next.js 15" },
+      { label: "Framework", value: "Next.js 16" },
     ],
     repo: "https://github.com/coleyrockin/POWO",
     demo: "https://proof-of-workout-next.vercel.app",
-    tags: ["Next.js 15", "TypeScript", "React", "Apple Health"],
+    tags: ["Next.js 16", "TypeScript", "React", "Apple Health"],
     image: POWOImage,
     imageSrcSet: `${POWOImage720} 720w, ${POWOImage} 1280w`,
     imageAlt: "POWO fitness dashboard preview",
@@ -86,13 +86,14 @@ export const projects = [
       { label: "Localization", value: "8 locales" },
     ],
     repo: "https://github.com/coleyrockin/WestWardRPG",
+    demo: "https://westward-rpg.vercel.app",
     tags: ["JavaScript", "TypeScript", "Python", "Go"],
     image: WestWardRPGImage,
     imageSrcSet: `${WestWardRPGImage720} 720w, ${WestWardRPGImage} 1280w`,
     imageAlt: "WestWardRPG browser game preview",
   },
   {
-    name: "CJIIIPICKLEBALL",
+    name: "CJIII Pickleball",
     category: "Client Marketing Site",
     description:
       "Production community site for a real sports brand focused on conversion, affiliate performance, and polished content presentation.",
