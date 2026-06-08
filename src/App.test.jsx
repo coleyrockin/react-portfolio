@@ -49,7 +49,7 @@ describe("Portfolio site", () => {
     expect(window.location.hash).toBe("#knowledge");
   });
 
-  test("renders five portfolio projects with source/demo actions and metrics", async () => {
+  test("renders all curated portfolio projects with source/demo actions and metrics", async () => {
     const user = userEvent.setup();
     render(<App />);
     await user.click(screen.getByRole("button", { name: "Portfolio" }));
@@ -60,8 +60,8 @@ describe("Portfolio site", () => {
       screen.getByRole("link", { name: `View ${project.name} source code` })
     );
 
-    expect(projectRepoLinks).toHaveLength(5);
-    expect(projectCards.length).toBeGreaterThanOrEqual(5);
+    expect(projectRepoLinks).toHaveLength(projects.length);
+    expect(projectCards.length).toBeGreaterThanOrEqual(projects.length);
 
     projects.forEach((project) => {
       const previewLabel = project.demo
@@ -78,6 +78,21 @@ describe("Portfolio site", () => {
         expect(screen.getByText(metric.value)).toBeInTheDocument();
       });
     });
+  });
+
+  test("hero exposes GitHub + résumé (LinkedIn) profile links and exactly one h1", () => {
+    render(<App />);
+
+    const heroLinks = within(screen.getByRole("list", { name: "Profile links" })).getAllByRole(
+      "link"
+    );
+    const hrefs = heroLinks.map((link) => link.getAttribute("href"));
+    expect(hrefs).toContain("https://github.com/coleyrockin");
+    expect(hrefs).toContain("https://www.linkedin.com/in/boydcroberts");
+
+    const h1s = document.querySelectorAll("h1");
+    expect(h1s).toHaveLength(1);
+    expect(h1s[0]).toHaveTextContent(/boyd\s*roberts/i);
   });
 
   test("renders social-first contact links", async () => {
