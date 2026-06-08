@@ -39,10 +39,9 @@ Highlights selected engineering work, language breadth, certifications, and AI w
 | Project | Live | Source |
 |---|---|---|
 | World Asset Prices | [world-asset-prices.vercel.app](https://world-asset-prices.vercel.app) | [GitHub](https://github.com/coleyrockin/world-asset-prices) |
+| Neon City Chess | [neon-city-chess.vercel.app](https://neon-city-chess.vercel.app) | [GitHub](https://github.com/coleyrockin/Chess-Game) |
 | POWO | [proof-of-workout-next.vercel.app](https://proof-of-workout-next.vercel.app) | [GitHub](https://github.com/coleyrockin/POWO) |
 | CherryTree | [cherry-tree-psi.vercel.app](https://cherry-tree-psi.vercel.app) | [GitHub](https://github.com/coleyrockin/CherryTree) |
-| WestWardRPG | [westward-rpg.vercel.app](https://westward-rpg.vercel.app) | [GitHub](https://github.com/coleyrockin/WestWardRPG) |
-| CJIII Pickleball | [cjspickleball.netlify.app](https://cjspickleball.netlify.app) | [GitHub](https://github.com/coleyrockin/CJIIIPICKLEBALL) |
 
 ## Features
 
@@ -67,7 +66,7 @@ Measured locally with Lighthouse 12 against the production build (`npm run previ
 | Best Practices | **100** |
 | SEO | **100** |
 
-Key Web Vitals: **LCP 2.3 s · CLS 0 · TBT 0 ms**. The hero photo ships at full resolution (720×1046 WebP) for maximum crispness on every display; project cards each ship 720w + 1280w WebP variants via `srcSet` + `sizes`. Non-hero images carry `loading="lazy"`; the hero photo is the LCP element — `<link rel="preload" as="image">`-ed and served with `fetchPriority="high"` and explicit dimensions so it starts downloading before the bundle parses. Fonts are self-hosted (Manrope variable + Instrument Serif), served from `public/fonts` and `<link rel="preload">`-ed so branded type fetches in parallel with the stylesheet — the critical path has no third-party origins.
+Key Web Vitals: **FCP 1.2 s · LCP 2.3 s · CLS 0 · TBT 0 ms**. The hero photo ships at full resolution (720×1046 WebP) for maximum crispness on every display; project cards each ship 720w + 1280w WebP variants via `srcSet` + `sizes`. Non-hero images carry `loading="lazy"`; the hero photo is the LCP element — `<link rel="preload" as="image">`-ed and served with `fetchPriority="high"` and explicit dimensions so it starts downloading before the bundle parses. Fonts are self-hosted (Manrope variable + Instrument Serif), served from `public/fonts` and `<link rel="preload">`-ed so branded type fetches in parallel with the stylesheet — the critical path has no third-party origins.
 
 Deliberate accessibility choices, verified in `App.test.jsx`:
 
