@@ -1,13 +1,11 @@
 import WorldAssetPricesImage from "../assets/images/portfolio/world-asset-prices-dark-1280.webp";
 import WorldAssetPricesImage720 from "../assets/images/portfolio/world-asset-prices-dark-720.webp";
-import CherryTreeImage from "../assets/images/portfolio/cherrytree-1280.webp";
-import CherryTreeImage720 from "../assets/images/portfolio/cherrytree-720.webp";
-import WestWardRPGImage from "../assets/images/portfolio/westwardrpg-1280.webp";
-import WestWardRPGImage720 from "../assets/images/portfolio/westwardrpg-720.webp";
+import NeonCityChessImage from "../assets/images/portfolio/neon-city-chess-1280.webp";
+import NeonCityChessImage720 from "../assets/images/portfolio/neon-city-chess-720.webp";
 import POWOImage from "../assets/images/portfolio/powo-1280.webp";
 import POWOImage720 from "../assets/images/portfolio/powo-720.webp";
-import CJIIIPickleballImage from "../assets/images/portfolio/cjiiipickleball-1280.webp";
-import CJIIIPickleballImage720 from "../assets/images/portfolio/cjiiipickleball-720.webp";
+import CherryTreeImage from "../assets/images/portfolio/cherrytree-1280.webp";
+import CherryTreeImage720 from "../assets/images/portfolio/cherrytree-720.webp";
 
 export const projects = [
   {
@@ -29,6 +27,30 @@ export const projects = [
     image: WorldAssetPricesImage,
     imageSrcSet: `${WorldAssetPricesImage720} 720w, ${WorldAssetPricesImage} 1280w`,
     imageAlt: "World Asset Prices — live global assets dashboard",
+  },
+  {
+    name: "Neon City Chess",
+    featured: true,
+    category: "Real-Time 3D Chess Engine",
+    description:
+      "A browser-first 3D chess game with a premium Three.js Staunton board, full chess.js rule enforcement, and an AI opponent across three difficulty tiers.",
+    scope:
+      "Built in React + Three.js with the engine running in a Web Worker — iterative-deepening alpha-beta, transposition table, quiescence search, and a tapered evaluation — plus FEN share, PGN import/export, and screen-reader board navigation.",
+    highlights: [
+      "Alpha-beta engine in a Web Worker",
+      "Full chess.js rule set",
+      "Screen-reader board navigation",
+    ],
+    metrics: [
+      { label: "AI Engine", value: "Web Worker" },
+      { label: "Difficulty", value: "3 tiers" },
+    ],
+    repo: "https://github.com/coleyrockin/Chess-Game",
+    demo: "https://neon-city-chess.vercel.app",
+    tags: ["React", "Three.js", "chess.js", "Web Workers"],
+    image: NeonCityChessImage,
+    imageSrcSet: `${NeonCityChessImage720} 720w, ${NeonCityChessImage} 1280w`,
+    imageAlt: "Neon City Chess — 3D Staunton board with live game HUD",
   },
   {
     name: "POWO — Proof of Workout",
@@ -68,51 +90,5 @@ export const projects = [
     image: CherryTreeImage,
     imageSrcSet: `${CherryTreeImage720} 720w, ${CherryTreeImage} 1280w`,
     imageAlt: "CherryTree cinematic gallery preview",
-  },
-  {
-    name: "WestWardRPG",
-    category: "Polyglot Browser Game Engine",
-    description:
-      "Framework-free RPG featuring raycasting combat, quest systems, weather simulation, localization, and an NPC-driven in-game economy.",
-    scope:
-      "Built across 9 languages with custom rendering, AI pathfinding, economic simulation logic, and Playwright-driven quality checks.",
-    highlights: [
-      "9-language architecture",
-      "Canvas engine + AI systems",
-      "Playwright QA automation",
-    ],
-    metrics: [
-      { label: "Languages", value: "9" },
-      { label: "Localization", value: "8 locales" },
-    ],
-    repo: "https://github.com/coleyrockin/WestWardRPG",
-    demo: "https://westward-rpg.vercel.app",
-    tags: ["JavaScript", "TypeScript", "Python", "Go"],
-    image: WestWardRPGImage,
-    imageSrcSet: `${WestWardRPGImage720} 720w, ${WestWardRPGImage} 1280w`,
-    imageAlt: "WestWardRPG browser game preview",
-  },
-  {
-    name: "CJIII Pickleball",
-    category: "Client Marketing Site",
-    description:
-      "Production community site for a real sports brand focused on conversion, affiliate performance, and polished content presentation.",
-    scope:
-      "Implemented with custom coupon tooling, 10+ affiliate integrations, Open Graph setup, and strict CSP script-src 'self' hardening.",
-    highlights: [
-      "Real client delivery",
-      "Affiliate conversion features",
-      "Security-first deployment",
-    ],
-    metrics: [
-      { label: "Affiliate Partners", value: "10+" },
-      { label: "Delivery Type", value: "Production" },
-    ],
-    repo: "https://github.com/coleyrockin/CJIIIPICKLEBALL",
-    demo: "https://cjspickleball.netlify.app",
-    tags: ["HTML", "CSS", "JavaScript", "Web Security"],
-    image: CJIIIPickleballImage,
-    imageSrcSet: `${CJIIIPickleballImage720} 720w, ${CJIIIPickleballImage} 1280w`,
-    imageAlt: "CJIIIPICKLEBALL community site preview",
   },
 ];

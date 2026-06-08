@@ -157,6 +157,16 @@ function Portfolio() {
           </RevealItem>
         ))}
       </div>
+      <p className="project-archive">
+        <a
+          className="project-archive-link"
+          href="https://github.com/coleyrockin"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Full project archive on GitHub
+        </a>
+      </p>
     </section>
   );
 }
