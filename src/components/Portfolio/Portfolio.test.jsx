@@ -31,16 +31,28 @@ describe("Portfolio", () => {
     });
   });
 
-  test("each project exposes a 'Source' link pointing at the repo URL", () => {
+  test("each project exposes a project-scoped Source link pointing at the repo URL", () => {
     render(<Portfolio />);
 
-    const sourceLinks = screen.getAllByRole("link", { name: "Source" });
+    const sourceLinks = projects.map((project) =>
+      screen.getByRole("link", { name: `View ${project.name} source code` })
+    );
     expect(sourceLinks).toHaveLength(projects.length);
 
-    const sourceHrefs = sourceLinks.map((link) => link.getAttribute("href"));
-    projects.forEach((project) => {
-      expect(sourceHrefs).toContain(project.repo);
+    projects.forEach((project, i) => {
+      expect(sourceLinks[i]).toHaveAttribute("href", project.repo);
     });
+  });
+
+  test("projects with a demo expose a project-scoped Live link pointing at the demo URL", () => {
+    render(<Portfolio />);
+
+    projects
+      .filter((project) => project.demo)
+      .forEach((project) => {
+        const live = screen.getByRole("link", { name: `Open ${project.name} live demo` });
+        expect(live).toHaveAttribute("href", project.demo);
+      });
   });
 
   test("each project image link has an accessible name tied to the project", () => {

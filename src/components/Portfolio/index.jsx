@@ -19,6 +19,11 @@ const ProjectCard = memo(function ProjectCard({ project, isLead = false }) {
   const stack = project.tags.slice(0, 4).join(" • ");
   const previewHref = project.demo || project.repo;
   const previewLabel = project.demo ? `${project.name} live demo` : `${project.name} repository`;
+  // Action links read only "Live"/"Source" visually; give assistive tech the
+  // project context so they're distinguishable in a screen-reader links list.
+  // Verb-prefixed to stay distinct from the image link's `previewLabel`.
+  const liveLabel = `Open ${project.name} live demo`;
+  const sourceLabel = `View ${project.name} source code`;
   const cardClass = [
     "project-card",
     project.featured ? "project-card--featured" : "",
@@ -94,16 +99,27 @@ const ProjectCard = memo(function ProjectCard({ project, isLead = false }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="demo-link"
+                aria-label={liveLabel}
               >
                 Live
               </a>
-              <a href={project.repo} target="_blank" rel="noopener noreferrer">
+              <a
+                href={project.repo}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={sourceLabel}
+              >
                 Source
               </a>
             </>
           ) : (
             <>
-              <a href={project.repo} target="_blank" rel="noopener noreferrer">
+              <a
+                href={project.repo}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={sourceLabel}
+              >
                 Source
               </a>
               {project.demo && (
@@ -112,6 +128,7 @@ const ProjectCard = memo(function ProjectCard({ project, isLead = false }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="demo-link"
+                  aria-label={liveLabel}
                 >
                   Live
                 </a>

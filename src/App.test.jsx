@@ -56,7 +56,9 @@ describe("Portfolio site", () => {
     await screen.findByRole("heading", { name: "Selected Work" });
 
     const projectCards = screen.getAllByRole("article");
-    const projectRepoLinks = screen.getAllByRole("link", { name: "Source" });
+    const projectRepoLinks = projects.map((project) =>
+      screen.getByRole("link", { name: `View ${project.name} source code` })
+    );
 
     expect(projectRepoLinks).toHaveLength(5);
     expect(projectCards.length).toBeGreaterThanOrEqual(5);
