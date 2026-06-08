@@ -4,7 +4,7 @@
 
 This repository is a static React 19 + Vite portfolio deployed to GitHub Pages. The current application has a strong security baseline for its risk profile: no backend, no authentication/session state, no forms, no runtime API calls, no service worker, no browser storage, no raw HTML rendering, no `eval`, and outbound links consistently use `rel="noopener noreferrer"`.
 
-No critical, high, or medium findings were found in the current codebase. Dependency audit is clean for runtime and development dependencies. The remaining items are low-severity hardening recommendations around static-hosting header limits, third-party font loading, and immutable GitHub Actions pinning.
+No critical, high, or medium findings were found in the current codebase. Dependency audit is clean for runtime and development dependencies. Fonts are self-hosted (`public/fonts/`), so there is no third-party font/CDN dependency. The remaining items are low-severity hardening recommendations around static-hosting header limits and immutable GitHub Actions pinning.
 
 ## Scope
 
@@ -18,10 +18,12 @@ No critical, high, or medium findings were found in the current codebase. Depend
 
 ## Verification Performed
 
+_Last re-verified: 2026-06-08 (dependency refresh — react-dom 19.2.7, vite 8.0.16, vitest 4.1.8, axe-core 4.12.0; lockfile migrated to v3 by npm 10)._
+
 - `npm audit --omit=dev`: 0 vulnerabilities.
 - `npm audit`: 0 vulnerabilities.
-- `npm run check`: format check, lint, 12 tests, and production build passed.
-- `npm run visual:smoke`: all route/viewport scenarios passed after using an alternate local port because `127.0.0.1:4173` was occupied by another local preview.
+- `npm run check`: format check, lint, 36 tests, and production build passed.
+- `npm run visual:smoke`: all 12 route/viewport scenarios passed (3 breakpoints x 4 routes) with no horizontal overflow, missing alt text, or console/page errors.
 - Static scan for DOM XSS sinks, string code execution, unsafe navigation, browser storage, `postMessage`, service workers, dynamic script injection, credentialed fetches, common secret patterns, and committed secret-like files.
 - Production header check against `https://coleyrockin.github.io/react-portfolio/`.
 - Production build check for CSP placeholder leakage, `unsafe-inline`, `unsafe-eval`, source maps, and social-preview metadata.
@@ -56,43 +58,40 @@ None for the current static-site threat model.
 [
   "default-src 'self'",
   "script-src 'self'",
-  `style-src 'self'${allowInlineStyles ? " 'unsafe-inline'" : ""} https://fonts.googleapis.com`,
-  "font-src 'self' https://fonts.gstatic.com",
-  "img-src 'self' data:",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob:",
+  "font-src 'self' data:",
   "connect-src 'self'",
   "base-uri 'self'",
-  "form-action 'none'",
   "object-src 'none'",
+  "form-action 'self'",
+  "upgrade-insecure-requests",
 ].join("; ");
 ```
 
-- Impact: The app has an early meta CSP and referrer policy, but meta-delivered CSP cannot provide every header-level control. Runtime headers from GitHub Pages include HTTPS/HSTS, but app-controlled `Content-Security-Policy`, `X-Content-Type-Options: nosniff`, and clickjacking controls such as `frame-ancestors` are not visible as HTTP headers.
+- Impact: The app has an early meta CSP and referrer policy, but a meta-delivered CSP cannot carry every header-level control. `X-Content-Type-Options: nosniff`, `X-Frame-Options`, `Permissions-Policy`, and the `frame-ancestors` CSP directive are HTTP-header-only — browsers ignore them in a `<meta>` element. GitHub Pages does not allow serving custom HTTP response headers, so on this host the meta CSP is the practical ceiling; adding those tags to `index.html` would be inert and is intentionally avoided.
 - Fix: If the site moves to a header-capable host/CDN, set security headers at the edge: `Content-Security-Policy`, `X-Content-Type-Options: nosniff`, `Referrer-Policy`, and `frame-ancestors 'none'` unless embedding is required.
 - Mitigation: Keep the current meta CSP early in `index.html`, keep `script-src 'self'`, and continue avoiding raw DOM/HTML sinks.
 - False positive notes: This is a GitHub Pages platform limitation rather than an application vulnerability.
 
-### BP-2: Google Fonts remains a third-party stylesheet/font dependency
+### BP-2 (Resolved): Fonts are self-hosted — no third-party font dependency
 
 - Rule ID: `REACT-SRI-001`, `JS-SUPPLY-001`
-- Severity: Low
-- Location: `index.html:12-14`, `vite.config.js:8-9`
-- Evidence:
+- Severity: Low — resolved
+- Location: `index.html:13-16`, `public/fonts/`, `vite.config.js:4-8`
+- Evidence: The fonts are now self-hosted and preloaded locally; there is no Google Fonts stylesheet or `preconnect`, and the CSP pins fonts to `'self'`.
 
 ```html
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/manrope-variable.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/instrument-serif-regular.woff2" />
 ```
 
 ```js
-`style-src 'self'${allowInlineStyles ? " 'unsafe-inline'" : ""} https://fonts.googleapis.com`,
-"font-src 'self' https://fonts.gstatic.com",
+"font-src 'self' data:",
 ```
 
-- Impact: Google Fonts is a small third-party dependency and privacy/supply-chain exposure. The CSP is narrowly scoped to Google Fonts, and no third-party script executes, so this is low risk.
-- Fix: For maximum static-site hardening, self-host the selected font files and remove `fonts.googleapis.com` / `fonts.gstatic.com` from CSP.
-- Mitigation: Keep the current CSP allowlist narrow and avoid adding third-party scripts or tag managers.
-- False positive notes: SRI is not practical for the Google Fonts CSS response because it can vary by user agent; self-hosting is the cleaner fix if this becomes important.
+- Outcome: The previous third-party font/CDN dependency (privacy + supply-chain exposure) is eliminated. No `fonts.googleapis.com` / `fonts.gstatic.com` origins remain in the CSP, and SRI is no longer a concern.
+- Mitigation: Keep the CSP allowlist narrow and avoid adding third-party scripts or tag managers.
 
 ### BP-3: GitHub Actions are pinned to version tags, not immutable SHAs
 
@@ -117,10 +116,10 @@ uses: github/codeql-action/analyze@v4
 
 ## Positive Controls
 
-### BP-4: Production CSP is currently strict for scripts and styles
+### BP-4: Production CSP is strict for scripts
 
-- Location: `vite.config.js:4-15`, `build/index.html:6`
-- Evidence: Production build output contains `script-src 'self'` and `style-src 'self' https://fonts.googleapis.com`, with no `unsafe-inline` or `unsafe-eval`. Development mode still permits inline styles because Vite/React development tooling may need it; production does not.
+- Location: `vite.config.js:9-21`, `build/index.html:6`
+- Evidence: Production build output contains `script-src 'self'` and `object-src 'none'` with no `unsafe-inline` or `unsafe-eval` for scripts — the highest-value CSP protection. `style-src` carries `'unsafe-inline'` to cover Vite-injected runtime CSS and the inline `style` attributes used by `RevealItem`; this is scoped to styles only (never scripts), which is a low-risk, documented relaxation for a static site with no user-controlled style input.
 
 ### BP-5: Public source maps are disabled
 
@@ -158,9 +157,10 @@ build: {
 
 ## Recommended Fix Order
 
-1. Optional: Self-host fonts if you want to remove the last third-party resource dependency.
-2. Optional: Pin GitHub Actions to immutable commit SHAs.
-3. Optional: Move to a header-capable host/CDN if you want HTTP-level CSP, `nosniff`, and `frame-ancestors`.
+1. Optional: Pin GitHub Actions to immutable commit SHAs.
+2. Optional: Move to a header-capable host/CDN if you want HTTP-level CSP, `nosniff`, and `frame-ancestors`.
+
+Note: Self-hosting fonts (previously the first item here) is complete — fonts now load from `public/fonts/`, so the third-party Google Fonts dependency is gone.
 
 ## Suggested Verification
 
