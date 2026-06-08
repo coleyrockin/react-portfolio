@@ -23,6 +23,7 @@
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
     "visual:smoke": "node scripts/visual-smoke.mjs",
+    "screenshot:readme": "node scripts/capture-readme.mjs",
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix",
     "format": "prettier --write \"src/**/*.{js,jsx,css}\"",
