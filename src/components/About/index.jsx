@@ -21,7 +21,7 @@ function About() {
   // image — no downscaled srcSet variant. Stable public URL so index.html can
   // preload it; the href there MUST match this one or the browser double-fetches.
   const headshot = `${baseUrl}/images/headshot.webp`;
-  const proofItems = [`${projects.length} public builds`, "CI + CodeQL", "Live demos"];
+  const proofItems = [`${projects.length} featured builds`, "CI + CodeQL", "Live demos"];
 
   return (
     <article className="about-panel">
@@ -43,8 +43,8 @@ function About() {
           <div className="hero-copy">
             <h2 className="hero-name">Boyd Roberts.</h2>
             <p className="hero-tagline">
-              I turn product ideas into production-ready software — clean frontends, resilient
-              backends, and AI-integrated workflows.
+              I build production-ready software end to end — React &amp; Next.js frontends,
+              resilient Node and serverless backends, shipped fast with AI-accelerated workflows.
             </p>
             <ul
               className="hero-stack-row"
@@ -69,6 +69,30 @@ function About() {
                 Get in touch
               </a>
             </div>
+            <ul className="hero-link-row" aria-label="Profile links">
+              <li>
+                <a
+                  className="hero-link"
+                  href="https://github.com/coleyrockin"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub
+                </a>
+              </li>
+              <li>
+                <a
+                  className="hero-link"
+                  href="https://www.linkedin.com/in/boydcroberts"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Résumé (LinkedIn)"
+                  aria-label="Résumé on LinkedIn"
+                >
+                  Résumé
+                </a>
+              </li>
+            </ul>
             <ul className="hero-proof-list" aria-label="Portfolio proof points">
               {proofItems.map((item) => (
                 <li key={item}>{item}</li>
