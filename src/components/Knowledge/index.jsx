@@ -20,24 +20,30 @@ function Knowledge() {
         <h3>Language &amp; Stack Map</h3>
         <p className="language-source-note">{languageSourceNote}</p>
         <p className="language-tier-key" aria-label="Tier legend">
-          <span className="tier-mark tier-mark--primary" aria-hidden="true">
-            ●
-          </span>{" "}
-          Primary
+          <span className="tier-item">
+            <span className="tier-mark tier-mark--primary" aria-hidden="true">
+              ●
+            </span>{" "}
+            Primary
+          </span>
           <span className="tier-sep" aria-hidden="true">
             ·
           </span>
-          <span className="tier-mark tier-mark--proficient" aria-hidden="true">
-            ◐
-          </span>{" "}
-          Proficient
+          <span className="tier-item">
+            <span className="tier-mark tier-mark--proficient" aria-hidden="true">
+              ◐
+            </span>{" "}
+            Proficient
+          </span>
           <span className="tier-sep" aria-hidden="true">
             ·
           </span>
-          <span className="tier-mark tier-mark--familiar" aria-hidden="true">
-            ○
-          </span>{" "}
-          Familiar
+          <span className="tier-item">
+            <span className="tier-mark tier-mark--familiar" aria-hidden="true">
+              ○
+            </span>{" "}
+            Familiar
+          </span>
         </p>
         <div className="language-group-grid">
           {languageGroups.map((group, i) => (

@@ -1462,6 +1462,9 @@ a {
   .capability-grid > div:last-child:not(:nth-child(2n)),
   .social-grid > div:last-child:not(:nth-child(2n)) {
     grid-column: 1 / -1;
+    /* width: 100% is required — auto margins disable grid stretch, so without
+       it the item shrinks to content width and max-width never applies. */
+    width: 100%;
     max-width: calc(50% - 7px);
     margin-inline: auto;
   }
@@ -1647,6 +1650,12 @@ a {
   font-weight: var(--weight-label);
   letter-spacing: 0.14em;
   text-transform: uppercase;
+}
+
+.tier-item {
+  /* Keep each mark + label pair on one line so the glyph never orphans
+     from its word when the legend wraps on narrow viewports. */
+  white-space: nowrap;
 }
 
 .tier-mark {
