@@ -940,7 +940,7 @@ a {
 }
 
 .project-grid--symmetrical .reveal:first-child .project-card {
-  min-height: 420px;
+  min-height: 340px;
 }
 
 /* Last card that sits alone in its row also spans full width */
@@ -957,7 +957,7 @@ a {
   background: rgba(255, 255, 255, 0.035);
   box-shadow: var(--shadow);
   display: grid;
-  grid-template-rows: minmax(225px, 0.9fr) auto;
+  grid-template-rows: minmax(180px, 0.7fr) auto;
   transition:
     transform 360ms var(--ease-soft),
     box-shadow 360ms var(--ease-soft),
@@ -1079,7 +1079,7 @@ a {
 }
 
 .project-content {
-  padding: 24px;
+  padding: 18px 20px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1096,11 +1096,11 @@ a {
 }
 
 .project-content h3 {
-  margin: 0 0 0.55rem;
+  margin: 0 0 0.45rem;
   font-family: "Instrument Serif", Georgia, serif;
-  font-size: clamp(1.9rem, 3.2vw, 3rem);
+  font-size: clamp(1.5rem, 2.4vw, 2.2rem);
   font-weight: 400;
-  line-height: 0.94;
+  line-height: 0.96;
   letter-spacing: 0;
 }
 
@@ -1148,10 +1148,13 @@ a {
 }
 
 .project-metric {
-  border: 1px solid var(--line-strong);
-  border-radius: 100px;
+  display: flex;
+  align-items: baseline;
+  gap: 0.38rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-chip);
   background: rgba(255, 255, 255, 0.04);
-  padding: 0.32rem 0.82rem;
+  padding: 0.22rem 0.62rem;
 }
 
 .project-metric dt,
@@ -1161,17 +1164,16 @@ a {
 
 .project-metric dt {
   color: var(--gold);
-  font-size: 0.62rem;
+  font-size: 0.6rem;
   font-weight: var(--weight-label);
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .project-metric dd {
-  margin-top: 0.05rem;
-  color: var(--ink);
-  font-size: 0.78rem;
-  font-weight: 700;
+  color: var(--ink-secondary);
+  font-size: 0.76rem;
+  font-weight: 600;
 }
 
 .project-actions {
