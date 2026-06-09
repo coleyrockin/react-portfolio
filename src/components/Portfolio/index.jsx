@@ -34,11 +34,7 @@ const ProjectCard = memo(function ProjectCard({ project, isLead = false }) {
 
   return (
     <article className={cardClass}>
-      {project.featured && (
-        <p className="project-featured-tag" aria-hidden="true">
-          Featured Case Study
-        </p>
-      )}
+
       <a
         href={previewHref}
         target="_blank"
