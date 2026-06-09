@@ -34,7 +34,6 @@ const ProjectCard = memo(function ProjectCard({ project, isLead = false }) {
 
   return (
     <article className={cardClass}>
-
       <a
         href={previewHref}
         target="_blank"
