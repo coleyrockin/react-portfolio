@@ -1708,18 +1708,20 @@ a {
 }
 
 .project-featured-tag {
-  justify-self: center;
+  position: absolute;
+  top: 14px;
+  left: 16px;
   z-index: 4;
-  margin: 16px 16px 12px;
-  padding: 0.32rem 0.85rem;
+  margin: 0;
+  padding: 0.22rem 0.6rem;
   border: 1px solid var(--gold-border);
-  border-radius: 999px;
-  background: rgba(0, 0, 0, 0.78);
+  border-radius: var(--radius-chip);
+  background: rgba(0, 0, 0, 0.72);
   backdrop-filter: blur(8px);
   color: var(--gold);
-  font-size: 0.62rem;
+  font-size: 0.58rem;
   font-weight: var(--weight-label);
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
