@@ -943,6 +943,11 @@ a {
   min-height: 420px;
 }
 
+/* Last card that sits alone in its row also spans full width */
+.project-grid--symmetrical .reveal:not(:first-child):last-child:nth-child(even) {
+  grid-column: 1 / -1;
+}
+
 .project-card {
   position: relative;
   height: 100%;
@@ -1077,9 +1082,9 @@ a {
   padding: 24px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 0;
-  text-align: center;
+  text-align: left;
 }
 
 /* Pin the actions row to the bottom so CTAs align across cards regardless
@@ -1137,17 +1142,16 @@ a {
 .project-metrics {
   margin: 0.85rem 0 0;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
   gap: 8px;
 }
 
 .project-metric {
-  min-width: 112px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-chip);
-  background: rgba(255, 255, 255, 0.028);
-  padding: 0.42rem 0.58rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.32rem 0.82rem;
 }
 
 .project-metric dt,
@@ -1156,24 +1160,24 @@ a {
 }
 
 .project-metric dt {
-  color: var(--faint);
-  font-size: 0.66rem;
+  color: var(--gold);
+  font-size: 0.62rem;
   font-weight: var(--weight-label);
-  letter-spacing: 0.11em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .project-metric dd {
-  margin-top: 0.08rem;
-  color: var(--ink-secondary);
-  font-size: 0.8rem;
-  font-weight: 800;
+  margin-top: 0.05rem;
+  color: var(--ink);
+  font-size: 0.78rem;
+  font-weight: 700;
 }
 
 .project-actions {
   margin-top: 0.35rem;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
   gap: 9px;
 }
