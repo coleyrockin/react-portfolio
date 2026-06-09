@@ -89,6 +89,6 @@ export const projects = [
     tags: ["JavaScript", "Three.js", "GSAP", "Vite"],
     image: CherryTreeImage,
     imageSrcSet: `${CherryTreeImage720} 720w, ${CherryTreeImage} 1280w`,
-    imageAlt: "CherryTree cinematic gallery preview",
+    imageAlt: "CherryTree bloom scene — pink cherry blossoms in cinematic gallery",
   },
 ];
