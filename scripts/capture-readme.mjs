@@ -1,5 +1,5 @@
-// Regenerates docs/screenshot.png — the home preview referenced by README.md —
-// from a fresh production build, so the README always shows the current UI.
+// Regenerates the README and social previews from a fresh production build so
+// repository and link previews always show the current UI and copy.
 //
 // Usage: npm run screenshot:readme   (optionally READMESHOT_PORT=4178)
 //
@@ -15,6 +15,7 @@ import process from "node:process";
 
 const cwd = process.cwd();
 const outFile = path.join(cwd, "docs", "screenshot.png");
+const socialFile = path.join(cwd, "public", "images", "social-preview.png");
 const host = "127.0.0.1";
 const requestedPort = Number(process.env.READMESHOT_PORT);
 const port = Number.isInteger(requestedPort) && requestedPort > 0 ? requestedPort : 4173;
@@ -145,6 +146,15 @@ async function main() {
       await settleHero(page);
       await page.screenshot({ path: outFile, clip: { x: 0, y: 0, width, height } });
       console.log(`Wrote ${path.relative(cwd, outFile)} (${width}x${height}).`);
+
+      await page.setViewportSize({ width: 1200, height: 630 });
+      await page.goto(`${baseUrl}#about`, { waitUntil: "networkidle" });
+      await settleHero(page);
+      await page.screenshot({
+        path: socialFile,
+        clip: { x: 0, y: 0, width: 1200, height: 630 },
+      });
+      console.log(`Wrote ${path.relative(cwd, socialFile)} (1200x630).`);
     } finally {
       await browser.close();
     }

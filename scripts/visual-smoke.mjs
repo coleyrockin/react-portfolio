@@ -19,6 +19,7 @@ const routes = [
   { hash: "#contact", heading: "Contact" },
 ];
 const viewports = [
+  { name: "compact", width: 320, height: 720 },
   { name: "narrow", width: 360, height: 780 },
   { name: "mobile", width: 390, height: 844 },
   { name: "desktop", width: 1440, height: 1000 },
@@ -151,6 +152,8 @@ async function inspectPage(page, route, viewport) {
   const checks = await page.evaluate((expectedHeading) => {
     const root = document.documentElement;
     const mainHeading = document.querySelector("main h2")?.textContent?.trim() || "";
+    const contentSecurityPolicy =
+      document.querySelector('meta[http-equiv="Content-Security-Policy"]')?.content || "";
     const imagesMissingAlt = [...document.images]
       .filter((image) => !image.hasAttribute("alt"))
       .map((image) => image.currentSrc || image.src);
@@ -165,6 +168,10 @@ async function inspectPage(page, route, viewport) {
       missingAltCount: imagesMissingAlt.length,
       imagesMissingAlt,
       unresolvedCspPlaceholder: root.innerHTML.includes("__CONTENT_SECURITY_POLICY__"),
+      missingContentSecurityPolicy: !contentSecurityPolicy,
+      unsafeContentSecurityPolicy:
+        contentSecurityPolicy.includes("'unsafe-inline'") ||
+        contentSecurityPolicy.includes("'unsafe-eval'"),
     };
   }, route.heading);
 
@@ -190,6 +197,8 @@ function scenarioFailed(result) {
     result.horizontalOverflow ||
     result.missingAltCount > 0 ||
     result.unresolvedCspPlaceholder ||
+    result.missingContentSecurityPolicy ||
+    result.unsafeContentSecurityPolicy ||
     result.consoleErrors.length > 0 ||
     result.pageErrors.length > 0
   );
@@ -253,10 +262,7 @@ async function main() {
       results,
     };
 
-    await writeFile(
-      path.join(reportDir, "summary.json"),
-      `${JSON.stringify(summary, null, 2)}\n`
-    );
+    await writeFile(path.join(reportDir, "summary.json"), `${JSON.stringify(summary, null, 2)}\n`);
 
     if (failed.length > 0) {
       console.error(`Visual smoke failed for ${failed.length} scenario(s).`);

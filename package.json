@@ -26,8 +26,8 @@
     "screenshot:readme": "node scripts/capture-readme.mjs",
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix",
-    "format": "prettier --write \"src/**/*.{js,jsx,css}\"",
-    "format:check": "prettier --check \"src/**/*.{js,jsx,css}\"",
+    "format": "prettier --write . --ignore-unknown",
+    "format:check": "prettier --check . --ignore-unknown",
     "check": "npm run format:check && npm run lint && npm run test && npm run build"
   },
   "dependencies": {
