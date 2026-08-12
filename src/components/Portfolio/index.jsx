@@ -86,50 +86,23 @@ const ProjectCard = memo(function ProjectCard({ project, isLead = false }) {
             ))}
           </dl>
         )}
+        {/* Live always leads, Source always follows. The order used to flip on
+            `featured`, so an unfeatured card with a demo read Source → Live. */}
         <div className="project-actions">
-          {project.featured && project.demo ? (
-            <>
-              <a
-                href={project.demo}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="demo-link"
-                aria-label={liveLabel}
-              >
-                Live
-              </a>
-              <a
-                href={project.repo}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={sourceLabel}
-              >
-                Source
-              </a>
-            </>
-          ) : (
-            <>
-              <a
-                href={project.repo}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={sourceLabel}
-              >
-                Source
-              </a>
-              {project.demo && (
-                <a
-                  href={project.demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="demo-link"
-                  aria-label={liveLabel}
-                >
-                  Live
-                </a>
-              )}
-            </>
+          {project.demo && (
+            <a
+              href={project.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="demo-link"
+              aria-label={liveLabel}
+            >
+              Live
+            </a>
           )}
+          <a href={project.repo} target="_blank" rel="noopener noreferrer" aria-label={sourceLabel}>
+            Source
+          </a>
         </div>
       </div>
     </article>

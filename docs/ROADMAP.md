@@ -1,6 +1,6 @@
 # Portfolio Maintenance
 
-_Last audited: 2026-07-21_
+_Last audited: 2026-08-11_
 
 The dark editorial direction is settled. The repository is in maintenance mode: keep the content accurate, dependencies current, and release evidence reproducible.
 
@@ -13,6 +13,8 @@ The dark editorial direction is settled. The repository is in maintenance mode: 
 - CodeQL and Dependabot cover source, npm, and GitHub Actions updates.
 - Production CSP excludes `unsafe-inline` and `unsafe-eval`.
 - Visual smoke covers four routes at 320px, 360px, 390px, and 1440px.
+- Every section reads off one left axis; alignment is set once on the panel rule.
+- The hero entrance is the only orchestrated motion on the site — keep it that way.
 
 ## Maintenance Cadence
 

@@ -25,9 +25,8 @@ function About() {
 
   return (
     <article className="about-panel">
-      <p className="section-eyebrow">Introduction</p>
+      <p className="section-eyebrow">Software Engineer</p>
       <div className="about-header-wrap">
-        <p className="hero-kicker">Software Engineer</p>
         <div className="hero-grid">
           <div className="profile-photo-wrap">
             <img

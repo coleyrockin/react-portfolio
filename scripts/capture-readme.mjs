@@ -106,7 +106,14 @@ async function settleHero(page) {
     }
     window.scrollTo(0, 0);
     await nextFrame();
-    await pause(600);
+    // Wait on the animations themselves rather than a fixed delay — the hero
+    // entrance cascade runs past 1s, and a magic number silently captures a
+    // half-faded hero whenever those timings change.
+    await Promise.all(
+      document.getAnimations().map((animation) => animation.finished.catch(() => {}))
+    );
+    await nextFrame();
+    await pause(120);
   });
 }
 

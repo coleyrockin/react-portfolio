@@ -4,25 +4,23 @@ function Navigation({ sections, currentSection, setCurrentSection }) {
       <div className="brand-block">
         <h1 className="brand-name">Boyd Roberts</h1>
       </div>
-      <div className="nav-row">
-        <nav className="section-nav" aria-label="Primary Sections">
-          {sections.map((section) => {
-            const isActive = section.slug === currentSection.slug;
+      <nav className="section-nav" aria-label="Primary Sections">
+        {sections.map((section) => {
+          const isActive = section.slug === currentSection.slug;
 
-            return (
-              <button
-                type="button"
-                className={`section-link ${isActive ? "is-active" : ""}`}
-                key={section.slug}
-                onClick={() => setCurrentSection(section)}
-                aria-current={isActive ? "page" : undefined}
-              >
-                {section.name}
-              </button>
-            );
-          })}
-        </nav>
-      </div>
+          return (
+            <button
+              type="button"
+              className={`section-link ${isActive ? "is-active" : ""}`}
+              key={section.slug}
+              onClick={() => setCurrentSection(section)}
+              aria-current={isActive ? "page" : undefined}
+            >
+              {section.name}
+            </button>
+          );
+        })}
+      </nav>
     </header>
   );
 }
