@@ -30,7 +30,7 @@ export const projects = [
   },
   {
     name: "Neon City Chess",
-    featured: true,
+    featured: false,
     category: "Real-Time 3D Chess Engine",
     description:
       "A browser-first 3D chess game with a premium Three.js Staunton board, full chess.js rule enforcement, and an AI opponent across three difficulty tiers.",
@@ -54,7 +54,7 @@ export const projects = [
   },
   {
     name: "POWO — Proof of Workout",
-    featured: true,
+    featured: false,
     category: "Health Analytics Dashboard",
     description:
       "Transforms Apple Health exports into a mobile-first analytics experience with workout, sleep, cardio, and VO2 Max trend tracking.",
